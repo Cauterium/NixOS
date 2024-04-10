@@ -6,6 +6,7 @@
       ./../../nixosModules
       inputs.nix-colors.homeManagerModules.default
       inputs.home-manager.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;

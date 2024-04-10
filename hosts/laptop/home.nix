@@ -3,6 +3,7 @@
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
@@ -43,6 +44,7 @@
     pamixer
     playerctl
     socat
+    sops
   ];
 
   home.file = {
