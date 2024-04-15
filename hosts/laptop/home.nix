@@ -39,8 +39,8 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     unstable.eww
+    fzf
     jq
-    nextcloud-client  # TODO: replace by using config in /homeManagerModules/nextcloud.nix
     pamixer
     playerctl
     socat

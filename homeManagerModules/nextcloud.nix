@@ -1,15 +1,19 @@
 { pkgs, lib, config, inputs, ... }: {
-    impors = [
-        inputs.sops-nix.nixosModules.sops
-    ];
-
     options = {
         nextcloud.enable = lib.mkEnableOption "Enables Nextcloud package and service";
     };
 
     config = lib.mkIf config.nextcloud.enable {
+        home.packages = with pkgs; [
+            nextcloud-client
+        ];
+
+        sops.secrets."nextcloud-username" = {};
+        sops.secrets."nextcloud-password" = {};
+        sops.secrets."nextcloud-url" = {};
+
         systemd.user = {
-            sevices.nextcloud-autosync = {
+            services.nextcloud-autosync = {
                 Unit = {
                     Description = "Auto sync Nextcloud";
                     After = "network-online.target";
@@ -34,7 +38,7 @@
                 Timer.OnUnitActiveSec = "20min";
                 Install.WantedBy = ["multi-user.target" "timers.target"];
             };
-            startServices = true;
+            # startServices = true;
         };
     };
 }
