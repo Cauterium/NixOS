@@ -16,32 +16,37 @@
         programs.alacritty = {
             enable = true;
 
-            settings.colors = {
+            settings.colors = with config.colorScheme.colors; {
                 bright = {
-                    black = "0x414868";
-                    blue = "0x7aa2f7";
-                    cyan = "0x7dcfff";
-                    green = "0x9ece6a";
-                    magenta = "0xbb9af7";
-                    red = "0xf7768e";
-                    white = "0xc0caf5";
-                    yellow = "0xe0af68";
+                    black = "0x${base03}";
+                    blue = "0x${base0D}";
+                    cyan = "0x${base0C}";
+                    green = "0x${base0B}";
+                    magenta = "0x${base0E}";
+                    red = "0x${base0F}";
+                    white = "0x${base06}";
+                    yellow = "0x${base09}";
+                };
+
+                cursor = {
+                    cursor = "0x${base06}";
+                    text = "0x${base06}";
                 };
 
                 normal = {
-                    black = "0x15161e";
-                    blue = "0x7aa2f7";
-                    cyan = "0x7dcfff";
-                    green = "0x9ece6a";
-                    magenta = "0xbb9af7";
-                    red = "0xf7768e";
-                    white = "0xa9b1d6";
-                    yellow = "0xe0af68";
+                    black = "0x${base03}";
+                    blue = "0x${base0D}";
+                    cyan = "0x${base0C}";
+                    green = "0x${base0B}";
+                    magenta = "0x${base0E}";
+                    red = "0x${base0F}";
+                    white = "0x${base06}";
+                    yellow = "0x${base0A}";
                 };
 
                 primary = {
-                    background = "0x1a1b26";
-                    foreground = "0xc0caf5";
+                    background = "0x${base00}";
+                    foreground = "0x${base06}";
                 };
             };
             settings.font = {
