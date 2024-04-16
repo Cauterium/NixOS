@@ -1,4 +1,9 @@
 { inputs, outputs, lib, config, pkgs, ... }:
+let
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  session = "${pkgs.hyprland}/bin/Hyprland";
+  username = "cauterium";
+in
 {
   imports =
     [
@@ -89,7 +94,9 @@
 
   environment.systemPackages = with pkgs; [
     btop
+    gnome.gnome-keyring
     home-manager
+    libsecret
     neofetch
     ueberzugpp
   ];
@@ -116,6 +123,24 @@
 
   programs.ssh = {
     startAgent = true;
+  };
+
+  services.gnome.gnome-keyring.enable = true;
+
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${session}";
+        user = "${username}";
+      };
+      default_session = {
+        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${session}";
+        user = "greeter";
+      };
+    };
   };
 
   # Open ports in the firewall.

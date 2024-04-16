@@ -114,6 +114,7 @@
                 exec-once = [
                     "dunst & hyprpaper & hypridle"
                     "/home/cauterium/.config/eww/launch.sh"
+                    "nextcloud --background"
                 ];
 
                 input = {

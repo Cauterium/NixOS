@@ -41,6 +41,7 @@
     unstable.eww
     fzf
     jq
+    nextcloud-client
     pamixer
     playerctl
     socat
@@ -69,6 +70,5 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
 }
 

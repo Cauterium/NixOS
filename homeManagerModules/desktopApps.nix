@@ -8,6 +8,7 @@
             anki
             vesktop
             unstable.obsidian
+            rnote
             thunderbird
             zotero
         ];

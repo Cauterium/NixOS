@@ -6,6 +6,7 @@
     config = lib.mkIf config.secrets.enable {
         sops.defaultSopsFile = ../secrets/secrets.yaml;
         sops.defaultSopsFormat = "yaml";
+        # TODO Home directory should not be hard coded if possible
         sops.age.keyFile = "/home/cauterium/.config/sops/age/key.txt";
     };
 }
