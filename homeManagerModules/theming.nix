@@ -21,6 +21,11 @@
             gtk4.extraConfig = {
                 gtk-application-prefer-dark-theme = true;
             };
+
+            theme = {
+                name = "Tokyo-Night";
+                package = pkgs.tokyo-night-gtk;
+            };
         };
     };
 }

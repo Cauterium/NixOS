@@ -46,6 +46,7 @@
     playerctl
     socat
     sops
+    wirelesstools
   ];
 
   home.file = {
