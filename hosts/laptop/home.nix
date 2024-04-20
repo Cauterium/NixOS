@@ -6,6 +6,8 @@
     inputs.sops-nix.homeManagerModules.sops
   ];
 
+  unity.enable = true;
+
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
 
   home.username = "cauterium";
@@ -38,7 +40,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    unstable.eww
     fzf
     jq
     nextcloud-client
@@ -46,7 +47,6 @@
     playerctl
     socat
     sops
-    wirelesstools
   ];
 
   home.file = {

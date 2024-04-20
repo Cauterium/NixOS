@@ -1,4 +1,11 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }:
+let
+    image = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/siddrs/tokyo-night-sddm/320c8e74ade1e94f640708eee0b9a75a395697c6/Backgrounds/shacks.png";
+        sha256 = "0j9bzsqgdgdrm46q6li5iw04p794xrc7pwvk03hl8diknxqh2v4m";
+    };
+in
+{
     options = {
         hyprland.enable = lib.mkEnableOption "Enables hyprland";
     };
@@ -7,6 +14,7 @@
         home.packages = with pkgs; [
             dmenu-bluetooth
             dunst
+            unstable.eww
             grim
             hypridle
             hyprlock
@@ -15,6 +23,7 @@
             rofi-power-menu
             rofi-wayland
             slurp
+            wirelesstools
             wl-clipboard
         ];
 
@@ -95,6 +104,12 @@
                 timeout = 1800
                 on-timeout = systemctl suspend
             }
+        '';
+
+        home.file.".config/hypr/hyprpaper.conf".text = ''
+            preload = ${image}
+            wallpaper = eDP-1,${image}
+            splash = false
         '';
 
         wayland.windowManager.hyprland = {
@@ -238,7 +253,7 @@
                 # Move/resize windows with mainMod + LMB/RMB and dragging
                 bindm = [
                     "$mainMod, mouse:272, movewindow"
-                    "$mainMod, mouse:273, resizewindow"
+                    "$mainModShift, mouse:272, resizewindow"
                 ];
             };
         };

@@ -5,12 +5,19 @@
 
     config = lib.mkIf config.theming.enable {
         home.packages = with pkgs; [
+            adwaita-qt
             papirus-icon-theme
             libsForQt5.qt5ct
             qt6Packages.qt6ct
+            tokyo-night-gtk
         ];
 
-        home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
+        qt = {
+            enable = true;
+            platformTheme = "gtk";
+            style.name = "adwaita-dark";
+            style.package = pkgs.adwaita-qt;
+        };
 
         # GTK Theming
         gtk = {
@@ -22,8 +29,13 @@
                 gtk-application-prefer-dark-theme = true;
             };
 
+            iconTheme = {
+                name = "Dark";
+                package = pkgs.tokyo-night-gtk;
+            };
+
             theme = {
-                name = "Tokyo-Night";
+                name = "Dark-B";
                 package = pkgs.tokyo-night-gtk;
             };
         };

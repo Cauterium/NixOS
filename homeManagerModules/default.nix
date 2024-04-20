@@ -3,9 +3,9 @@
         ./development.nix
         ./desktopApps.nix
         ./hyprland.nix
+        ./secrets.nix
         ./spicetify.nix
         ./theming.nix
-        ./secrets.nix
     ];
 
     desktopApps.enable = lib.mkDefault true;

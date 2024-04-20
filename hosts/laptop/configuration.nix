@@ -42,7 +42,7 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;  # TODO complete nixosModules/network.nix
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -68,6 +68,14 @@ in
   services.xserver = {
     layout = "de";
     xkbVariant = "";
+  };
+
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      sddm.theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
+    };
   };
 
   # Configure console keymap
@@ -97,6 +105,8 @@ in
     gnome.gnome-keyring
     home-manager
     libsecret
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
     neofetch
     ueberzugpp
   ];
@@ -127,21 +137,7 @@ in
 
   services.gnome.gnome-keyring.enable = true;
 
-  security.pam.services.greetd.enableGnomeKeyring = true;
-
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${session}";
-        user = "${username}";
-      };
-      default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${session}";
-        user = "greeter";
-      };
-    };
-  };
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
