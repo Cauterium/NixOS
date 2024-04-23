@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, config }: {
+{ lib, pkgs, inputs, config, ... }: {
     options = {
         network.enable = lib.mkEnableOption "Enables network config";
     };
@@ -13,8 +13,6 @@
         sops.secrets."networks.env" = { 
             restartUnits = [ "NetworkManager-ensure-profiles.service" ];
         };
-
-        networking.hostName = "nixos";
 
         networking.networkmanager = {
             enable = true;
@@ -40,7 +38,7 @@
                             domain-suffix-match = "radius-wlan.scc.kit.edu";
                             eap = "ttls;";
                             identity = "$kit_identity";
-                            password = "$kit_psk";
+                            password = "$kit_pw";
                             phase2-auth = "pap";
                         };
                         ipv4 = {
@@ -70,7 +68,7 @@
                             service-type = "org.freedesktop.NetworkManager.openvpn";
                         };
                         vpn-secrets = {
-                            password = "$kitvpn_psk";
+                            password = "$kitvpn_pw";
                         };
                         ipv4 = {
                             method = "auto";

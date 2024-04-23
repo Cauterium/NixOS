@@ -29,13 +29,8 @@
                 gtk-application-prefer-dark-theme = true;
             };
 
-            iconTheme = {
-                name = "Dark";
-                package = pkgs.tokyo-night-gtk;
-            };
-
             theme = {
-                name = "Dark-B";
+                name = "Tokyonight-Dark-B";
                 package = pkgs.tokyo-night-gtk;
             };
         };

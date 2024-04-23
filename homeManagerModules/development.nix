@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }: {
     imports = [
+        ./nixvim.nix
         ./unity.nix
     ];
 
@@ -8,12 +9,12 @@
     };
 
     config = lib.mkIf config.development.enable {
+        nixvim.enable = lib.mkDefault true;
         unity.enable = lib.mkDefault false;
 
         home.packages = with pkgs; [
             jetbrains.pycharm-professional
             lazygit
-            unstable.neovim
             vscodium
         ];
 

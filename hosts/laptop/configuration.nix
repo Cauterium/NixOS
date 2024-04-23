@@ -1,10 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  session = "${pkgs.hyprland}/bin/Hyprland";
-  username = "cauterium";
-in
-{
+{ inputs, outputs, lib, config, pkgs, ... }: {
   imports =
     [
       ./hardware-configuration.nix
@@ -34,12 +28,13 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  networking.hostName = "laptop";
 
   # Enable networking
   networking.networkmanager.enable = true;  # TODO complete nixosModules/network.nix
@@ -100,6 +95,10 @@ in
 
   laptop.enable = true;
 
+  environment.sessionVariables = {
+    FLAKE = "/home/cauterium/.config/NixOS-System";
+  };
+
   environment.systemPackages = with pkgs; [
     btop
     gnome.gnome-keyring
@@ -108,6 +107,7 @@ in
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     neofetch
+    unstable.nh
     ueberzugpp
   ];
 

@@ -20,6 +20,7 @@ in
             hyprlock
             hyprpaper
             networkmanager_dmenu
+            rofi-emoji
             rofi-power-menu
             rofi-wayland
             slurp
@@ -30,8 +31,8 @@ in
         home.file.".config/hypr/hyprlock.conf".text = with config.colorScheme.colors; ''
             background {
                 monitor =
-                path = ~/Images/wallpaper.png
-                blur_passes = 3
+                path = ${image}
+                blur_passes = 2
                 contrast = 0.9
                 brightness = 0.8
                 vibrancy = 0.2
@@ -174,7 +175,7 @@ in
 
                 windowrulev2 = [
                     "opacity 0.9 0.85,class:^(Alacritty)$"
-                    "opacity 0.9 0.85,class:^(discord)$"
+                    "opacity 0.9 0.85,class:^(vesktop)$"
                     "opacity 0.9 0.85,float,initialTitle:^(Spotify.*)$"
                     "opacity 0.9 0.85,class:^(Rofi)$"
                 ];
