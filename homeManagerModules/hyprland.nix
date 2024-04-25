@@ -119,6 +119,7 @@ in
                 "$screenshot" = "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png";
                 "$terminal" = "alacritty";
                 "$menu" = "rofi -show drun";
+                "$power-menu" = "rofi -show power-menu -modi power-menu:rofi-power-menu";
 
                 "$mainMod" = "SUPER";
                 "$mainModShift" = "SUPER_SHIFT";
@@ -185,6 +186,7 @@ in
                     "$mainMod, C, killactive," 
                     "$mainMod, M, exit," 
                     "$mainMod, V, togglefloating," 
+                    "$mainMod, E, exec, $power-menu"
                     "$mainMod, R, exec, $menu"
                     "$mainMod, P, pseudo," # dwindle
                     "$mainMod, J, togglesplit," # dwindle
@@ -575,6 +577,15 @@ in
                 background-color:            @background-colour;
                 text-color:                  @foreground-colour;
             }
+        '';
+
+        home.file.".config/networkmanager-dmenu/config.ini".text = ''
+            [dmenu]
+            dmenu_command = rofi -dmenu
+
+            [editor]
+            terminal = alacritty
+            gui_if_available = False
         '';
 
         home.file.".config/dunst/dunstrc".text = with config.colorScheme.colors; ''
