@@ -19,6 +19,7 @@ in
             hypridle
             hyprlock
             hyprpaper
+	    imagemagick
             networkmanager_dmenu
             rofi-emoji
             rofi-power-menu
@@ -116,7 +117,7 @@ in
         wayland.windowManager.hyprland = {
             enable = true;
             settings = {
-                "$screenshot" = "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png";
+                "$screenshot" = "grim -g \"$(slurp)\" - | convert - -shave 1x1 PNG:- | wl-copy -t image/png";
                 "$terminal" = "alacritty";
                 "$menu" = "rofi -show drun";
                 "$power-menu" = "rofi -show power-menu -modi power-menu:rofi-power-menu";
