@@ -14,7 +14,7 @@
     development.enable = lib.mkDefault true;
     hyprland.enable = lib.mkDefault true;
     imageManipulation.enable = lib.mkDefault false;
-    music.enable = lib.mkDefaul false;
+    music.enable = lib.mkDefault false;
     secrets.enable = lib.mkDefault true;
     spicetify.enable = lib.mkDefault true;
     theming.enable = lib.mkDefault true;

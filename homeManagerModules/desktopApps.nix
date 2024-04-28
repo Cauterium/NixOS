@@ -13,6 +13,15 @@
             zotero
         ];
 
+        home.file.".config/fish/config.fish".text = ''
+            if status is-interactive
+            # Commands to run in interactive sessions can go here
+            end
+            set -U fish_greeting
+            alias c "clear && neofetch"
+            neofetch
+        '';
+
         programs.alacritty = {
             enable = true;
 
