@@ -108,12 +108,6 @@ in
             }
         '';
 
-        home.file.".config/hypr/hyprpaper.conf".text = ''
-            preload = ${image}
-            wallpaper = eDP-1,${image}
-            splash = false
-        '';
-
         wayland.windowManager.hyprland = {
             enable = true;
             settings = {
@@ -124,8 +118,6 @@ in
 
                 "$mainMod" = "SUPER";
                 "$mainModShift" = "SUPER_SHIFT";
-
-                monitor= [ ",preferred,auto,1" ];
 
                 exec-once = [
                     "dunst & hyprpaper & hypridle"
@@ -144,7 +136,6 @@ in
                     touchpad = {
                         natural_scroll = "yes";
                     };
-                    sensitivity = "0.3"; # -1.0 - 1.0, 0 means no modification.
                 };
 
                 general = with config.colorScheme.colors; {

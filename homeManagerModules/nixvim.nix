@@ -129,6 +129,8 @@
                         pylsp.enable = true;
                         # Rust
                         rust-analyzer.enable = true;
+			rust-analyzer.installCargo = true;
+			rust-analyzer.installRustc = true;
                     };
                 };
                 cmp = {

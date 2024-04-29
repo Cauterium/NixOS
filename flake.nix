@@ -43,6 +43,13 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
+        modules = [
+          ./hosts/desktop/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
     };
     homeManagerModules.default = ./homeManagerModules;
   };

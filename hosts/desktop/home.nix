@@ -13,6 +13,8 @@ in
   ];
 
   unity.enable = true;
+  imageManipulation.enable = true;
+  music.enable = true;
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
 
@@ -68,18 +70,32 @@ in
     # '';
   };
 
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ${image}
-    wallpaper = eDP-1,${image}
-    splash = false
-  '';
-
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
 
-  wayland.windowManager.hyprland.settings.monitor = [ ",preferred,auto,1" ];
-  wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = ${image}
+    wallpaper = DP-1,${image}
+    wallpaper = DP-2,${image}
+    wallpaper = HDMI-A-1,${image}
+    splash = false
+  '';
+
+  wayland.windowManager.hyprland.settings.monitor = [ "DP-1,1920x1080,0x0,1" "HDMI-A-1,1920x1080,1920x0,1" "DP-2,1920x1080,3840x0,1" ];
+  wayland.windowManager.hyprland.settings.input.sensitivity = "-0.2";
+  wayland.windowManager.hyprland.settings.input.workspace = [
+    "1, monitor:DP-1, default:true"
+    "2, monitor:HDMI-A-1, default:true"
+    "3, monitor:DP-2, default:true"
+    "4, monitor:DP-1"
+    "5, monitor:DP-1"
+    "6, monitor:DP-1"
+    "7, monitor:DP-1"
+    "8, monitor:DP-1"
+    "9, monitor:DP-1"
+    "10, monitor:DP-1"
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
