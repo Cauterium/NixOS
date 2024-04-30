@@ -14,12 +14,11 @@ in
         home.packages = with pkgs; [
             dmenu-bluetooth
             dunst
-            unstable.eww
             grim
             hypridle
             hyprlock
             hyprpaper
-	    imagemagick
+	        imagemagick
             networkmanager_dmenu
             rofi-emoji
             rofi-power-menu
@@ -28,6 +27,8 @@ in
             wirelesstools
             wl-clipboard
         ];
+
+        eww.enable = true;
 
         home.file.".config/hypr/hyprlock.conf".text = with config.colorScheme.colors; ''
             background {

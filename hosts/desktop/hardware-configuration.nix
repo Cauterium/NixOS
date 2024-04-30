@@ -23,6 +23,11 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+  
+  fileSystems."/home/cauterium/Datenplatte" =
+    { device = "/dev/disk/by-uuid/A48A126A8A1238EE";
+      fsType = "ntfs";
+    };
 
   swapDevices = [ ];
 
