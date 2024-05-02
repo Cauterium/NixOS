@@ -79,6 +79,7 @@ in
   };
 
   wayland.windowManager.hyprland.settings.monitor = [ ",preferred,auto,1" ];
+  wayland.windowManager.hyprland.settings.exec-once = [ "hypridle" ];
   wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";
 
   # Let Home Manager install and manage itself.

@@ -121,7 +121,7 @@ in
                 "$mainModShift" = "SUPER_SHIFT";
 
                 exec-once = [
-                    "dunst & hyprpaper & hypridle"
+                    "dunst & hyprpaper"
                     "/home/cauterium/.config/eww/launch.sh"
                     "nextcloud --background"
                 ];

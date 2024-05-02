@@ -84,7 +84,7 @@ in
   '';
 
   wayland.windowManager.hyprland.settings.monitor = [ "DP-1,1920x1080,0x0,1" "HDMI-A-1,1920x1080,1920x0,1" "DP-2,1920x1080,3840x0,1" ];
-  wayland.windowManager.hyprland.settings.input.sensitivity = "-0.4";
+  wayland.windowManager.hyprland.settings.input.sensitivity = "-0.5";
   wayland.windowManager.hyprland.settings.input.workspace = [
     "1, monitor:DP-1, default:true"
     "2, monitor:HDMI-A-1, default:true"

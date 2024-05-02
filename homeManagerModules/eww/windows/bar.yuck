@@ -35,8 +35,6 @@
   :halign "center"
   :space-evenly "false"
   (window_title)
-  (seperator)
-  (music)
 ))
 
 (defwidget right[]
