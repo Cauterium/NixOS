@@ -3,7 +3,7 @@
 (defpoll vpn_name :interval "5s" "./widgets/network/vpn name")
 
 (defwidget network[]
-  (eventbox :onclick "/opt/bin/networkmanager_dmenu&"
+  (eventbox :onclick "networkmanager_dmenu&"
     :space-evenly "false"
     :hexpand "false"
     (box :class "networking-module" 

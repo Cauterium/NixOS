@@ -69,12 +69,10 @@
     xkbVariant = "";
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
-    };
+  services.displayManager.sddm = {
+      enable = true;
+      theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
+      wayland.enable = true;
   };
 
   # Configure console keymap
