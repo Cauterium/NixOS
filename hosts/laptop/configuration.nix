@@ -65,10 +65,13 @@
     xkbVariant = "";
   };
 
-  services.displayManager.sddm = {
-      enable = true;
-      theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
-      wayland.enable = true;
+services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      sddm.theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
+      sddm.wayland.enable = true;
+    };
   };
 
   # Configure console keymap
@@ -98,7 +101,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    btop
+    unstable.btop
     gnome.gnome-keyring
     home-manager
     libsecret
@@ -116,7 +119,10 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = pkgs.unstable.hyprland;
+  };
   xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     sound.enable = true;

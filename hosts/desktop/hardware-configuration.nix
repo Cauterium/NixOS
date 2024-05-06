@@ -19,9 +19,9 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/46FA-E160";
+    { device = "/dev/disk/by-uuid/831A-F5A0";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [ "umask=0077" ];
     };
   
   fileSystems."/home/cauterium/Datenplatte" =

@@ -15,10 +15,10 @@ in
             dmenu-bluetooth
             dunst
             grim
-            hypridle
-            hyprlock
+            unstable.hypridle
+            unstable.hyprlock
             hyprpaper
-	        imagemagick
+	    imagemagick
             networkmanager_dmenu
             rofi-emoji
             rofi-power-menu
@@ -27,6 +27,10 @@ in
             wirelesstools
             wl-clipboard
         ];
+
+	home.sessionVariables = {
+	    XDG_CURRENT_DESKTOP = "hyprland";
+	};
 
         eww.enable = true;
 
@@ -170,7 +174,6 @@ in
                 windowrulev2 = [
                     "opacity 0.9 0.85,class:^(Alacritty)$"
                     "opacity 0.9 0.85,class:^(vesktop)$"
-                    "opacity 0.9 0.85,float,initialTitle:^(Spotify.*)$"
                     "opacity 0.9 0.85,class:^(Rofi)$"
                 ];
 

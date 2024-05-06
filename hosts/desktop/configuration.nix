@@ -15,6 +15,7 @@
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
+  nvidia.enable = true;
 
   # Configure nix package manager
   nixpkgs = {
@@ -31,8 +32,34 @@
   nix.settings.auto-optimise-store = true;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    devices = [ "nodev" ];
+    extraEntries = ''
+      menuentry "Windows 11" {
+        insmod part_gpt
+        insmod fat
+        insmod search_fs_uuid
+        insmod chain
+        search --fs-uuid --set=root 46FA-E160
+        chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+      }
+    '';
+    gfxmodeEfi = "1920x1080,auto";
+    theme = "${
+      (pkgs.fetchFromGitHub {
+        owner = "mino29";
+	repo = "tokyo-night-grub";
+	rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
+	hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
+      })
+    }/tokyo-night/";
+    version = 2;
+  };
   boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "desktop"; # Define your hostname.
@@ -69,10 +96,13 @@
     xkbVariant = "";
   };
 
-  services.displayManager.sddm = {
-      enable = true;
-      theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
-      wayland.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      sddm.theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
+      sddm.wayland.enable = true;
+    };
   };
 
   # Configure console keymap
@@ -101,7 +131,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    btop
+    unstable.btop
     gnome.gnome-keyring
     home-manager
     libsecret
@@ -119,7 +149,10 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = pkgs.unstable.hyprland;
+  };
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   sound.enable = true;

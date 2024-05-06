@@ -6,7 +6,7 @@
     config = lib.mkIf config.desktopApps.enable {
         home.packages = with pkgs; [
             anki
-            vesktop
+            unstable.vesktop
             unstable.obsidian
             rnote
             thunderbird
@@ -24,6 +24,7 @@
 
         programs.alacritty = {
             enable = true;
+	    package = pkgs.unstable.alacritty;
 
             settings.colors = with config.colorScheme.colors; {
                 bright = {

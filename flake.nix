@@ -2,7 +2,7 @@
   description = "Cauteriums NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
@@ -14,8 +14,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Cauterium/NixVim";
     };
 
     sops-nix.url = "github:mic92/sops-nix";
