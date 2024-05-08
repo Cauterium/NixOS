@@ -1,4 +1,8 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   config = lib.mkIf config.eww.enable {
     home.file.".config/eww/windows" = {
       recursive = true;

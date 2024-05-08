@@ -1,12 +1,18 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./../../nixosModules
-      inputs.nix-colors.homeManagerModules.default
-      inputs.home-manager.nixosModules.default
-      inputs.sops-nix.nixosModules.sops
-    ];
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./../../nixosModules
+    inputs.nix-colors.homeManagerModules.default
+    inputs.home-manager.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
 
@@ -21,12 +27,28 @@
     };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    devices = ["nodev"];
+    gfxmodeEfi = "1920x1200,auto";
+    theme = "${
+      (pkgs.fetchFromGitHub {
+        owner = "mino29";
+        repo = "tokyo-night-grub";
+        rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
+        hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
+      })
+    }/tokyo-night/";
+    version = 2;
+  };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -37,7 +59,7 @@
   networking.hostName = "laptop";
 
   # Enable networking
-  networking.networkmanager.enable = true;  # TODO complete nixosModules/network.nix
+  networking.networkmanager.enable = true; # TODO complete nixosModules/network.nix
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -65,11 +87,11 @@
     xkbVariant = "";
   };
 
-services.xserver = {
+  services.xserver = {
     enable = true;
     displayManager = {
       sddm.enable = true;
-      sddm.theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
+      sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
       sddm.wayland.enable = true;
     };
   };
@@ -81,14 +103,14 @@ services.xserver = {
   users.users.cauterium = {
     isNormalUser = true;
     description = "Cauterium";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
     packages = with pkgs; [
     ];
   };
-  
+
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       cauterium = import ./home.nix;
     };
@@ -124,15 +146,15 @@ services.xserver = {
     package = pkgs.unstable.hyprland;
   };
   xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    sound.enable = true;
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  sound.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   programs.ssh = {
@@ -156,5 +178,4 @@ services.xserver = {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

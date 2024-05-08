@@ -1,11 +1,16 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   image = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/siddrs/tokyo-night-sddm/320c8e74ade1e94f640708eee0b9a75a395697c6/Backgrounds/shacks.png";
     sha256 = "0j9bzsqgdgdrm46q6li5iw04p794xrc7pwvk03hl8diknxqh2v4m";
   };
-in
-{
+in {
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default
@@ -83,7 +88,7 @@ in
     splash = false
   '';
 
-  wayland.windowManager.hyprland.settings.monitor = [ "DP-1,1920x1080,0x0,1" "HDMI-A-1,1920x1080,1920x0,1" "DP-2,1920x1080,3840x0,1" ];
+  wayland.windowManager.hyprland.settings.monitor = ["DP-1,1920x1080,0x0,1" "HDMI-A-1,1920x1080,1920x0,1" "DP-2,1920x1080,3840x0,1"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "-0.5";
   wayland.windowManager.hyprland.settings.input.workspace = [
     "1, monitor:DP-1, default:true"
@@ -104,4 +109,3 @@ in
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-

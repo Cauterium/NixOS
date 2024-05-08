@@ -10,7 +10,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     nixvim = {
@@ -21,8 +21,11 @@
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
-  outputs = { self, nixpkgs, ... }@inputs:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
     systems = [
       "x86_64-linux"
@@ -32,18 +35,18 @@
     # Formatter for nix files, available through 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    overlays = import ./overlays { inherit inputs; };
+    overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/laptop/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
       };
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/desktop/configuration.nix
           inputs.home-manager.nixosModules.default

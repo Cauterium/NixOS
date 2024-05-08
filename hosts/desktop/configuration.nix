@@ -1,18 +1,22 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, outputs, lib, config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./../../nixosModules
-      inputs.nix-colors.homeManagerModules.default
-      inputs.home-manager.nixosModules.default
-      inputs.sops-nix.nixosModules.sops
-    ];
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./../../nixosModules
+    inputs.nix-colors.homeManagerModules.default
+    inputs.home-manager.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
   nvidia.enable = true;
@@ -28,7 +32,7 @@
     };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
   # Bootloader.
@@ -38,7 +42,7 @@
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
-    devices = [ "nodev" ];
+    devices = ["nodev"];
     extraEntries = ''
       menuentry "Windows 11" {
         insmod part_gpt
@@ -53,14 +57,14 @@
     theme = "${
       (pkgs.fetchFromGitHub {
         owner = "mino29";
-	repo = "tokyo-night-grub";
-	rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
-	hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
+        repo = "tokyo-night-grub";
+        rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
+        hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
       })
     }/tokyo-night/";
     version = 2;
   };
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
   networking.hostName = "desktop"; # Define your hostname.
   network.enable = false;
@@ -100,7 +104,7 @@
     enable = true;
     displayManager = {
       sddm.enable = true;
-      sddm.theme = "${import ../../nixosModules/sddm-theme.nix { inherit pkgs; }}";
+      sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
       sddm.wayland.enable = true;
     };
   };
@@ -112,13 +116,13 @@
   users.users.cauterium = {
     isNormalUser = true;
     description = "cauterium";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       cauterium = import ./home.nix;
     };
@@ -154,7 +158,7 @@
     package = pkgs.unstable.hyprland;
   };
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -186,5 +190,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

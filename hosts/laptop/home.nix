@@ -1,11 +1,16 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   image = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/siddrs/tokyo-night-sddm/320c8e74ade1e94f640708eee0b9a75a395697c6/Backgrounds/shacks.png";
     sha256 = "0j9bzsqgdgdrm46q6li5iw04p794xrc7pwvk03hl8diknxqh2v4m";
   };
-in
-{
+in {
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default
@@ -78,8 +83,8 @@ in
     # EDITOR = "emacs";
   };
 
-  wayland.windowManager.hyprland.settings.monitor = [ ",preferred,auto,1" ];
-  wayland.windowManager.hyprland.settings.exec-once = [ "hypridle" ];
+  wayland.windowManager.hyprland.settings.monitor = [",preferred,auto,1"];
+  wayland.windowManager.hyprland.settings.exec-once = ["hypridle"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";
 
   # Let Home Manager install and manage itself.
@@ -88,4 +93,3 @@ in
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-

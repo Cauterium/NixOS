@@ -1,12 +1,18 @@
-{ inputs, pkgs, lib, config, ... }: {
-    options = {
-        music.enable = lib.mkEnableOption "Enables Music recording and editing software";
-    };
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  options = {
+    music.enable = lib.mkEnableOption "Enables Music recording and editing software";
+  };
 
-    config = lib.mkIf config.music.enable {
-        home.packages = with pkgs; [
-            ardour
-            musescore
-        ];
-    };
+  config = lib.mkIf config.music.enable {
+    home.packages = with pkgs; [
+      ardour
+      musescore
+    ];
+  };
 }
