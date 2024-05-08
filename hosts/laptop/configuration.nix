@@ -93,6 +93,7 @@
       sddm.enable = true;
       sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
       sddm.wayland.enable = true;
+      sessionPackages = [pkgs.unstable.hyprland];
     };
   };
 
@@ -141,10 +142,6 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  programs.hyprland = {
-    enable = true;
-    package = pkgs.unstable.hyprland;
-  };
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   sound.enable = true;

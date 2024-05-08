@@ -118,6 +118,7 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
+      package = pkgs.unstable.hyprland;
       settings = {
         "$screenshot" = "grim -g \"$(slurp)\" - | convert - -shave 1x1 PNG:- | wl-copy -t image/png";
         "$terminal" = "alacritty";
