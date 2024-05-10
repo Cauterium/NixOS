@@ -128,6 +128,7 @@
       cauterium = import ./home.nix;
     };
   };
+  programs.dconf.enable = true;
 
   environment.sessionVariables = {
     FLAKE = "/home/cauterium/.config/NixOS-System";

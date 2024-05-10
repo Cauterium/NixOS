@@ -116,6 +116,7 @@
       cauterium = import ./home.nix;
     };
   };
+  programs.dconf.enable = true;
 
   laptop.enable = true;
 

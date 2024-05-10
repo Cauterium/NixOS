@@ -10,6 +10,7 @@
   config = lib.mkIf config.nvidia.enable {
     programs.hyprland = {
       xwayland.enable = true;
+      enableNvidiaPatches = true;
     };
 
     environment.sessionVariables = {
@@ -19,11 +20,11 @@
       NIXOS_OZONE_WL = "1";
     };
 
+    services.xserver.videoDrivers = ["nvidia"];
+
     hardware = {
       # Opengl
       opengl.enable = true;
-
-      # Most wayland compositors need this
       nvidia.modesetting.enable = true;
     };
   };

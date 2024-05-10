@@ -82,25 +82,25 @@ in {
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
     preload = ${image}
-    wallpaper = DP-1,${image}
+    wallpaper = DP-3,${image}
     wallpaper = DP-2,${image}
     wallpaper = HDMI-A-1,${image}
     splash = false
   '';
 
-  wayland.windowManager.hyprland.settings.monitor = ["DP-1,1920x1080,0x0,1" "HDMI-A-1,1920x1080,1920x0,1" "DP-2,1920x1080,3840x0,1"];
+  wayland.windowManager.hyprland.settings.monitor = ["desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1" "Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1" "Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "-0.5";
   wayland.windowManager.hyprland.settings.input.workspace = [
-    "1, monitor:DP-1, default:true"
-    "2, monitor:HDMI-A-1, default:true"
-    "3, monitor:DP-2, default:true"
-    "4, monitor:DP-1"
-    "5, monitor:DP-1"
-    "6, monitor:DP-1"
-    "7, monitor:DP-1"
-    "8, monitor:DP-1"
-    "9, monitor:DP-1"
-    "10, monitor:DP-1"
+    "1, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044, default:true"
+    "2, monitor:desc:Samsung Electric Company S24F350 H4LR401741, default:true"
+    "3, monitor:desc:Technical Concepts Ltd LCD TV 0x00000001, default:true"
+    "4, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
+    "5, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
+    "6, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
+    "7, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
+    "8, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
+    "9, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
+    "10, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
   ];
 
   # Let Home Manager install and manage itself.

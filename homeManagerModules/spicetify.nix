@@ -29,11 +29,11 @@ in {
         window = "${base01}";
         main-secondary = "${base01}";
         button = "${base0D}";
-        button-secondary = "${base08}";
+        button-secondary = "${base07}";
         button-active = "${base0D}";
-        button-disabled = "${base08}";
+        button-disabled = "${base07}";
         nav-active = "${base02}";
-        play-button = "${base08}";
+        play-button = "${base07}";
         tab-active = "${base02}";
         notification = "${base03}";
         notification-error = "${base0F}";

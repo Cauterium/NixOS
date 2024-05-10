@@ -178,6 +178,7 @@ in {
         windowrulev2 = [
           "opacity 0.9 0.85,class:^(Alacritty)$"
           "opacity 0.9 0.85,class:^(vesktop)$"
+          "opacity 0.9 0.85,float,initialTitle:^(Spotify.*)$"
           "opacity 0.9 0.85,class:^(Rofi)$"
         ];
 
