@@ -18,7 +18,6 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
   nvidia.enable = true;
 
   # Configure nix package manager

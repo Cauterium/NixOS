@@ -14,8 +14,6 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
-
   # Configure nix package manager
   nixpkgs = {
     overlays = [

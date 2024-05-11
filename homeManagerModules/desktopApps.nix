@@ -39,9 +39,9 @@
           cyan = "0x${base0C}";
           green = "0x${base0B}";
           magenta = "0x${base0E}";
-          red = "0x${base0F}";
-          white = "0x${base06}";
-          yellow = "0x${base09}";
+          red = "0x${base08}";
+          white = "0x${base07}";
+          yellow = "0x${base0A}";
         };
 
         cursor = {
@@ -55,8 +55,8 @@
           cyan = "0x${base0C}";
           green = "0x${base0B}";
           magenta = "0x${base0E}";
-          red = "0x${base0F}";
-          white = "0x${base06}";
+          red = "0x${base08}";
+          white = "0x${base07}";
           yellow = "0x${base0A}";
         };
 

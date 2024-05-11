@@ -20,24 +20,24 @@ in {
       colorScheme = "custom";
       customColorScheme = with config.colorScheme.colors; {
         text = "${base05}";
-        subtext = "${base08}";
-        nav-active-text = "${base0D}";
+        subtext = "${base07}";
+        nav-active-text = "${base0C}";
         main = "${base00}";
         sidebar = "${base01}";
         player = "${base01}";
         card = "${base01}";
         window = "${base01}";
         main-secondary = "${base01}";
-        button = "${base0D}";
+        button = "${base0C}";
         button-secondary = "${base07}";
-        button-active = "${base0D}";
+        button-active = "${base0C}";
         button-disabled = "${base07}";
         nav-active = "${base02}";
         play-button = "${base07}";
         tab-active = "${base02}";
         notification = "${base03}";
-        notification-error = "${base0F}";
-        playback-bar = "${base0D}";
+        notification-error = "${base08}";
+        playback-bar = "${base0C}";
         misc = "000000";
       };
 

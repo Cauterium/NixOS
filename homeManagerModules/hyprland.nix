@@ -55,10 +55,10 @@ in {
       input-field {
           monitor =
           fade_on_empty = false
-          outer_color = rgb(${base06})
+          outer_color = rgb(${base07})
           inner_color = rgb(${base00})
-          font_color = rgb(${base06})
-          color = rgb(${base06})
+          font_color = rgb(${base07})
+          color = rgb(${base07})
           placeholder_text = <i>Input Password...</i>
           hide_input = false
           size = 200, 50
@@ -267,7 +267,7 @@ in {
           foreground:     #${base06}FF;
           selected:       #${base02}FF;
           active:         #${base03}FF;
-          urgent:         #${base0F}FF;
+          urgent:         #${base08}FF;
       }
     '';
 
@@ -783,7 +783,7 @@ in {
 
       [backlight]
           appname = "Backlight"
-          highlight = "#${base0F}"
+          highlight = "#${base08}"
 
       [music]
           appname = "Music"

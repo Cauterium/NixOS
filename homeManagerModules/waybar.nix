@@ -89,6 +89,7 @@
         /*-----module groups----*/
         .modules-right {
           background-color: #${base00};
+	        color: #${base03};
           padding: 2px;
           margin: 6px 6px 0 0;
         }
@@ -115,7 +116,7 @@
         }
 
         #workspaces button.urgent {
-          background-color: #${base0F};
+          background-color: #${base08};
         }
 
         #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio {
@@ -124,29 +125,25 @@
         }
 
         #clock {
-          background-color: #${base00};
+          background-color: #${base0E};
         }
 
         #battery {
-          background-color: #ffffff;
-          color: #000000;
+          background-color: #${base0D};
         }
 
         #battery.charging {
-          color: #ffffff;
           background-color: #${base0B};
         }
 
         @keyframes blink {
           to {
             background-color: #ffffff;
-            color: #000000;
           }
         }
 
         #battery.critical:not(.charging) {
-          background: #${base0F};
-          color: #ffffff;
+          background: #${base08};
           animation-name: blink;
           animation-duration: 0.5s;
           animation-timing-function: linear;
@@ -159,29 +156,27 @@
         }
 
         #bluetooth.on {
-          background: #${base0E};
+          background: #${base0C};
         }
 
         #bluetooth.connected {
-          background: #${base0E};
+          background: #${base0C};
         }
 
         #network {
-          background: #${base0D};
+          background: #${base0B};
         }
 
         #network.disconnected {
-          background: #f53c3c;
+          background: #${base0B};
         }
 
         #pulseaudio {
-          background: #${base09};
-          color: #000000;
+          background: #${base0A};
         }
 
         #pulseaudio.muted {
           background: #${base05};
-          color: #${base04};
         }
       '';
     };
