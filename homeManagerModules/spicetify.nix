@@ -19,8 +19,8 @@ in {
       theme = spicetifyPkgs.themes.Blossom;
       colorScheme = "custom";
       customColorScheme = with config.colorScheme.colors; {
-        text = "${base05}";
-        subtext = "${base07}";
+        text = "${base07}";
+        subtext = "${base05}";
         nav-active-text = "${base0C}";
         main = "${base00}";
         sidebar = "${base01}";

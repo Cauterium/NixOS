@@ -96,7 +96,7 @@
         .modules-center {
           background-color: #${base00};
           padding: 2px;
-          margin: 6px 0 0 0;
+          margin: 6px 6px 0 6px;
         }
         .modules-left {
           background-color: #${base00};

@@ -21,8 +21,6 @@ in {
   imageManipulation.enable = true;
   music.enable = true;
 
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
-
   home.username = "cauterium";
   home.homeDirectory = "/home/cauterium";
 
