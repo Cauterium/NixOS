@@ -55,12 +55,14 @@ in {
     # '')
     davinci-resolve
     fzf
+    jdk21
     jq
     nextcloud-client
     pamixer
     playerctl
     socat
     sops
+    texliveFull
   ];
 
   home.file = {
@@ -102,6 +104,8 @@ in {
     "9, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
     "10, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
   ];
+
+  programs.waybar.settings.main.modules-right = ["pulseaudio" "network" "clock"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

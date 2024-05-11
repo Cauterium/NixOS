@@ -35,8 +35,6 @@ in {
       XDG_CURRENT_DESKTOP = "hyprland";
     };
 
-    eww.enable = true;
-
     home.file.".config/hypr/hyprlock.conf".text = with config.colorScheme.colors; ''
       background {
           monitor =
