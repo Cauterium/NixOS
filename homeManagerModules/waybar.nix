@@ -12,9 +12,8 @@
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
       enable = true;
-      systemd.enable = true;
       settings = {
-        main =  {
+        main = {
           layer = "top";
           position = "top";
           height = 30;
@@ -30,8 +29,15 @@
 
           "hyprland/workspaces" = {
             format = "{name}";
+            all-outputs = true;
+            active-only = true;
             persistent-workspaces = {
-              "*" = 5;
+              "1" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
+              "2" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
+              "3" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
+              "4" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
+              "5" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
+              "6" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
             };
           };
 
@@ -89,7 +95,7 @@
         /*-----module groups----*/
         .modules-right {
           background-color: #${base00};
-	        color: #${base03};
+         color: #${base03};
           padding: 2px;
           margin: 6px 6px 0 0;
         }

@@ -128,6 +128,7 @@ in {
 
         exec-once = [
           "dunst & hyprpaper"
+          "waybar"
           "/home/cauterium/.config/eww/launch.sh"
           "nextcloud --background"
         ];
