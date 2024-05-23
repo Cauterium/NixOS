@@ -10,7 +10,6 @@
   config = lib.mkIf config.nvidia.enable {
     programs.hyprland = {
       xwayland.enable = true;
-      enableNvidiaPatches = true;
     };
 
     environment.sessionVariables = {

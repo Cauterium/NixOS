@@ -95,7 +95,7 @@
         /*-----module groups----*/
         .modules-right {
           background-color: #${base00};
-         color: #${base03};
+          color: #${base03};
           padding: 2px;
           margin: 6px 6px 0 0;
         }
@@ -123,6 +123,10 @@
 
         #workspaces button.urgent {
           background-color: #${base08};
+        }
+
+        #workspaces button.empty {
+          color: #${base04}
         }
 
         #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio {

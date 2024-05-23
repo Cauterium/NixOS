@@ -17,8 +17,8 @@
     unity.enable = lib.mkDefault false;
 
     home.packages = with pkgs; [
+      cz-cli
       jetbrains.pycharm-professional
-      lazygit
       unstable.vscodium
       inputs.nixvim.packages."x86_64-linux".default
     ];
@@ -31,5 +31,28 @@
         init.defaultBranch = "main";
       };
     };
+
+    programs.lazygit = {
+      enable = true;
+      settings = {
+        gui.shortTimeFormat = "15:04:05";
+        customCommands = [
+          {
+            key = "c";
+            command = "git cz";
+            description = "commit with commitizen";
+            context = "files";
+            loadingText = "opening commit tool";
+            subprocess = true;
+          }
+        ];
+      };
+    };
+
+    home.file.".czrc".text = ''
+      {
+        "path": "cz-conventional-changelog"
+      }
+    '';
   };
 }

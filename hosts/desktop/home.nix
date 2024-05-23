@@ -89,7 +89,7 @@ in {
   '';
 
   wayland.windowManager.hyprland.settings.monitor = ["desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1" "Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1" "Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1"];
-  wayland.windowManager.hyprland.settings.input.sensitivity = "-0.5";
+  wayland.windowManager.hyprland.settings.input.sensitivity = "-0.6";
   wayland.windowManager.hyprland.settings.input.workspace = [
     "1, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044, default:true"
     "2, monitor:desc:Samsung Electric Company S24F350 H4LR401741, default:true"

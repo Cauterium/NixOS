@@ -66,7 +66,6 @@
   boot.supportedFilesystems = ["ntfs"];
 
   networking.hostName = "desktop"; # Define your hostname.
-  network.enable = false;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -121,6 +120,9 @@
     packages = with pkgs; [];
   };
 
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
+
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
@@ -150,9 +152,6 @@
   fonts.packages = with pkgs; [
     nerdfonts
   ];
-
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
