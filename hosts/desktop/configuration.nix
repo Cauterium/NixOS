@@ -120,16 +120,12 @@
     FLAKE = "/home/cauterium/.config/NixOS-System";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     gnome.gnome-keyring
     home-manager
     libsecret
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    neofetch
-    unstable.nh
     ueberzugpp
   ];
 

@@ -11,8 +11,8 @@
 
   config = lib.mkIf config.fish.enable {
     home.packages = with pkgs; [
-      eza
       bat
+      eza
     ];
 
     programs.fastfetch = {
@@ -130,6 +130,11 @@
           style = "bright-black";
         };
       };
+    };
+
+    programs.thefuck = {
+      enable = true;
+      enableFishIntegration = true;
     };
   };
 }
