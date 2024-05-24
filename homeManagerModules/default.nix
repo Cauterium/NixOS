@@ -10,11 +10,11 @@
     ./hyprland.nix
     ./imageManipulation.nix
     ./music.nix
-    ./secrets.nix
     ./spicetify.nix
     ./theming.nix
     ./waybar.nix
 
+    ../nixosModules/secrets.nix
     ../nixosModules/nix-colors.nix
   ];
 

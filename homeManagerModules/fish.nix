@@ -28,6 +28,7 @@
           "title"
           "separator"
           "os"
+          "host"
           "kernel"
           "uptime"
           "packages"
@@ -39,6 +40,7 @@
           "cpu"
           "gpu"
           "memory"
+          "battery"
           "break"
           "colors"
         ];

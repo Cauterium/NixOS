@@ -34,14 +34,8 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
-  # Bootloader.
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-
+  # Bootloader extra config
   boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    devices = ["nodev"];
     extraEntries = ''
       menuentry "Windows 11" {
         insmod part_gpt
@@ -53,15 +47,6 @@
       }
     '';
     gfxmodeEfi = "1920x1080,auto";
-    theme = "${
-      (pkgs.fetchFromGitHub {
-        owner = "mino29";
-        repo = "tokyo-night-grub";
-        rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
-        hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
-      })
-    }/tokyo-night/";
-    version = 2;
   };
   boot.supportedFilesystems = ["ntfs"];
 
@@ -138,7 +123,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    unstable.btop
     gnome.gnome-keyring
     home-manager
     libsecret
