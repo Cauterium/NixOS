@@ -49,6 +49,15 @@
       };
     };
 
+    programs.neovim = {
+      # enable = true;
+      # package = inputs.nixvim.packages."x86_64-linux".default;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+
+
     home.file.".czrc".text = ''
       {
         "path": "cz-conventional-changelog"
