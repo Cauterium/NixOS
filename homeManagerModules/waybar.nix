@@ -32,12 +32,11 @@
             all-outputs = true;
             active-only = true;
             persistent-workspaces = {
-              "1" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
-              "2" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
-              "3" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
-              "4" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
-              "5" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
-              "6" = ["eDP-1" "DP-1" "DP-2" "DP-3" "HDMI-A-1"];
+              "eDP-1" = [1 2 3 4 5 6];
+              "DP-1" = [1 2 3 4 5 6];
+              "DP-2" = [1 2 3 4 5 6];
+              "DP-3" = [1 2 3 4 5 6];
+              "HDMI-A-1" = [1 2 3 4 5 6];
             };
           };
 
@@ -69,7 +68,7 @@
               critical = 15;
             };
             format = "{capacity}% {icon}";
-            format-icons = ["󰁹" "󰂂" "󰂁" "󰂀" "󰁿" "󰁾" "󰁽" "󰁼" "󰁻" "󰁺"];
+            format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
             format-charging = "{capacity}% 󰂄";
           };
           "clock" = {

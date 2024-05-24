@@ -18,8 +18,8 @@ in {
       dmenu-bluetooth
       dunst
       grim
-      unstable.hypridle
-      unstable.hyprlock
+      hypridle
+      hyprlock
       hyprpaper
       imagemagick
       networkmanager_dmenu
