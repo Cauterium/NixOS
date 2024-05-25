@@ -62,6 +62,16 @@
         clear
         fastfetch
       '';
+      plugins = [
+        {
+          name = "colored_man_pages";
+          src = pkgs.fishPlugins.colored-man-pages;
+        }
+        {
+          name = "sponge";
+          src = pkgs.fishPlugins.sponge;
+        }
+      ];
     };
 
     programs.starship = {

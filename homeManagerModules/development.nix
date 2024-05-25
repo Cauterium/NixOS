@@ -57,7 +57,6 @@
       vimAlias = true;
     };
 
-
     home.file.".czrc".text = ''
       {
         "path": "cz-conventional-changelog"
