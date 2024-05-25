@@ -63,19 +63,6 @@ in {
     texliveFull
   ];
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
@@ -88,7 +75,7 @@ in {
     splash = false
   '';
 
-  wayland.windowManager.hyprland.settings.monitor = ["desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1" "Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1" "Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1"];
+  wayland.windowManager.hyprland.settings.monitor = ["desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1" "desc:Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1" "desc:Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1" "Unknown-1,disable"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "-0.6";
   wayland.windowManager.hyprland.settings.input.workspace = [
     "1, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044, default:true"
