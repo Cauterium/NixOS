@@ -54,7 +54,6 @@ in {
     jq
     nextcloud-client
     pamixer
-    playerctl
     socat
     sops
     texliveFull

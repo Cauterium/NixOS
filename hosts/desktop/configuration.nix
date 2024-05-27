@@ -115,7 +115,6 @@
   programs.dconf.enable = true;
 
   environment.sessionVariables = {
-    FLAKE = "/home/cauterium/.config/NixOS-System";
   };
 
   environment.systemPackages = with pkgs; [

@@ -23,6 +23,7 @@ in {
       hyprpaper
       imagemagick
       networkmanager_dmenu
+      playerctl
       rofi-emoji
       rofi-power-menu
       rofi-wayland

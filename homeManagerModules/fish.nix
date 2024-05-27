@@ -9,10 +9,6 @@
   };
 
   config = lib.mkIf config.fish.enable {
-    home.packages = with pkgs; [
-      fzf
-    ];
-
     programs.eza = {
       enable = true;
       enableFishIntegration = true;
@@ -20,7 +16,9 @@
 
     programs.bat = {
       enable = true;
-      # TODO add theme
+      config = {
+        theme = "base16";
+      };
     };
 
     programs.fastfetch = {
@@ -62,7 +60,6 @@
         "ll" = "eza --icons -lah";
         "cat" = "bat";
         "c" = "clear && fastfetch";
-	"fzf" = ''fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'';
       };
       shellInit = ''
         set -g fish_greeting
@@ -82,6 +79,11 @@
           src = pkgs.fishPlugins.sponge;
         }
       ];
+    };
+
+    programs.fzf = {
+      enable = true;
+      defaultCommand = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
     };
 
     programs.starship = {
