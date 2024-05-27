@@ -10,10 +10,18 @@
 
   config = lib.mkIf config.fish.enable {
     home.packages = with pkgs; [
-      bat
-      eza
       fzf
     ];
+
+    programs.eza = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    programs.bat = {
+      enable = true;
+      # TODO add theme
+    };
 
     programs.fastfetch = {
       enable = true;
