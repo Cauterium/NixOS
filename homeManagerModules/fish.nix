@@ -12,6 +12,7 @@
     home.packages = with pkgs; [
       bat
       eza
+      fzf
     ];
 
     programs.fastfetch = {
@@ -53,6 +54,7 @@
         "ll" = "eza --icons -lah";
         "cat" = "bat";
         "c" = "clear && fastfetch";
+	"fzf" = ''fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'';
       };
       shellInit = ''
         set -g fish_greeting

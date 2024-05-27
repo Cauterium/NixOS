@@ -50,7 +50,6 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
     davinci-resolve
-    fzf
     jdk21
     jq
     nextcloud-client

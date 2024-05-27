@@ -47,7 +47,6 @@ in {
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    fzf
     jq
     nextcloud-client
     pamixer
