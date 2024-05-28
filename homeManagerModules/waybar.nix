@@ -44,7 +44,7 @@
             icon = true;
           };
           "pulseaudio" = {
-            format = "{volume}% {icon}";
+            format = "{volume}% {icon} ";
             format-muted = "0% ";
             format-icons = ["" "" ""];
           };

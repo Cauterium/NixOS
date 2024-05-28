@@ -27,12 +27,11 @@
     # GTK Theming
     gtk = {
       enable = true;
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-      };
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-      };
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
+
+      cursorTheme.package = pkgs.bibata-cursors;
+      cursorTheme.name = "Bibata-Modern-Ice";
 
       theme = {
         name = "Tokyonight-Dark-B";

@@ -15,6 +15,7 @@ in {
 
   config = lib.mkIf config.hyprland.enable {
     home.packages = with pkgs; [
+      bibata-cursors
       dmenu-bluetooth
       dunst
       grim
@@ -132,6 +133,7 @@ in {
           "waybar"
           "/home/cauterium/.config/eww/launch.sh"
           "nextcloud --background"
+          "hyprctl setcursor '${pkgs.bibata-cursors}/share/icons/Bibata-Modern-Ice' 24"
         ];
 
         input = {
