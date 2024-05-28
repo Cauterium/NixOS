@@ -19,7 +19,6 @@
     home.packages = with pkgs; [
       cz-cli
       jetbrains.pycharm-professional
-      unstable.vscodium
       inputs.nixvim.packages."x86_64-linux".default
     ];
 
@@ -53,6 +52,20 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+    };
+
+    programs.vscode = {
+      enable = true;
+      package = pkgs.unstable.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        arrterian.nix-env-selector
+        enkia.tokyo-night
+        github.copilot
+        jnoortheen.nix-ide
+        llvm-vs-code-extensions.vscode-clangd
+        rust-lang.rust-analyzer
+        usernamehw.errorlens
+      ];
     };
 
     home.file.".czrc".text = ''
