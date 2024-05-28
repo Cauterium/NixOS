@@ -83,7 +83,11 @@
 
     programs.fzf = {
       enable = true;
-      defaultCommand = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
+      enableFishIntegration = true;
+      defaultOptions = [
+        "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+        "--ignore-case"
+      ];
     };
 
     programs.starship = {
