@@ -130,23 +130,24 @@
         #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio {
           padding: 2px 8px;
           margin: 0 5px;
+	  background: #${base01};
         }
 
         #clock {
-          background-color: #${base0E};
+          color: #${base0E};
         }
 
         #battery {
-          background-color: #${base0D};
+          color: #${base0D};
         }
 
         #battery.charging {
-          background-color: #${base0B};
+          color: #${base0B};
         }
 
         @keyframes blink {
           to {
-            background-color: #ffffff;
+            color: #ffffff;
           }
         }
 
@@ -164,27 +165,27 @@
         }
 
         #bluetooth.on {
-          background: #${base0C};
+          color: #${base0C};
         }
 
         #bluetooth.connected {
-          background: #${base0C};
+          color: #${base0C};
         }
 
         #network {
-          background: #${base0B};
+          color: #${base0B};
         }
 
         #network.disconnected {
-          background: #${base0B};
+          color: #${base0B};
         }
 
         #pulseaudio {
-          background: #${base0A};
+          color: #${base0A};
         }
 
         #pulseaudio.muted {
-          background: #${base05};
+          color: #${base05};
         }
       '';
     };
