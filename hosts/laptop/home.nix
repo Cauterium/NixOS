@@ -67,12 +67,6 @@ in {
     # '';
   };
 
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ${image}
-    wallpaper = eDP-1,${image}
-    splash = false
-  '';
-
   home.sessionVariables = {
     # EDITOR = "emacs";
   };

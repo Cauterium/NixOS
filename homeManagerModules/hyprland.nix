@@ -36,84 +36,88 @@ in {
       XDG_CURRENT_DESKTOP = "hyprland";
     };
 
-    home.file.".config/hypr/hyprlock.conf".text = with config.colorScheme.colors; ''
-      background {
-          monitor =
-          path = ${image}
-          blur_passes = 2
-          contrast = 0.9
-          brightness = 0.8
-          vibrancy = 0.2
-          vibrancy_darkness = 0.0
-      }
 
-      general {
-          no_fade_in = false
-          grace = 0
-          disable_loading_bar = true
-      }
 
-      input-field {
-          monitor =
-          fade_on_empty = false
-          outer_color = rgb(${base07})
-          inner_color = rgb(${base00})
-          font_color = rgb(${base07})
-          color = rgb(${base07})
-          placeholder_text = <i>Input Password...</i>
-          hide_input = false
-          size = 200, 50
+    programs.hyprlock = {
+      settings = with config.colorScheme.colors; {
+        background = {
+          path = "${image}";
+          blur_passes = 2;
+          contrast = 0.9;
+          brightness = 0.8;
+          vibrancy = 0.2;
+          vibrancy_darkness = 0.0;
+        };
 
-          position = 0, -120
-          halign = center
-          valign = center
-      }
+        general = {
+          no_fade_in = false;
+          grace = 0;
+          disable_loading_bar = true;
+        };
 
-      label = {
-          monitor =
-          text = cmd[update:1000] echo "$(date +"%-H:%M")"
-          color = rgb(EFEFEF)
-          font_size = 72
-          font_family = FiraCode Nerd Font
-          position = 0, -300
-          halign = center
-          valign = top
-      }
+        input-field = {
+          fade_on_empty = false;
+          outer_color = "rgb(${base07})";
+          inner_color = "rgb(${base00})";
+          font_color = "rgb(${base07})";
+          color = "rgb(${base07})";
+          placeholder_text = "<i>Input Password...</i>";
+          hide_input = false;
+          size = "200, 50";
 
-      label {
-          monitor =
-          text = Hello there, $USER
-          color = rgba(200, 200, 200, 1.0)
-          font_size = 25
-          font_family = FiraCode Nerd Font
+          position = "0, -120";
+          halign = "center";
+          valign = "center";
+        };
 
-          position = 0, -40
-          halign = center
-          valign = center
-      }
-    '';
+        label = {
+          text = "Hello there, $USER";
+          color = "rgba(200, 200, 200, 1.0)";
+          font_size = 25;
+          font_family = "FiraCode Nerd Font";
 
-    home.file.".config/hypr/hypridle.conf".text = ''
-      general {
-          ignore_dbus_inhabit = false
-      }
+          position = "0, -40";
+          halign = "center";
+          valign = "center";
+        };
+      };
+    };
 
-      listener {
-          timeout = 600
-          on-timeout = hyprlock
-      }
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          ignore_dbus_inhabit = false;
+        };
 
-      listener {
-          timeout = 660
-          on-timeout = hyprctl dispatch dpms off
-          on-resume = hyprctl dispatch dpms on
-      }
+        listener = [
+          {
+            timeout = 600;
+            on-timeout = "hyprlock";
+          }
+          {
+            timeout = 660;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 1800;
+            on-timeout = "systemctl suspend";
+          }
+        ];
+      };
+    };
 
-      listener {
-          timeout = 1800
-          on-timeout = systemctl suspend
-      }
-    '';
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        splash = false;
+        preload = "${image}";
+	wallpaper = [
+	  ",${image}"
+	];
+      };
+    };
 
     wayland.windowManager.hyprland = {
       enable = true;

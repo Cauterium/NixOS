@@ -63,14 +63,6 @@ in {
     # EDITOR = "emacs";
   };
 
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ${image}
-    wallpaper = DP-3,${image}
-    wallpaper = DP-2,${image}
-    wallpaper = HDMI-A-1,${image}
-    splash = false
-  '';
-
   wayland.windowManager.hyprland.settings.monitor = ["desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1" "desc:Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1" "desc:Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1" "Unknown-1,disable"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "-0.6";
   wayland.windowManager.hyprland.settings.input.workspace = [
