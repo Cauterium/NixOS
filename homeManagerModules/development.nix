@@ -28,6 +28,7 @@
       userEmail = "brenneisen.fabian@gmail.com";
       extraConfig = {
         init.defaultBranch = "main";
+        pull.rebase = true;
       };
     };
 

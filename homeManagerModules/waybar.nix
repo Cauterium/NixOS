@@ -130,7 +130,7 @@
         #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio {
           padding: 2px 8px;
           margin: 0 5px;
-	  background: #${base01};
+          background: #${base01};
         }
 
         #clock {

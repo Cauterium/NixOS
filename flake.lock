@@ -397,11 +397,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1716628253,
-        "narHash": "sha256-sk7w/fTo6uKWvb6CGQCm+oEwNbZVwomeid5hUuu403E=",
+        "lastModified": 1717055995,
+        "narHash": "sha256-TYLJS2shuryEuq1MiakOOPAFtzYrNdNlhuUCvHpyhlA=",
         "owner": "Cauterium",
         "repo": "NixVim",
-        "rev": "207706a154327c89a313a5770d24d81651f034a1",
+        "rev": "e757a7a32afab43916a8c062780bb1116aa1c556",
         "type": "github"
       },
       "original": {
@@ -438,11 +438,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1717012003,
-        "narHash": "sha256-iMyG7xiL0KlF9F3stL98pzaVZecDdQzEdJloCj9o1Vo=",
+        "lastModified": 1717054761,
+        "narHash": "sha256-LBrHEBC0S7C6zjQTsjahAvxxlDH3cbZmEgHiri9o4SM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "56cfc7b8478afd64fa7de6be8b1498f03ecadbd6",
+        "rev": "a4eff07f9bbcf74522c642c72047ed03c3831501",
         "type": "github"
       },
       "original": {

@@ -129,5 +129,55 @@
         };
       };
     };
+
+    home.file.".config/vesktop/themes/mytheme.css".text = with config.colorScheme.colors; ''
+      .theme-dark {
+        /*  Header Color  */
+        --header-primary: var(--text-normal);
+        --header-secondary: var(--text-muted);
+
+        /*  Text Color  */
+        --text-normal: #${base06};
+        --text-muted: #${base04};
+        --interactive-normal: #${base04};
+        --interactive-hover: #${base06};
+        --interactive-active: #${base07};
+        --interactive-muted: #${base04};
+
+        /* Background Color */
+        --background-primary: #${base00};
+        --background-secondary: #${base01};
+        --background-secondary-alt: #${base01};
+        --background-tertiary: #${base00};
+        --background-tertiary-alt: var(--background-secondary-alt);
+        --background-accent: #${base03};
+        --background-floating: #${base00};
+        --background-modifier-hover: #${base02}c0;
+        --background-modifier-active: #${base02}80;
+        --background-modifier-selected: #${base02}71;
+        --background-modifier-accent: #${base01};
+        --background-mentioned: #${base02};
+        --border-mentioned: #${base08};
+        --background-mentioned-hover: #${base03};
+        --accent-color: #${base0D};
+
+        /* Folder Color */
+        --folder-color: #${base0D}d0;
+        --folder-color-light: #${base02}d0;
+
+        /* Scrollbars Color */
+        --scrollbar-thin-thumb: transparent;
+        --scrollbar-thin-track: transparent;
+        --scrollbar-auto-thumb: #${base02}af;
+        --scrollbar-auto-thumb-hover: #${base03}85;
+        --scrollba-auto-track: transparent;
+        --scrollbar-auto-scrollbar-color-thumb: var(--scrollbar-auto-thumb);
+        --scrollbar-auto-scrollbar-color-track: var(--scrollbar-auto-track);
+
+        /* Chat Box Color */
+        --channeltextarea-background: var(--background-secondary);
+        --channeltextarea-background-hover: var(--background-tertiary);
+      }
+    '';
   };
 }
