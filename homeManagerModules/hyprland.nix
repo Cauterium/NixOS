@@ -174,6 +174,25 @@ in {
           "col.shadow" = "rgba(${base00}ff)";
         };
 
+        animations = {
+          enabled = true;
+          bezier = [
+            "overshot, 0.05, 0.9, 0.1, 1.05"
+            "smoothOut, 0.36, 0, 0.66, -0.56"
+            "smoothIn, 0.25, 1, 0.5, 1"
+          ];
+
+          animation = [
+            "windows, 1, 3, overshot, slide"
+            "windowsOut, 1, 3, smoothOut, slide"
+            "windowsMove, 1, 3, default"
+            "border, 1, 3, default"
+            "fade, 1, 3, smoothIn"
+            "fadeDim, 1, 3, smoothIn"
+            "workspaces, 1, 3, default"
+          ];
+        };
+
         gestures = {
           workspace_swipe = "on";
         };
