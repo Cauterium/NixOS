@@ -146,13 +146,13 @@
 
         /* Background Color */
         --background-primary: #${base00};
-        --background-secondary: #${base01};
-        --background-secondary-alt: #${base01};
+        --background-secondary: #${base00};
+        --background-secondary-alt: #${base00};
         --background-tertiary: #${base00};
         --background-tertiary-alt: var(--background-secondary-alt);
         --background-accent: #${base03};
         --background-floating: #${base00};
-        --background-modifier-hover: #${base02}c0;
+        --background-modifier-hover: #${base01}c0;
         --background-modifier-active: #${base02}80;
         --background-modifier-selected: #${base02}71;
         --background-modifier-accent: #${base01};

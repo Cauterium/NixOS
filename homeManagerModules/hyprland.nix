@@ -5,8 +5,8 @@
   ...
 }: let
   image = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/siddrs/tokyo-night-sddm/320c8e74ade1e94f640708eee0b9a75a395697c6/Backgrounds/shacks.png";
-    sha256 = "0j9bzsqgdgdrm46q6li5iw04p794xrc7pwvk03hl8diknxqh2v4m";
+    url = "https://img.goodfon.com/original/3840x2160/f/37/romain-trystram-by-romain-trystram-art-gorod-noch-arkhitek-1.jpg";
+    sha256 = "0029p72qswchgxdnjwygq05bs5hl6ccaxvwyqs79gmsliji5avcx";
   };
 in {
   imports = [
