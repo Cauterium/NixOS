@@ -1,9 +1,15 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   ...
-}: {
+}: let
+  inherit
+    (inputs.nix-colors.lib-contrib {inherit pkgs;})
+    gtkThemeFromScheme
+    ;
+in {
   options = {
     theming.enable = lib.mkEnableOption "Enable theming settings";
   };
@@ -39,8 +45,8 @@
       gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
 
       theme = {
-        name = "Tokyonight-Dark-B";
-        package = pkgs.tokyo-night-gtk;
+        name = "${config.colorScheme.slug}";
+        package = gtkThemeFromScheme {scheme = config.colorScheme;};
       };
     };
   };
