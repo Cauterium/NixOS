@@ -177,19 +177,19 @@ in {
         animations = {
           enabled = true;
           bezier = [
-            "overshot, 0.05, 0.9, 0.1, 1.05"
+            "overshot, 0.05, 0.8, 0.3, 1.05"
             "smoothOut, 0.36, 0, 0.66, -0.56"
             "smoothIn, 0.25, 1, 0.5, 1"
           ];
 
           animation = [
             "windows, 1, 3, overshot, slide"
-            "windowsOut, 1, 3, smoothOut, slide"
-            "windowsMove, 1, 3, default"
+            "windowsOut, 1, 5, smoothOut, slide"
+            "windowsMove, 1, 5, overshot, slide"
             "border, 1, 3, default"
-            "fade, 1, 3, smoothIn"
-            "fadeDim, 1, 3, smoothIn"
-            "workspaces, 1, 3, default"
+            "fade, 1, 5, smoothIn"
+            "fadeDim, 1, 5, smoothIn"
+            "workspaces, 1, 3, default, slidefade"
           ];
         };
 
