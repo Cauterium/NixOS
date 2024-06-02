@@ -132,7 +132,7 @@
           color: #${base04}
         }
 
-        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio, #language {
+        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio,ä #language {
           padding: 2px 8px;
           margin: 0 5px;
           background: #${base01};

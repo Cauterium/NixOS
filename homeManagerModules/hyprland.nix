@@ -139,7 +139,7 @@ in {
 
         input = {
           kb_layout = "de,de";
-          kb_variant = "neo,";
+          kb_variant = "neo_qwertz,";
           kb_model = "";
           kb_options = "grp:alt_shift_toggle";
           kb_rules = "";
@@ -205,7 +205,7 @@ in {
         ];
 
         bind = [
-          "$mainMod, T, exec, $terminal"
+          "$mainMod, Q, exec, $terminal"
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
           "$mainMod, V, togglefloating,"
