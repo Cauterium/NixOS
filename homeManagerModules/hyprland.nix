@@ -205,14 +205,12 @@ in {
         ];
 
         bind = [
-          "$mainMod, Q, exec, $terminal"
+          "$mainMod, T, exec, $terminal"
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
           "$mainMod, V, togglefloating,"
           "$mainMod, E, exec, $power-menu"
           "$mainMod, R, exec, $menu"
-          "$mainMod, P, pseudo," # dwindle
-          "$mainMod, J, togglesplit," # dwindle
           "$mainMod, F, fullscreen"
 
           # Move focus with mainMod + arrow keys
@@ -244,9 +242,6 @@ in {
           "$mainMod SHIFT, 8, movetoworkspace, 8"
           "$mainMod SHIFT, 9, movetoworkspace, 9"
           "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-          # Example special workspace (scratchpad)
-          "$mainMod, S, togglespecialworkspace, magic"
 
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
