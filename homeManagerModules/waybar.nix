@@ -43,6 +43,11 @@
             format = "{title}";
             icon = true;
           };
+
+          "hyprland/language" = {
+            format = " {} ";
+          };
+
           "pulseaudio" = {
             format = "{volume}% {icon} ";
             format-muted = "0% ";
@@ -127,7 +132,7 @@
           color: #${base04}
         }
 
-        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio {
+        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio, #language {
           padding: 2px 8px;
           margin: 0 5px;
           background: #${base01};
@@ -186,6 +191,10 @@
 
         #pulseaudio.muted {
           color: #${base05};
+        }
+
+        #language {
+          color: #${base09}
         }
       '';
     };

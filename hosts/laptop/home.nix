@@ -75,7 +75,7 @@ in {
   wayland.windowManager.hyprland.settings.exec-once = ["hypridle"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";
 
-  programs.waybar.settings.main.modules-right = ["pulseaudio" "network" "bluetooth" "battery" "clock"];
+  programs.waybar.settings.main.modules-right = ["hyprland/language" "pulseaudio" "network" "bluetooth" "battery" "clock"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

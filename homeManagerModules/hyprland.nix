@@ -138,10 +138,10 @@ in {
         ];
 
         input = {
-          kb_layout = "de";
-          kb_variant = "";
+          kb_layout = "de,de";
+          kb_variant = "neo,";
           kb_model = "";
-          kb_options = "";
+          kb_options = "grp:alt_shift_toggle";
           kb_rules = "";
 
           follow_mouse = "1";

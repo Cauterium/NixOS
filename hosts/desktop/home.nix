@@ -78,7 +78,7 @@ in {
     "10, monitor:desc:Samsung Electric Company C24F390 H4ZKA00044"
   ];
 
-  programs.waybar.settings.main.modules-right = ["pulseaudio" "network" "clock"];
+  programs.waybar.settings.main.modules-right = ["hyprland/language" "pulseaudio" "network" "clock"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

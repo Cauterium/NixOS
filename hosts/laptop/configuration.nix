@@ -63,9 +63,10 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "de";
-    xkbVariant = "";
+  services.xserver.xkb = {
+    layout = "de,de";
+    variant = "neo,";
+    options = "grp:alt_shift_toggle";
   };
 
   services.xserver = {
