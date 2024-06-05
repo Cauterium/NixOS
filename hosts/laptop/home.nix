@@ -3,12 +3,8 @@
   outputs,
   pkgs,
   ...
-}: let
-  image = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/siddrs/tokyo-night-sddm/320c8e74ade1e94f640708eee0b9a75a395697c6/Backgrounds/shacks.png";
-    sha256 = "0j9bzsqgdgdrm46q6li5iw04p794xrc7pwvk03hl8diknxqh2v4m";
-  };
-in {
+}:
+{
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default
@@ -75,7 +71,7 @@ in {
   wayland.windowManager.hyprland.settings.exec-once = ["hypridle"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";
 
-  programs.waybar.settings.main.modules-right = ["hyprland/language" "pulseaudio" "network" "bluetooth" "battery" "clock"];
+  programs.waybar.settings.main.modules-right = ["hyprland/language" "pulseaudio" "network" "bluetooth" "battery" "clock" "custom/weather"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

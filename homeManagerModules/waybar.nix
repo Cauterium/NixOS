@@ -9,6 +9,10 @@
   };
 
   config = lib.mkIf config.waybar.enable {
+    home.packages = with pkgs; [
+      wttrbar
+    ];
+
     programs.waybar = {
       enable = true;
       settings = {
@@ -46,6 +50,16 @@
 
           "hyprland/language" = {
             format = " {} ";
+            format-de-neo_qwertz = "neo";
+            format-de = "de";
+          };
+
+          "custom/weather" = {
+            tooltip = true;
+            format = "{}";
+            interval = 30;
+            exec = "wttrbar";
+            return-type = "json";
           };
 
           "pulseaudio" = {
@@ -77,7 +91,7 @@
           };
           "clock" = {
             interval = 20;
-            format = "{:%a %d.%m.%Y - %H:%M}";
+            format = "{:%a %d.%m. - %H:%M}";
           };
         };
       };
@@ -85,7 +99,7 @@
       style = with config.colorScheme.colors; ''
         * {
           border: none;
-          border-radius: 8;
+          border-radius: 8px;
           font-family: FiraCode Nerd Font;
           font-size: 14px;
           min-height: 0;
@@ -132,7 +146,7 @@
           color: #${base04}
         }
 
-        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio,ä #language {
+        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio, #language, #custom-weather {
           padding: 2px 8px;
           margin: 0 5px;
           background: #${base01};
@@ -195,6 +209,10 @@
 
         #language {
           color: #${base09}
+        }
+
+        #custom-weather {
+          color: #${base0E};
         }
       '';
     };
