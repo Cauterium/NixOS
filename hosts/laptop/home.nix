@@ -3,8 +3,7 @@
   outputs,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default

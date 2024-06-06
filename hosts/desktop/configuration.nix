@@ -149,6 +149,8 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  services.udisks2.enable = true;
+
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   # Open ports in the firewall.

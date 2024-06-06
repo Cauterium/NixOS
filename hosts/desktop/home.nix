@@ -3,8 +3,23 @@
   outputs,
   pkgs,
   ...
-}:
-{
+}: let
+  tex = pkgs.texlive.combine {
+    inherit
+      (pkgs.texlive)
+      scheme-basic
+      pgf
+      everypage
+      koma-script
+      graphics
+      tools
+      geometry
+      background
+      eurosym
+      xkeyval
+      ;
+  };
+in {
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default
@@ -52,7 +67,7 @@
     pamixer
     socat
     sops
-    texliveFull
+    tex
   ];
 
   home.sessionVariables = {
