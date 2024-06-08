@@ -18,6 +18,29 @@
       zotero
     ];
 
+    accounts.email.accounts = {
+      kit-mail = {
+        address = "fabian.brenneisen@student.kit.edu";
+        userName = "ufsdq@student.kit.edu";
+        realName = "Fabian Brenneisen";
+        imap.host = "imap.kit.edu";
+        imap.port = 993;
+        smtp.host = "smtp.kit.edu";
+        smtp.port = 587;
+        smtp.tls.useStartTls = true;
+        thunderbird.enable = true;
+      };
+      gmail-main = {
+        primary = true;
+        address = "brenneisen.fabian@gmail.com";
+        userName = "brenneisen.fabian@gmail.com";
+        realName = "Fabian Brenneisen";
+        imap.host = "imap.gmail.com";
+        smtp.host = "smtp.gmail.com";
+        thunderbird.enable = true;
+      };
+    };
+
     programs.alacritty = {
       enable = true;
       package = pkgs.unstable.alacritty;

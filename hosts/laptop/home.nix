@@ -66,6 +66,9 @@
     # EDITOR = "emacs";
   };
 
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
+
   wayland.windowManager.hyprland.settings.monitor = [",preferred,auto,1"];
   wayland.windowManager.hyprland.settings.exec-once = ["hypridle"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";

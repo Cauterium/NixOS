@@ -83,7 +83,6 @@ in {
     };
 
     services.hypridle = {
-      enable = true;
       settings = {
         general = {
           ignore_dbus_inhabit = false;
