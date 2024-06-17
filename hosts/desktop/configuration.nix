@@ -4,6 +4,7 @@
 {
   inputs,
   outputs,
+  config,
   pkgs,
   ...
 }: {
@@ -88,8 +89,15 @@
       sddm.enable = true;
       sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
       sddm.wayland.enable = true;
-      sessionPackages = [pkgs.unstable.hyprland];
+      sessionPackages = [pkgs.hyprland];
     };
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = "${config.users.users.cauterium.home}#desktop";
+    dates = "weekly";
+    randomizedDelaySec = "45min";
   };
 
   # Configure console keymap
