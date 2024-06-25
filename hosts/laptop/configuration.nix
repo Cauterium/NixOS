@@ -100,6 +100,45 @@
     ];
   };
 
+  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+  services.syncthing = {
+    enable = true;
+    user = "cauterium";
+    dataDir = "/home/cauterium/Documents/Syncthing";
+    configDir = "/home/cauterium/.config/syncthing";
+    key = "/home/cauterium/.keys/workstation/key.pem";
+    cert = "/home/cauterium/.keys/workstation/cert.pem";
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        "desktopWindows".name = "Cauterium Windows Desktop"; 
+        "desktopWindows".id = "QWV22F5-CAXFX6T-FAK4TEJ-PTSK77W-Z7KSJ3Y-Q46ERZH-RNBO423-TYAIGAZ";
+
+        "desktopLinux".name = "Cauterium NixOS Desktop";
+        "desktopLinux".id = "";
+
+        "smartphone".name = "Cauterium Smartphone"; 
+        "smartphone".id = "SI7QZUL-L726FJW-SXHCXLH-AU2RMYW-Q7K66K2-I4L7LAH-J7CLJCW-CP2HGAC";
+
+        "server".name = "Cauterium Server";
+        "server".id = "F247EAS-EJ7DS2D-BG3WTG7-LCTRSSG-BWTK7UR-LFHAN3U-CSGGXZ6-VUFWLAK";
+      };
+      folders = {
+        "Obsidian" = {
+          path = "/home/cauterium/Documents/Syncthing/Obsidian";
+          devices = [ "desktopWindows" "desktopLinux" "smartphone" "server" ];
+        };
+
+        "Zotero" = {
+          path = "/home/cauterium/Documents/Syncthing/Zotero";
+          devices = [ "desktopWindows" "desktopLinux" "server" ];
+        };
+      };
+    };
+  };
+
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
