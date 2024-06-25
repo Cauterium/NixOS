@@ -139,13 +139,13 @@
       };
       folders = {
         "Obsidian" = {
-          path = "/home/cauterium/Documents/Syncthing/Obsidian";
-          devices = [ "desktopWindows" "desktopLinux" "smartphone" "server" ];
+          path = "/home/cauterium/Datenplatte/Syncding/Obsidian";
+          devices = [ "desktopWindows" "laptop" "smartphone" "server" ];
         };
 
         "Zotero" = {
-          path = "/home/cauterium/Documents/Syncthing/Zotero";
-          devices = [ "desktopWindows" "desktopLinux" "server" ];
+          path = "/home/cauterium/Datenplatte/Syncding/Zotero";
+          devices = [ "desktopWindows" "laptop" "server" ];
         };
       };
     };
