@@ -71,7 +71,6 @@
   };
 
   services.xserver = {
-    enable = true;
     displayManager = {
       sddm.enable = true;
       sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
@@ -158,7 +157,6 @@
     libsecret
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    ueberzugpp
   ];
 
   fonts.packages = with pkgs; [

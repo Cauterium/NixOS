@@ -63,7 +63,6 @@ in {
     davinci-resolve
     jdk21
     jq
-    nextcloud-client
     pamixer
     socat
     sops

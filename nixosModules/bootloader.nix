@@ -11,6 +11,9 @@
   config = lib.mkIf config.bootloader.enable {
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.efi.efiSysMountPoint = "/boot";
+    boot.consoleLogLevel = 0;
+    boot.kernelParams = [ "quiet" "splash" "rd.udev.log-priority=3" ];
+    boot.initrd.verbose = false;
 
     boot.loader.grub = {
       enable = true;

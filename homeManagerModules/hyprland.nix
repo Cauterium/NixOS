@@ -35,6 +35,7 @@ in {
 
     home.sessionVariables = {
       XDG_CURRENT_DESKTOP = "hyprland";
+      NIXOS_OZONE_WL = "1";
     };
 
     programs.hyprlock = {
@@ -122,8 +123,8 @@ in {
       package = pkgs.hyprland;
       settings = {
         "$screenshot" = "grim -g \"$(slurp)\" - | convert - -shave 1x1 PNG:- | wl-copy -t image/png";
-        "$terminal" = "alacritty";
-        "$menu" = "rofi -show drun";
+        "$terminal" = "${pkgs.kitty}/bin/kitty";
+        "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
         "$power-menu" = "rofi -show power-menu -modi power-menu:rofi-power-menu";
 
         "$mainMod" = "SUPER";
@@ -134,6 +135,9 @@ in {
           "waybar"
           "/home/cauterium/.config/eww/launch.sh"
           "nextcloud --background"
+
+          "dbus-update-activation-environment --systemd --all"
+          "systemctl --user import-environment QT_QPA_PLATFORMTHEME DBUS_SESSION_ADDRESS"
         ];
 
         input = {
@@ -197,10 +201,14 @@ in {
         };
 
         windowrulev2 = [
-          "opacity 0.9 0.85,class:^(Alacritty)$"
+          "opacity 0.9 0.85,class:^(kitty)$"
           "opacity 0.9 0.85,class:^(vesktop)$"
           "opacity 0.9 0.85,float,initialTitle:^(Spotify.*)$"
           "opacity 0.9 0.85,class:^(Rofi)$"
+        ];
+
+        layerrule = [
+          "blur,rofi"
         ];
 
         bind = [
@@ -247,7 +255,7 @@ in {
           "$mainMod, mouse_up, workspace, e-1"
 
           # Emoji Keyboard
-          "$mainMod,Period, exec, rofi -show emoji"
+          "$mainMod,Period, exec, bemoji"
 
           # Screenshot
           "$mainMod SHIFT, S, exec, $screenshot"

@@ -43,7 +43,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     jq
-    nextcloud-client
     pamixer
     socat
     sops

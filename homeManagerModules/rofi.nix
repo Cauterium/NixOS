@@ -11,33 +11,31 @@
   config = lib.mkIf config.rofi.enable {
     home.packages = with pkgs; [
       rofi-power-menu
+      bemoji
     ];
 
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
-      plugins = with pkgs; [
-        rofi-emoji
-      ];
       font = "FiraCode Nerd Font 15";
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "${pkgs.kitty}/bin/kitty";
       extraConfig = {
         modi = "drun,run,window";
         show-icons = true;
-        display-drun = "";
-        display-run = "";
-        display-filebrowser = "";
-        display-window = "";
+        display-drun = " ";
+        display-run = " ";
+        display-filebrowser = " ";
+        display-window = " ";
         drun-display-format = "{name}";
         window-format = "{w} · {c} · {t}";
       };
 
       theme = let
         inherit (config.lib.formats.rasi) mkLiteral;
-        background = mkLiteral "#${config.colorScheme.colors.base00}FF";
-        background-alt = mkLiteral "#${config.colorScheme.colors.base03}FF";
-        foreground = mkLiteral "#${config.colorScheme.colors.base06}FF";
-        selected = mkLiteral "#${config.colorScheme.colors.base02}FF";
+        background = mkLiteral "#${config.colorScheme.colors.base00}B3";
+        background-alt = mkLiteral "#${config.colorScheme.colors.base03}B3";
+        foreground = mkLiteral "#${config.colorScheme.colors.base06}B3";
+        selected = mkLiteral "#${config.colorScheme.colors.base02}B3";
         active = mkLiteral "#${config.colorScheme.colors.base03}FF";
         urgent = mkLiteral "#${config.colorScheme.colors.base0F}FF";
       in {
@@ -47,7 +45,7 @@
           background-color = background;
           foreground-color = foreground;
           alternate-background = background-alt;
-          normal-background = background;
+          normal-background = mkLiteral "transparent";
           normal-foreground = foreground;
           urgent-background = urgent;
           urgent-foreground = background;
@@ -61,7 +59,7 @@
           selected-active-background = urgent;
           selected-active-foreground = foreground;
 
-          alternate-normal-background = background;
+          alternate-normal-background = mkLiteral "transparent";
           alternate-normal-foreground = foreground;
           alternate-urgent-background = urgent;
           alternate-urgent-foreground = background;
@@ -121,7 +119,7 @@
 
         textbox-prompt-colon = {
           enabled = true;
-          padding = mkLiteral "5px 0px";
+          padding = mkLiteral "5px";
           expand = false;
           str = "";
           background-color = mkLiteral "inherit";
