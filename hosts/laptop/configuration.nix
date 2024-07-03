@@ -71,6 +71,7 @@
   };
 
   services.xserver = {
+    enable = true;
     displayManager = {
       sddm.enable = true;
       sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
@@ -160,6 +161,7 @@
   ];
 
   fonts.packages = with pkgs; [
+    noto-fonts
     nerdfonts
   ];
 

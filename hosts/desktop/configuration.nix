@@ -173,6 +173,7 @@
   ];
 
   fonts.packages = with pkgs; [
+    noto-fonts
     nerdfonts
   ];
 
