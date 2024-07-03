@@ -10,8 +10,6 @@
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  unity.enable = true;
-
   home.username = "cauterium";
   home.homeDirectory = "/home/cauterium";
 

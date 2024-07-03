@@ -26,7 +26,6 @@ in {
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  unity.enable = true;
   imageManipulation.enable = true;
   music.enable = true;
 
