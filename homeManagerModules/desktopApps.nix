@@ -121,6 +121,7 @@
           i-dont-care-about-cookies
           languagetool
           nighttab
+          omnivore
           return-youtube-dislikes
           sidebery
           tokyo-night-v2
