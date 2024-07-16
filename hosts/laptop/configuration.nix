@@ -70,6 +70,8 @@
     options = "grp:alt_shift_toggle";
   };
 
+  programs.xwayland.enable = true;
+
   services.xserver = {
     enable = true;
     displayManager = {

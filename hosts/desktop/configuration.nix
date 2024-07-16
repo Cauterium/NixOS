@@ -84,6 +84,7 @@
   };
 
   services.xserver = {
+    enable = true;
     displayManager = {
       sddm.enable = true;
       sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
@@ -91,6 +92,8 @@
       sessionPackages = [pkgs.hyprland];
     };
   };
+
+  programs.xwayland.enable = true;
 
   system.autoUpgrade = {
     enable = true;

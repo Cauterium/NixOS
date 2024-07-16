@@ -25,6 +25,8 @@
       # Opengl
       opengl.enable = true;
       nvidia.modesetting.enable = true;
+      nvidia.powerManagement.enable = false;
+      nvidia.powerManagement.finegrained = false;
     };
   };
 }
