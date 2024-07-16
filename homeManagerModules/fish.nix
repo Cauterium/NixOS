@@ -25,30 +25,122 @@
       enable = true;
       settings = {
         logo = {
-          source = "nixos";
+          source = ../resources/nixos-logo.png;
+          type = "kitty-direct";
           padding = {
             right = 2;
           };
+          width = 46;
+          height = 23;
         };
+        display.separator = "   ";
         modules = [
-          "title"
-          "separator"
-          "os"
-          "host"
-          "kernel"
-          "uptime"
-          "packages"
-          "shell"
-          "wm"
-          "theme"
-          "terminal"
-          "terminalfont"
-          "cpu"
-          "gpu"
-          "memory"
-          "battery"
+          {
+            type = "custom";
+            format = "┌────────────────────── Hardware ───────────────────────";
+          }
+          {
+            type = "host";
+            key = "│  PC      ";
+            keyColor = "cyan";
+          }
+          {
+            type = "cpu";
+            key = "│  CPU     ";
+            keyColor = "cyan";
+          }
+          {
+            type = "gpu";
+            key = "│ 󰍛 GPU     ";
+            keyColor = "cyan";
+          }
+          {
+            type = "memory";
+            key = "│ 󰍛 RAM     ";
+            keyColor = "cyan";
+          }
+          {
+            type = "battery";
+            key = "│ 󰁹 Battery ";
+            keyColor = "cyan";
+          }
+          {
+            type = "custom";
+            format = "└───────────────────────────────────────────────────────";
+          }
           "break"
-          "colors"
+          {
+            type = "custom";
+            format = "┌────────────────────── Software ───────────────────────";
+          }
+          {
+            type = "os";
+            key = "│  OS      ";
+            keyColor = "blue";
+          }
+          {
+            type = "kernel";
+            key = "│  Kernel  ";
+            keyColor = "blue";
+          }
+          {
+            type = "bios";
+            key = "│ ⚙ BIOS    ";
+            keyColor = "blue";
+          }
+          {
+            type = "packages";
+            key = "│  Packages";
+            keyColor = "blue";
+          }
+          {
+            type = "shell";
+            key = "│  Shell   ";
+            keyColor = "blue";
+          }
+          {
+            type = "custom";
+            format = "│";
+          }
+          {
+            type = "de";
+            key = "│  DE      ";
+            keyColor = "magenta";
+          }
+          {
+            type = "wm";
+            key = "│  WM      ";
+            keyColor = "magenta";
+          }
+          {
+            type = "theme";
+            key = "│  Theme   ";
+            keyColor = "magenta";
+          }
+          {
+            type = "terminal";
+            key = "│  Terminal";
+            keyColor = "magenta";
+          }
+          {
+            type = "terminalfont";
+            key = "│  Font    ";
+            keyColor = "magenta";
+          }
+          {
+            type = "uptime";
+            key = "│  Uptime  ";
+            keyColor = "magenta";
+          }
+          {
+            type = "custom";
+            format = "└───────────────────────────────────────────────────────";
+          }
+          "break"
+          {
+            type = "colors";
+            paddingLeft = 16;
+          }
         ];
       };
     };
