@@ -5,14 +5,15 @@
   inputs,
   ...
 }: let
-  spicetifyPkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-  comfySrc = pkgs.fetchgit {
-    url = "https://github.com/Comfy-Themes/Spicetify";
-    rev = "8f79774155455b3c1beafb4c0863eeb684c23ea8";
-    sha256 = "sha256-Oel1vHHCAkVIlSnU4z1rSj84YHYspzUItAGO1jvxUrQ=";
+  spicetifyPkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  comfySrc = pkgs.fetchFromGitHub {
+    owner = "Comfy-Themes";
+    repo = "Spicetify";
+    rev = "b9b40b882281d82d9d42aeeb163d25280b18d343";
+    hash = "sha256-FxTX/GHEpcGDoFaP0jAErBa0kuubqFLoyB2mviHo41E=";
   };
 in {
-  imports = [inputs.spicetify-nix.homeManagerModule];
+  imports = [inputs.spicetify-nix.homeManagerModules.default];
 
   options = {
     spicetify.enable = lib.mkEnableOption "Enables Spicetify";
@@ -23,10 +24,10 @@ in {
       enable = true;
       theme = {
         name = "Comfy";
-        src = comfySrc;
+        src = "${comfySrc}/Comfy";
         requiredExtensions = [
           {
-            filename = "theme.js";
+            name = "theme.js";
             src = "${comfySrc}/Comfy";
           }
         ];
