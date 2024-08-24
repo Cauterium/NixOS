@@ -12,7 +12,7 @@
   config = lib.mkIf config.development.enable {
     home.packages = with pkgs; [
       cz-cli
-      jetbrains.pycharm-professional
+      # jetbrains.pycharm-professional
       inputs.nixvim.packages."x86_64-linux".default
     ];
 

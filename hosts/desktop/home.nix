@@ -59,8 +59,8 @@ in {
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    android-studio
-    davinci-resolve
+    # android-studio
+    # davinci-resolve
     jdk21
     jq
     pamixer
