@@ -137,7 +137,7 @@
         "smartphone".id = "SI7QZUL-L726FJW-SXHCXLH-AU2RMYW-Q7K66K2-I4L7LAH-J7CLJCW-CP2HGAC";
 
         "server".name = "Cauterium Server";
-        "server".id = "F247EAS-EJ7DS2D-BG3WTG7-LCTRSSG-BWTK7UR-LFHAN3U-CSGGXZ6-VUFWLAK";
+        "server".id = "ASHXGXR-4O4SYA4-2I3DY72-PXGYTBD-YFZ56RO-OTVYBHA-FY3EDQA-5X3DZAE";
       };
       folders = {
         "Obsidian" = {
