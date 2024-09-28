@@ -114,7 +114,7 @@
         };
         "Zotero" = {
           path = "/home/cauterium/Sync/Zotero";
-          devices = [ "desktopWindows" "desktopLinux" "laptop" "smartphone" ];
+          devices = [ "desktopWindows" "desktopLinux" "laptop" ];
         };
       };
     };
