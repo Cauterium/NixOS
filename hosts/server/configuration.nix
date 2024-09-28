@@ -121,6 +121,10 @@
     };
   };
 
+  programs.ssh = {
+    startAgent = true;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -136,3 +140,4 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
+
