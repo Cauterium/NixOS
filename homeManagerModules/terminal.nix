@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -8,7 +9,7 @@
     terminal.enable = lib.mkEnableOption "Enables terminal programs";
   };
 
-  config = lib.mkIf config.fish.enable {
+  config = lib.mkIf config.terminal.enable {
     programs.eza = {
       enable = true;
       enableFishIntegration = true;

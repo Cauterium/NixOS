@@ -2,14 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, outputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./../../nixosModules
+      inputs.nix-colors.homeManagerModules.default
       inputs.home-manager.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
     ];
 
   mime.enable = false;
@@ -29,10 +31,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "server"; # Define your hostname.
 
@@ -80,12 +78,8 @@
     packages = with pkgs; [];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    git
+    home-manager
   ];
 
   programs.fish.enable = true;

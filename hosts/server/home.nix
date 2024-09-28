@@ -6,6 +6,8 @@
 }: {
   imports = [
     ./../../homeManagerModules
+    inputs.nix-colors.homeManagerModules.default
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   desktopApps.enable = false;
@@ -32,7 +34,7 @@
     };
   };
 
-  home.stateVersion = "23.11"; # Please check Home Manager release notes before changing.
+  home.stateVersion = "24.05"; # Please check Home Manager release notes before changing.
 
   home.packages = with pkgs; [
     # # It is sometimes useful to fine-tune packages, for example, by applying
