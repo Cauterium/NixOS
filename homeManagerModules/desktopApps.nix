@@ -102,16 +102,6 @@
       '';
     };
 
-    programs.btop = {
-      enable = true;
-      settings = {
-        color_theme = "tokyo-night";
-        theme_background = false;
-        vim_keys = true;
-        rounded_corners = true;
-      };
-    };
-
     programs.firefox = {
       enable = true;
       profiles.cauterium = {
@@ -144,30 +134,6 @@
       source = builtins.fetchGit {
         url = "https://github.com/KiKaraage/ArcWTF";
         rev = "bb6f2b7ef7e3d201e23d86bf8636e5d0ea4bd68b";
-      };
-    };
-
-    programs.yazi = {
-      enable = true;
-      package = pkgs.unstable.yazi;
-      enableFishIntegration = config.programs.fish.enable;
-
-      settings = {
-        manager = {
-          layout = [1 4 3];
-          sort_by = "alphabetical";
-          sort_sensitive = true;
-          sort_reverse = false;
-          sort_dir_first = true;
-          show_hidden = false;
-          show_symlink = true;
-        };
-
-        preview = {
-          tab_size = 2;
-          max_width = 600;
-          max_height = 900;
-        };
       };
     };
 

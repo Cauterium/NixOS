@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    fish.enable = lib.mkEnableOption "Enables Fish Shell";
+    terminal.enable = lib.mkEnableOption "Enables terminal programs";
   };
 
   config = lib.mkIf config.fish.enable {
@@ -253,5 +253,83 @@
       enable = true;
       enableFishIntegration = true;
     };
+
+    programs.btop = {
+      enable = true;
+      settings = {
+        color_theme = "tokyo-night";
+        theme_background = false;
+        vim_keys = true;
+        rounded_corners = true;
+      };
+    };
+
+    programs.yazi = {
+      enable = true;
+      package = pkgs.unstable.yazi;
+      enableFishIntegration = config.programs.fish.enable;
+
+      settings = {
+        manager = {
+          layout = [1 4 3];
+          sort_by = "alphabetical";
+          sort_sensitive = true;
+          sort_reverse = false;
+          sort_dir_first = true;
+          show_hidden = false;
+          show_symlink = true;
+        };
+
+        preview = {
+          tab_size = 2;
+          max_width = 600;
+          max_height = 900;
+        };
+      };
+    };
+
+    home.packages = with pkgs; [
+      cz-cli
+      inputs.nixvim.packages."x86_64-linux".default
+    ];
+
+    programs.git = {
+      enable = true;
+      userName = "Fabian Brenneisen";
+      userEmail = "brenneisen.fabian@gmail.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.rebase = true;
+      };
+    };
+
+    programs.lazygit = {
+      enable = true;
+      settings = {
+        gui.shortTimeFormat = "15:04:05";
+        customCommands = [
+          {
+            key = "c";
+            command = "git cz";
+            description = "commit with commitizen";
+            context = "files";
+            loadingText = "opening commit tool";
+            subprocess = true;
+          }
+        ];
+      };
+    };
+
+    programs.neovim = {
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+
+    home.file.".czrc".text = ''
+      {
+        "path": "cz-conventional-changelog"
+      }
+    '';
   };
 }
