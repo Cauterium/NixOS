@@ -66,6 +66,21 @@
     options = "grp:alt_shift_toggle";
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "/home/cauterium/.config/NixOS-System#server";
+    dates = "weekly";
+    randomizedDelaySec = "45min";
+  };
+
+  systemd.timers.auto-reboot = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 03:00:00";
+      Unit = "reboot.target";
+    };
+  };
+
   # Configure console keymap
   console.keyMap = "de";
 
@@ -120,6 +135,18 @@
     };
   };
 
+  virtualisation.oci-containers = {
+    backend = "podman";
+    containers.homeassistant = {
+      volumes = [ "home-assistant:/config" ];
+      environment.TZ = "Europe/Berlin";
+      image = "ghcr.io/home-assistant/home-assistant:stable";
+      extraOptions = [
+        "--network=host"
+      ];
+    };
+  };
+
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -148,7 +175,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22000 ];
+  networking.firewall.allowedTCPPorts = [ 8123 22000 ];
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

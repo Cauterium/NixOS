@@ -97,7 +97,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "${config.users.users.cauterium.home}#desktop";
+    flake = "/home/cauterium/.config/NixOS-System#desktop";
     dates = "weekly";
     randomizedDelaySec = "45min";
   };
