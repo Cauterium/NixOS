@@ -88,13 +88,15 @@
   users.users.cauterium = {
     isNormalUser = true;
     description = "cauterium";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
 
   environment.systemPackages = with pkgs; [
     home-manager
+    virt-manager
+    wget
   ];
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
@@ -135,17 +137,24 @@
     };
   };
 
-  virtualisation.oci-containers = {
-    backend = "podman";
-    containers.homeassistant = {
-      volumes = [ "home-assistant:/config" ];
-      environment.TZ = "Europe/Berlin";
-      image = "ghcr.io/home-assistant/home-assistant:stable";
-      extraOptions = [
-        "--network=host"
-      ];
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu.ovmf.enable = true;
     };
   };
+
+  networking.bridges.br0.interfaces = [ "enp0s25" ];
+  networking.interfaces.br0 = {
+    useDHCP = false;
+    ipv4.addresses = [{
+      "address" = "192.168.178.100";
+      "prefixLength" = 24;
+    }];
+  };
+
+  networking.firewall.allowedTCPPortRanges = [{ from = 100; to = 65535; }];
+  networking.firewall.allowedUDPPortRanges = [{ from = 100; to = 65535; }];
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
