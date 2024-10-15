@@ -143,8 +143,11 @@
       qemu.ovmf.enable = true;
     };
   };
-
+  
+  networking.defaultGateway = "192.168.178.1";
+  networking.nameservers = [ "192.168.178.1" ];
   networking.bridges.br0.interfaces = [ "enp0s25" ];
+  networking.interfaces.enp0s25.useDHCP = true;
   networking.interfaces.br0 = {
     useDHCP = false;
     ipv4.addresses = [{
