@@ -4,6 +4,7 @@
 {
   inputs,
   outputs,
+  lib,
   config,
   pkgs,
   ...
@@ -22,6 +23,7 @@
   # Configure nix package manager
   nixpkgs = {
     overlays = [
+      outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
@@ -173,6 +175,7 @@
     libsecret
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+    lnxlink
   ];
 
   fonts.packages = with pkgs; [
