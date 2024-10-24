@@ -85,14 +85,11 @@
     options = "grp:alt_shift_toggle";
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
-      sddm.wayland.enable = true;
-      sessionPackages = [pkgs.hyprland];
-    };
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
+    sddm.wayland.enable = true;
+    sessionPackages = [pkgs.hyprland];
   };
 
   programs.xwayland.enable = true;
@@ -129,13 +126,13 @@
     overrideFolders = true;
     settings = {
       devices = {
-        "desktopWindows".name = "Cauterium Windows Desktop"; 
+        "desktopWindows".name = "Cauterium Windows Desktop";
         "desktopWindows".id = "QWV22F5-CAXFX6T-FAK4TEJ-PTSK77W-Z7KSJ3Y-Q46ERZH-RNBO423-TYAIGAZ";
 
         "laptop".name = "Cauterium Laptop";
         "laptop".id = "2TOM6AA-TPE6FTC-VDKCZPE-JFYYF4W-RPN2JOK-UTICZF2-XZCR7JX-QTON6Q7";
 
-        "smartphone".name = "Cauterium Smartphone"; 
+        "smartphone".name = "Cauterium Smartphone";
         "smartphone".id = "SI7QZUL-L726FJW-SXHCXLH-AU2RMYW-Q7K66K2-I4L7LAH-J7CLJCW-CP2HGAC";
 
         "server".name = "Cauterium Server";
@@ -144,12 +141,12 @@
       folders = {
         "Obsidian" = {
           path = "/home/cauterium/Datenplatte/Syncding/Obsidian";
-          devices = [ "desktopWindows" "laptop" "smartphone" "server" ];
+          devices = ["desktopWindows" "laptop" "smartphone" "server"];
         };
 
         "Zotero" = {
           path = "/home/cauterium/Datenplatte/Syncding/Zotero";
-          devices = [ "desktopWindows" "laptop" "server" ];
+          devices = ["desktopWindows" "laptop" "server"];
         };
       };
     };

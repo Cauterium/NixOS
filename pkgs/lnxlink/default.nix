@@ -1,9 +1,9 @@
-{ lib
-, python3Packages
-, fetchPypi
-, pkgs
+{
+  lib,
+  python3Packages,
+  fetchPypi,
+  pkgs,
 }:
-
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
   version = "2024.10.1";
@@ -11,7 +11,7 @@ python3Packages.buildPythonApplication rec {
 
   src = fetchPypi {
     inherit pname version;
-    hash  = "sha256-bAy6uGLdSCluk2VY13iBhzUE+qOwfbhLfYxtlPeh5bA=";
+    hash = "sha256-bAy6uGLdSCluk2VY13iBhzUE+qOwfbhLfYxtlPeh5bA=";
   };
 
   postPatch = ''

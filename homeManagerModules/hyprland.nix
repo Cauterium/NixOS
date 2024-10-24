@@ -39,7 +39,7 @@ in {
     };
 
     programs.hyprlock = {
-      settings = with config.colorScheme.colors; {
+      settings = with config.colorScheme.palette; {
         background = {
           path = "${image}";
           blur_passes = 2;
@@ -154,7 +154,7 @@ in {
           };
         };
 
-        general = with config.colorScheme.colors; {
+        general = with config.colorScheme.palette; {
           gaps_in = "5";
           gaps_out = "10";
           border_size = "2";
@@ -164,7 +164,7 @@ in {
           allow_tearing = "false";
         };
 
-        decoration = with config.colorScheme.colors; {
+        decoration = with config.colorScheme.palette; {
           rounding = "10";
           blur = {
             enabled = "true";

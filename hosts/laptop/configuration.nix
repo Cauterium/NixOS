@@ -72,14 +72,11 @@
 
   programs.xwayland.enable = true;
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
-      sddm.wayland.enable = true;
-      sessionPackages = [pkgs.hyprland];
-    };
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
+    sddm.wayland.enable = true;
+    sessionPackages = [pkgs.hyprland];
   };
 
   system.autoUpgrade = {
@@ -115,13 +112,13 @@
     overrideFolders = true;
     settings = {
       devices = {
-        "desktopWindows".name = "Cauterium Windows Desktop"; 
+        "desktopWindows".name = "Cauterium Windows Desktop";
         "desktopWindows".id = "QWV22F5-CAXFX6T-FAK4TEJ-PTSK77W-Z7KSJ3Y-Q46ERZH-RNBO423-TYAIGAZ";
 
         "desktopLinux".name = "Cauterium NixOS Desktop";
         "desktopLinux".id = "S4365A4-Y7Q4I5K-VQMQZOH-EZQSETS-OUPNT6L-IUIJP5N-TSA4TJS-JMEXYQ2";
 
-        "smartphone".name = "Cauterium Smartphone"; 
+        "smartphone".name = "Cauterium Smartphone";
         "smartphone".id = "SI7QZUL-L726FJW-SXHCXLH-AU2RMYW-Q7K66K2-I4L7LAH-J7CLJCW-CP2HGAC";
 
         "server".name = "Cauterium Server";
@@ -130,12 +127,12 @@
       folders = {
         "Obsidian" = {
           path = "/home/cauterium/Documents/Syncthing/Obsidian";
-          devices = [ "desktopWindows" "desktopLinux" "smartphone" "server" ];
+          devices = ["desktopWindows" "desktopLinux" "smartphone" "server"];
         };
 
         "Zotero" = {
           path = "/home/cauterium/Documents/Syncthing/Zotero";
-          devices = [ "desktopWindows" "desktopLinux" "server" ];
+          devices = ["desktopWindows" "desktopLinux" "server"];
         };
       };
     };

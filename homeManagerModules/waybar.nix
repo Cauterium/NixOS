@@ -96,7 +96,7 @@
         };
       };
 
-      style = with config.colorScheme.colors; ''
+      style = with config.colorScheme.palette; ''
         * {
           border: none;
           border-radius: 8px;

@@ -1,3 +1,3 @@
-{ pkgs, ... } : {
-  lnxlink = pkgs.callPackage ./lnxlink { };
+{pkgs, ...}: {
+  lnxlink = pkgs.callPackage ./lnxlink {};
 }

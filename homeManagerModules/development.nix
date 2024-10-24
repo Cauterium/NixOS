@@ -21,6 +21,7 @@
         arrterian.nix-env-selector
         enkia.tokyo-night
         github.copilot
+        haskell.haskell
         jnoortheen.nix-ide
         llvm-vs-code-extensions.vscode-clangd
         rust-lang.rust-analyzer

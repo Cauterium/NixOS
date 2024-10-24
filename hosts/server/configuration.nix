@@ -1,18 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, outputs, config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./../../nixosModules
-      inputs.nix-colors.homeManagerModules.default
-      inputs.home-manager.nixosModules.default
-      inputs.sops-nix.nixosModules.sops
-    ];
+  inputs,
+  outputs,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./../../nixosModules
+    inputs.nix-colors.homeManagerModules.default
+    inputs.home-manager.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   mime.enable = false;
   network.enable = false;
@@ -29,7 +32,7 @@
     };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
   networking.hostName = "server"; # Define your hostname.
@@ -74,7 +77,7 @@
   };
 
   systemd.timers.auto-reboot = {
-    wantedBy = [ "timers.target" ];
+    wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "*-*-* 03:00:00";
       Unit = "reboot.target";
@@ -88,7 +91,7 @@
   users.users.cauterium = {
     isNormalUser = true;
     description = "cauterium";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = ["networkmanager" "wheel" "libvirtd"];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
@@ -112,13 +115,13 @@
     overrideFolders = true;
     settings = {
       devices = {
-        "desktopWindows".name = "Cauterium Windows Desktop"; 
+        "desktopWindows".name = "Cauterium Windows Desktop";
         "desktopWindows".id = "QWV22F5-CAXFX6T-FAK4TEJ-PTSK77W-Z7KSJ3Y-Q46ERZH-RNBO423-TYAIGAZ";
 
         "laptop".name = "Cauterium Laptop";
         "laptop".id = "2TOM6AA-TPE6FTC-VDKCZPE-JFYYF4W-RPN2JOK-UTICZF2-XZCR7JX-QTON6Q7";
 
-        "smartphone".name = "Cauterium Smartphone"; 
+        "smartphone".name = "Cauterium Smartphone";
         "smartphone".id = "SI7QZUL-L726FJW-SXHCXLH-AU2RMYW-Q7K66K2-I4L7LAH-J7CLJCW-CP2HGAC";
 
         "desktopLinux".name = "Cauterium NixOS Desktop";
@@ -127,11 +130,11 @@
       folders = {
         "Obsidian" = {
           path = "/home/cauterium/Sync/Obsidian";
-          devices = [ "desktopWindows" "desktopLinux" "laptop" "smartphone" ];
+          devices = ["desktopWindows" "desktopLinux" "laptop" "smartphone"];
         };
         "Zotero" = {
           path = "/home/cauterium/Sync/Zotero";
-          devices = [ "desktopWindows" "desktopLinux" "laptop" ];
+          devices = ["desktopWindows" "desktopLinux" "laptop"];
         };
       };
     };
@@ -143,21 +146,33 @@
       qemu.ovmf.enable = true;
     };
   };
-  
+
   networking.defaultGateway = "192.168.178.1";
-  networking.nameservers = [ "192.168.178.1" ];
-  networking.bridges.br0.interfaces = [ "enp0s25" ];
+  networking.nameservers = ["192.168.178.1"];
+  networking.bridges.br0.interfaces = ["enp0s25"];
   networking.interfaces.enp0s25.useDHCP = true;
   networking.interfaces.br0 = {
     useDHCP = false;
-    ipv4.addresses = [{
-      "address" = "192.168.178.100";
-      "prefixLength" = 24;
-    }];
+    ipv4.addresses = [
+      {
+        "address" = "192.168.178.100";
+        "prefixLength" = 24;
+      }
+    ];
   };
 
-  networking.firewall.allowedTCPPortRanges = [{ from = 100; to = 65535; }];
-  networking.firewall.allowedUDPPortRanges = [{ from = 100; to = 65535; }];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 100;
+      to = 65535;
+    }
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 100;
+      to = 65535;
+    }
+  ];
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
@@ -172,7 +187,7 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [22];
     settings = {
       PasswordAuthentication = true;
       AllowUsers = null;
@@ -187,12 +202,10 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8123 22000 ];
-  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+  networking.firewall.allowedTCPPorts = [8123 22000];
+  networking.firewall.allowedUDPPorts = [22000 21027];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
   system.stateVersion = "24.05";
-
 }
-

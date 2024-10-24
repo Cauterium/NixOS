@@ -17,7 +17,7 @@
         package = pkgs.papirus-icon-theme;
         size = "32x32";
       };
-      settings = with config.colorScheme.colors; {
+      settings = with config.colorScheme.palette; {
         global = {
           # Set notification format
           markup = "full";

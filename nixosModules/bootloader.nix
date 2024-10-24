@@ -12,7 +12,7 @@
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.efi.efiSysMountPoint = "/boot";
     boot.consoleLogLevel = 0;
-    boot.kernelParams = [ "quiet" "splash" "rd.udev.log-priority=3" ];
+    boot.kernelParams = ["quiet" "splash" "rd.udev.log-priority=3"];
     boot.initrd.verbose = false;
 
     boot.loader.grub = {
@@ -27,7 +27,6 @@
           hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
         })
       }/tokyo-night/";
-      version = 2;
     };
   };
 }
