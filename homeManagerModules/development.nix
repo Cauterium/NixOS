@@ -11,7 +11,8 @@
 
   config = lib.mkIf config.development.enable {
     home.packages = with pkgs; [
-      # jetbrains.pycharm-professional
+      ghc
+      jetbrains.pycharm-professional
     ];
 
     programs.vscode = {
