@@ -27,6 +27,13 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
+  sops.secrets."github-token" = {
+    owner = "cauterium";
+  };
+  nix.extraOptions = ''
+    !include ${config.sops.secrets."github-token".path}
+  '';
+
   # Bootloader extra config
   boot.loader.grub = {
     gfxmodeEfi = "1920x1200,auto";

@@ -9,8 +9,8 @@
   comfySrc = pkgs.fetchFromGitHub {
     owner = "Comfy-Themes";
     repo = "Spicetify";
-    rev = "b9b40b882281d82d9d42aeeb163d25280b18d343";
-    hash = "sha256-FxTX/GHEpcGDoFaP0jAErBa0kuubqFLoyB2mviHo41E=";
+    rev = "db9a174bfe30cd39370ae6a31d854e119617b4aa";
+    hash = "sha256-cJR9Q9aO1DKrqVjL2eAe1HHI5deCV1/Yd+AN5x0vUtk=";
   };
 in {
   imports = [inputs.spicetify-nix.homeManagerModules.default];

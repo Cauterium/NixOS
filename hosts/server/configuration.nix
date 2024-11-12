@@ -35,6 +35,13 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
+  sops.secrets."github-token" = {
+    owner = "cauterium";
+  };
+  nix.extraOptions = ''
+    !include ${config.sops.secrets."github-token".path}
+  '';
+
   networking.hostName = "server"; # Define your hostname.
 
   # Configure network proxy if necessary
