@@ -13,6 +13,7 @@
     home.packages = with pkgs; [
       ghc
       jetbrains.pycharm-professional
+      python3
     ];
 
     programs.vscode = {
@@ -24,6 +25,7 @@
         github.copilot
         haskell.haskell
         jnoortheen.nix-ide
+        justusadam.language-haskell
         llvm-vs-code-extensions.vscode-clangd
         rust-lang.rust-analyzer
         usernamehw.errorlens
