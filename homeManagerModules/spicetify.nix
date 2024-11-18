@@ -22,8 +22,6 @@ in {
   config = lib.mkIf config.spicetify.enable {
     programs.spicetify = {
       enable = true;
-      spotifyPackage = pkgs.unstable.spotify;  # TODO remove this when updating to 24.11
-      spicetifyPackage = pkgs.unstable.spicetify-cli;  # TODO remove this when updating to 24.11
       theme = {
         name = "Comfy";
         src = "${comfySrc}/Comfy";

@@ -22,8 +22,7 @@
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware = {
-      # Opengl
-      opengl.enable = true;
+      nvidia.open = false;
       nvidia.modesetting.enable = true;
       nvidia.powerManagement.enable = false;
       nvidia.powerManagement.finegrained = false;

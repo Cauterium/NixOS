@@ -33,11 +33,6 @@ in {
       wl-clipboard
     ];
 
-    home.sessionVariables = {
-      XDG_CURRENT_DESKTOP = "hyprland";
-      NIXOS_OZONE_WL = "1";
-    };
-
     programs.hyprlock = {
       settings = with config.colorScheme.palette; {
         background = {
@@ -120,23 +115,17 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs.hyprland;
       systemd.enable = true;
       settings = {
-        "$screenshot" = "grim -g \"$(slurp)\" - | convert - -shave 1x1 PNG:- | wl-copy -t image/png";
+        "$screenshot" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.imagemagick}/bin/convert - -shave 1x1 PNG:- | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "$terminal" = "${pkgs.kitty}/bin/kitty";
         "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
-        "$power-menu" = "rofi -show power-menu -modi power-menu:rofi-power-menu";
+        "$power-menu" = "${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu";
 
         "$mainMod" = "SUPER";
         "$mainModShift" = "SUPER_SHIFT";
 
         exec-once = [
-          "dunst & hyprpaper"
-          "waybar"
-          "/home/cauterium/.config/eww/launch.sh"
-          "nextcloud --background"
-
           "dbus-update-activation-environment --systemd --all"
           "systemctl --user import-environment QT_QPA_PLATFORMTHEME DBUS_SESSION_ADDRESS"
         ];
@@ -172,10 +161,12 @@ in {
             passes = "1";
           };
 
-          drop_shadow = "yes";
-          shadow_range = "4";
-          shadow_render_power = "3";
-          "col.shadow" = "rgba(${base00}ff)";
+          shadow = {
+            enabled = "true";
+            range = "4";
+            render_power = "3";
+            color = "rgba(${base00}ff)";
+          };
         };
 
         animations = {

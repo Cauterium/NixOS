@@ -83,6 +83,7 @@
     sddm.enable = true;
     sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
     sddm.wayland.enable = true;
+    sddm.settings.General.DefaultSession = "hyprland.desktop";
     sessionPackages = [pkgs.hyprland];
   };
 
@@ -159,7 +160,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome.gnome-keyring
+    gnome-keyring
     home-manager
     libsecret
     libsForQt5.qt5.qtquickcontrols2
@@ -174,7 +175,6 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
