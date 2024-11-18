@@ -11,7 +11,6 @@
 
   config = lib.mkIf config.development.enable {
     home.packages = with pkgs; [
-      android-studio
       ghc
       jetbrains.pycharm-professional
       python3
