@@ -52,6 +52,7 @@
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
 
   time.timeZone = "Europe/Berlin";
 
