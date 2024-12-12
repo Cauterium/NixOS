@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   config,
   ...
 }: {
@@ -17,6 +18,8 @@
       rnote
       thunderbird
       zotero
+
+      inputs.zen-browser.packages."${pkgs.system}".default
     ];
 
     accounts.email.accounts = {
@@ -112,7 +115,6 @@
           i-dont-care-about-cookies
           languagetool
           nighttab
-          omnivore
           return-youtube-dislikes
           sidebery
           tokyo-night-v2
