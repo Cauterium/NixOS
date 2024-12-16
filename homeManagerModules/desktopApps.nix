@@ -106,39 +106,39 @@
       '';
     };
 
-    programs.firefox = {
-      enable = true;
-      profiles.cauterium = {
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          bitwarden
-          darkreader
-          i-dont-care-about-cookies
-          languagetool
-          nighttab
-          return-youtube-dislikes
-          sidebery
-          tokyo-night-v2
-          ublock-origin
-          userchrome-toggle
-          wikiwand-wikipedia-modernized
-          youtube-recommended-videos
-          zotero-connector
-        ];
-        settings = {
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          "svg.context-properties.content.enabled" = true;
-          "uc.tweak.longer-sidebar" = true;
-          "uc.tweak.popup-search" = true;
-        };
-      };
-    };
+    # programs.firefox = {
+    #   enable = true;
+    #   profiles.cauterium = {
+    #     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    #       bitwarden
+    #       darkreader
+    #       i-dont-care-about-cookies
+    #       languagetool
+    #       nighttab
+    #       return-youtube-dislikes
+    #       sidebery
+    #       tokyo-night-v2
+    #       ublock-origin
+    #       userchrome-toggle
+    #       wikiwand-wikipedia-modernized
+    #       youtube-recommended-videos
+    #       zotero-connector
+    #     ];
+    #     settings = {
+    #       "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    #       "svg.context-properties.content.enabled" = true;
+    #       "uc.tweak.longer-sidebar" = true;
+    #       "uc.tweak.popup-search" = true;
+    #     };
+    #   };
+    # };
 
-    home.file.".mozilla/firefox/cauterium/chrome/" = {
-      source = builtins.fetchGit {
-        url = "https://github.com/KiKaraage/ArcWTF";
-        rev = "bb6f2b7ef7e3d201e23d86bf8636e5d0ea4bd68b";
-      };
-    };
+    # home.file.".mozilla/firefox/cauterium/chrome/" = {
+    #   source = builtins.fetchGit {
+    #     url = "https://github.com/KiKaraage/ArcWTF";
+    #     rev = "bb6f2b7ef7e3d201e23d86bf8636e5d0ea4bd68b";
+    #   };
+    # };
 
     home.file.".config/vesktop/themes/mytheme.css".text = with config.colorScheme.palette; ''
       .theme-dark {

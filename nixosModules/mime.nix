@@ -10,7 +10,7 @@
 
   config = lib.mkIf config.mime.enable {
     xdg.mime.defaultApplications = {
-      "application/pdf" = "firefox.desktop";
+      "application/pdf" = "zen.desktop";
     };
   };
 }
