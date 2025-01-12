@@ -20,7 +20,6 @@
   mime.enable = false;
   network.enable = false;
   nix-colors.enable = false;
-  secrets.enable = false;
 
   nixpkgs = {
     overlays = [
@@ -148,6 +147,14 @@
         };
       };
     };
+  };
+
+  services.borgbackup.jobs.syncthing-backup = {
+    paths = "/home/cauterium/Sync";
+    encryption.mode = "none";
+    repo = "/home/cauterium/Backup";
+    compression = "auto,zstd";
+    startAt = "daily";
   };
 
   virtualisation = {
