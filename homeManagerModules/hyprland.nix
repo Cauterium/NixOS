@@ -157,7 +157,7 @@ in {
           rounding = "10";
           blur = {
             enabled = "true";
-            size = "3";
+            size = "10";
             passes = "1";
           };
 

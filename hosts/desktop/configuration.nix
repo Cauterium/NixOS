@@ -143,13 +143,16 @@
         "smartphone".name = "Cauterium Smartphone";
         "smartphone".id = "SI7QZUL-L726FJW-SXHCXLH-AU2RMYW-Q7K66K2-I4L7LAH-J7CLJCW-CP2HGAC";
 
+        "tablet".name = "Cauterium Tablet";
+        "tablet".id = "TBPZLHI-AA5ZGAI-DS4BOUJ-WXQZKFD-QSIXLFV-XFWCLPC-CDBQKJX-RB7I7AZ";
+
         "server".name = "Cauterium Server";
         "server".id = "ASHXGXR-4O4SYA4-2I3DY72-PXGYTBD-YFZ56RO-OTVYBHA-FY3EDQA-5X3DZAE";
       };
       folders = {
         "Obsidian" = {
           path = "/home/cauterium/Datenplatte/Syncding/Obsidian";
-          devices = ["desktopWindows" "laptop" "smartphone" "server"];
+          devices = ["desktopWindows" "laptop" "smartphone" "tablet" "server"];
         };
 
         "Zotero" = {
