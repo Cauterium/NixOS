@@ -150,7 +150,8 @@
   };
 
   services.borgbackup.jobs.syncthing-backup = {
-    paths = "/home/cauterium/Sync";
+    paths = ["/home/cauterium/Sync"];
+    doInit = true;
     encryption.mode = "none";
     repo = "/home/cauterium/Backup";
     compression = "auto,zstd";
