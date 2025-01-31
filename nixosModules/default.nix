@@ -1,6 +1,7 @@
 {lib, ...}: {
   imports = [
     ./bootloader.nix
+    ./hyprland.nix
     ./laptop.nix
     ./mime.nix
     ./network.nix
