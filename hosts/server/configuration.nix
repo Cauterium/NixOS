@@ -158,6 +158,42 @@
     startAt = "daily";
   };
 
+  services.blocky = {
+    enable = true;
+    settings = {
+      ports.dns = 53;
+      upstreams.groups.default = [ "https://one.one.one.one/dns-query" ];
+      bootstrapDns = {
+        upstream = "https://one.one.one.one/dns-query";
+        ips = [ "1.1.1.1" "1.0.0.1" ];
+      };
+
+      blocking = {
+        denylists = {
+          main-lists = [
+            "https://blocklistproject.github.io/Lists/everything.txt"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts"
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt"
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"
+          ];
+        };
+        allowlists = {
+          custom = [ "/home/cauterium/.config/blocky/customBlocklist.txt" ];
+        };
+
+        clientGroupsBlock = {
+          default = [ "main-lists" "custom" ];
+        };
+      };
+
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
+      };
+    };
+  };
+
   virtualisation = {
     libvirtd = {
       enable = true;
