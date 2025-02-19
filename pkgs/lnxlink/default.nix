@@ -6,12 +6,12 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
-  version = "2024.10.1";
+  version = "2025.1.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-bAy6uGLdSCluk2VY13iBhzUE+qOwfbhLfYxtlPeh5bA=";
+    hash = "sha256-bquMYlOAwnvdqHKRJUKLc0Hd0A1VT8aHwid9UQWo14Q=";
   };
 
   postPatch = ''
@@ -38,6 +38,7 @@ python3Packages.buildPythonApplication rec {
     speechrecognition
     dasbus
     ewmh
+    flask
     mss
     numpy
     opencv4
