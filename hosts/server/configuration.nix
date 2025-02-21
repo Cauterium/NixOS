@@ -171,14 +171,11 @@
       blocking = {
         denylists = {
           main-lists = [
-            "https://blocklistproject.github.io/Lists/everything.txt"
-            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts"
+            "https://big.oisd.nl/domainswild"
+            "https://nsfw.oisd.nl/domainswild"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"
           ];
-        };
-        allowlists = {
-          custom = [ "/home/cauterium/.config/blocky/customBlocklist.txt" ];
         };
 
         clientGroupsBlock = {
