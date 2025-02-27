@@ -63,6 +63,7 @@ in {
     # davinci-resolve
     jdk21
     jq
+    ncpamixer
     pamixer
     socat
     sops

@@ -41,6 +41,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     jq
+    ncpamixer
     pamixer
     socat
     sops
