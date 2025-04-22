@@ -156,6 +156,11 @@
     repo = "/home/cauterium/Backup";
     compression = "auto,zstd";
     startAt = "daily";
+    prune.keep = {
+      within = "1d";
+      daily = 7;
+      weekly = 4;
+    };
   };
 
   services.blocky = {
