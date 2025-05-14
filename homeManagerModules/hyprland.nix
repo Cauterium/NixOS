@@ -113,6 +113,36 @@ in {
       };
     };
 
+    home.file.".config/fcitx5/conf/classicui.conf".text = ''
+      Theme=Tokyonight-Storm
+      Font="FiraCode Nerd Font 14"
+    '';
+
+    home.file.".config/fcitx5/profile".text = ''
+      [Groups/0]
+      # Group Name
+      Name=Default
+      # Layout
+      Default Layout=de-neo_qwertz
+      # Default Input Method
+      DefaultIM=mozc
+
+      [Groups/0/Items/0]
+      # Name
+      Name=keyboard-de-neo_qwertz
+      # Layout
+      Layout=
+
+      [Groups/0/Items/1]
+      # Name
+      Name=mozc
+      # Layout
+      Layout=
+
+      [GroupOrder]
+      0=Default
+    '';
+
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -128,13 +158,14 @@ in {
         exec-once = [
           "dbus-update-activation-environment --systemd --all"
           "systemctl --user import-environment QT_QPA_PLATFORMTHEME DBUS_SESSION_ADDRESS"
+          "fcitx5 -d"
         ];
 
         input = {
-          kb_layout = "de,de";
-          kb_variant = "neo_qwertz,";
+          kb_layout = "de";
+          kb_variant = "neo_qwertz";
           kb_model = "";
-          kb_options = "grp:alt_shift_toggle";
+          kb_options = "";
           kb_rules = "";
 
           follow_mouse = "1";

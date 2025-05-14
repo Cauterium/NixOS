@@ -44,15 +44,22 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "de,de";
-    variant = "neo_qwertz,";
-    options = "grp:alt_shift_toggle";
+  # Japanese IMEs
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-mozc
+        fcitx5-tokyonight
+      ];
+    };
   };
 
   # Configure console keymap
-  console.keyMap = "de";
+  console.keyMap = "neoqwertz";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cauterium = {
@@ -70,4 +77,3 @@
     startAgent = true;
   };
 }
-
