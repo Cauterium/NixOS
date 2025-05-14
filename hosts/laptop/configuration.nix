@@ -13,27 +13,6 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  # Configure nix package manager
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.auto-optimise-store = true;
-
-  sops.secrets."github-token" = {
-    owner = "cauterium";
-  };
-  nix.extraOptions = ''
-    !include ${config.sops.secrets."github-token".path}
-  '';
-
   # Bootloader extra config
   boot.loader.grub = {
     gfxmodeEfi = "1920x1200,auto";
@@ -54,30 +33,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "de,de";
-    variant = "neo_qwertz,";
-    options = "grp:alt_shift_toggle";
-  };
-
   programs.xwayland.enable = true;
 
   services.displayManager = {
@@ -90,22 +45,16 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "${config.users.users.cauterium.home}/config/NixOS-System#default";
+    flake = "${config.users.users.cauterium.home}/.config/NixOS-System#default";
     dates = "weekly";
     randomizedDelaySec = "45min";
   };
 
-  # Configure console keymap
-  console.keyMap = "de";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.cauterium = {
-    isNormalUser = true;
-    description = "Cauterium";
-    extraGroups = ["networkmanager" "wheel"];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-    ];
+  home-manager = {
+    extraSpecialArgs = {inherit inputs outputs;};
+    users = {
+      cauterium = import ./home.nix;
+    };
   };
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
@@ -150,13 +99,12 @@
     };
   };
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
-    users = {
-      cauterium = import ./home.nix;
-    };
-  };
   programs.dconf.enable = true;
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    nerdfonts
+  ];
 
   laptop.enable = true;
 
@@ -171,14 +119,6 @@
     libsForQt5.qt5.qtgraphicaleffects
   ];
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    nerdfonts
-  ];
-
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
-
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -188,12 +128,7 @@
     jack.enable = true;
   };
 
-  programs.ssh = {
-    startAgent = true;
-  };
-
   services.gnome.gnome-keyring.enable = true;
-
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   # Open ports in the firewall.
