@@ -114,80 +114,14 @@
     #       darkreader
     #       i-dont-care-about-cookies
     #       languagetool
-    #       nighttab
     #       return-youtube-dislikes
-    #       sidebery
     #       tokyo-night-v2
     #       ublock-origin
-    #       userchrome-toggle
     #       wikiwand-wikipedia-modernized
     #       youtube-recommended-videos
     #       zotero-connector
     #     ];
-    #     settings = {
-    #       "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-    #       "svg.context-properties.content.enabled" = true;
-    #       "uc.tweak.longer-sidebar" = true;
-    #       "uc.tweak.popup-search" = true;
-    #     };
     #   };
     # };
-
-    # home.file.".mozilla/firefox/cauterium/chrome/" = {
-    #   source = builtins.fetchGit {
-    #     url = "https://github.com/KiKaraage/ArcWTF";
-    #     rev = "bb6f2b7ef7e3d201e23d86bf8636e5d0ea4bd68b";
-    #   };
-    # };
-
-    home.file.".config/vesktop/themes/mytheme.css".text = with config.colorScheme.palette; ''
-      .theme-dark {
-        /*  Header Color  */
-        --header-primary: var(--text-normal);
-        --header-secondary: var(--text-muted);
-
-        /*  Text Color  */
-        --text-normal: #${base06};
-        --text-muted: #${base04};
-        --interactive-normal: #${base04};
-        --interactive-hover: #${base06};
-        --interactive-active: #${base07};
-        --interactive-muted: #${base04};
-
-        /* Background Color */
-        --background-primary: #${base00};
-        --background-secondary: #${base00};
-        --background-secondary-alt: #${base00};
-        --background-tertiary: #${base00};
-        --background-tertiary-alt: var(--background-secondary-alt);
-        --background-accent: #${base03};
-        --background-floating: #${base00};
-        --background-modifier-hover: #${base01}c0;
-        --background-modifier-active: #${base02}80;
-        --background-modifier-selected: #${base02}71;
-        --background-modifier-accent: #${base01};
-        --background-mentioned: #${base02};
-        --border-mentioned: #${base08};
-        --background-mentioned-hover: #${base03};
-        --accent-color: #${base0D};
-
-        /* Folder Color */
-        --folder-color: #${base0D}d0;
-        --folder-color-light: #${base02}d0;
-
-        /* Scrollbars Color */
-        --scrollbar-thin-thumb: transparent;
-        --scrollbar-thin-track: transparent;
-        --scrollbar-auto-thumb: #${base02}af;
-        --scrollbar-auto-thumb-hover: #${base03}85;
-        --scrollba-auto-track: transparent;
-        --scrollbar-auto-scrollbar-color-thumb: var(--scrollbar-auto-thumb);
-        --scrollbar-auto-scrollbar-color-track: var(--scrollbar-auto-track);
-
-        /* Chat Box Color */
-        --channeltextarea-background: var(--background-secondary);
-        --channeltextarea-background-hover: var(--background-tertiary);
-      }
-    '';
   };
 }
