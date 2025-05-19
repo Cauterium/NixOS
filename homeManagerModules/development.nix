@@ -18,7 +18,7 @@
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
+      profiles.default.extensions = with pkgs.vscode-extensions; [
         arrterian.nix-env-selector
         enkia.tokyo-night
         github.copilot

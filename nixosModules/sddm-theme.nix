@@ -53,7 +53,7 @@ pkgs.stdenv.mkDerivation {
         InterfaceShadowOpacity="0.6"
         RoundCorners="20"
         ScreenPadding="0"
-        Font="JetBrainsMono Nerd Font"
+        Font="FiraCode Nerd Font"
         ## If you want to choose a custom font it will have to be available to the X root user. See https://wiki.archlinux.org/index.php/fonts#Manual_installation
 
         FontSize=""

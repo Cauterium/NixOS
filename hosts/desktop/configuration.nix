@@ -115,7 +115,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    nerdfonts
+    nerd-fonts.fira-code
   ];
 
   environment.sessionVariables = {
