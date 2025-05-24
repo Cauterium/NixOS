@@ -49,8 +49,8 @@ in {
             all-outputs = false;
             active-only = true;
             persistent-workspaces = {
-              "eDP-1" = [11 12 13 14 15 16];
-              "DP-1" = [1 2 3 4 5 6];
+              "eDP-1" = [1 2 3 4 5 6];
+              "DP-1" = [11 12 13 14 15 16];
               "DP-2" = [11 12 13 14 15 16];
               "DP-3" = [21 22 23 24 25 26];
               "HDMI-A-1" = [1 2 3 4 5 6];
