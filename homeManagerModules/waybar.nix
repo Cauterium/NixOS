@@ -45,7 +45,41 @@ in {
           modules-center = ["hyprland/window"];
 
           "hyprland/workspaces" = {
-            format = "{name}";
+            format = "{icon}";
+            format-icons = {
+              "1" = "一";
+              "2" = "二";
+              "3" = "三";
+              "4" = "四";
+              "5" = "五";
+              "6" = "六";
+              "7" = "七";
+              "8" = "八";
+              "9" = "九";
+              "10" = "十";
+
+              "11" = "一";
+              "12" = "二";
+              "13" = "三";
+              "14" = "四";
+              "15" = "五";
+              "16" = "六";
+              "17" = "七";
+              "18" = "八";
+              "19" = "九";
+              "20" = "十";
+
+              "21" = "一";
+              "22" = "二";
+              "23" = "三";
+              "24" = "四";
+              "25" = "五";
+              "26" = "六";
+              "27" = "七";
+              "28" = "八";
+              "29" = "九";
+              "30" = "十";
+            };
             all-outputs = false;
             active-only = true;
             persistent-workspaces = {
@@ -142,6 +176,7 @@ in {
         }
 
         #workspaces button {
+          font-weight: 900;
           padding: 2px 8px;
           background: transparent;
           color: #${base06};
