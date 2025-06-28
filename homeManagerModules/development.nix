@@ -13,6 +13,18 @@
     home.packages = with pkgs; [
       jetbrains.pycharm-professional
       python3
+      cmake
+      libgcc
+      gcc
+      linuxPackages_latest.perf
+      hotspot
+
+      bacon
+      cargo
+      clippy
+      rustc
+      rustfmt
+      jetbrains.rust-rover
     ];
 
     programs.vscode = {
