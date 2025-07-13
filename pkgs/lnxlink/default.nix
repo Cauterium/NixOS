@@ -6,12 +6,12 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
-  version = "2025.6.0";
+  version = "2025.7.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-3dfE03n3yaGNspx5P2Ji1PLuLMMjlPiMugBZ+wtQVfg=";
+    hash = "sha256-eKsmS/gv6w/tShAK+GY5C7/1gdQdlevBoJmtBMXmip8=";
   };
 
   postPatch = ''
@@ -36,7 +36,7 @@ python3Packages.buildPythonApplication rec {
     requests
     pygobject3
     speechrecognition
-    dasbus
+    jeepney
     docker
     ewmh
     flask
