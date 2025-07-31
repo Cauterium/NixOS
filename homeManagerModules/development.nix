@@ -16,11 +16,10 @@
       cmake
       libgcc
       gcc
-      linuxPackages_latest.perf
-      hotspot
 
       bacon
       cargo
+      cargo-flamegraph
       clippy
       rustc
       rustfmt

@@ -11,6 +11,7 @@
   config = lib.mkIf config.mime.enable {
     xdg.mime.defaultApplications = {
       "application/pdf" = "zen.desktop";
+      "image/svg+xml" = "zen.desktop";
     };
   };
 }
