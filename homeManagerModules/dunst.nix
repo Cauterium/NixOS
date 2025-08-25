@@ -22,7 +22,7 @@
           # Set notification format
           markup = "full";
           ignore_newline = "no";
-          format = "<b>%a</b>\\n<i>%s</i>\\n\\n%b";
+          format = "<b>%a</b>\\n<i>%s</i>\\n%b";
 
           # Set font
           font = "FiraCode Nerd Font 11";
@@ -33,16 +33,16 @@
           follow = "mouse";
 
           # Dimensions
-          width = 300;
-          offset = "0x24";
-          origin = "top-center";
+          width = 400;
+          offset = "12x4";
+          origin = "top-right";
 
           # Enable progressbar
           progress_bar = true;
           progress_bar_height = 14;
           progress_bar_frame_width = 1;
           progress_bar_min_width = 150;
-          progress_bar_max_width = 300;
+          progress_bar_max_width = 400;
 
           # Show how many messages are hidden
           indicate_hidden = "yes";
@@ -54,7 +54,7 @@
           transparency = 1;
 
           # Draw lines between multiple notifications
-          seperator_height = 6;
+          seperator_height = 2;
           seperator_color = "#${base02}";
 
           # Notification padding
@@ -74,8 +74,8 @@
           line_height = 0;
 
           # Text alignment
-          alignment = "left";
-          vertical_alignment = "left";
+          alignment = "right";
+          vertical_alignment = "right";
 
           # Show age of messages
           show_age_threshold = 120;
@@ -113,7 +113,7 @@
           class = "Dunst";
 
           # Set rounded corners
-          corner_radius = 10;
+          corner_radius = 8;
 
           # Don't ignore the dbus close notification message
           ignore_dbusclose = false;
