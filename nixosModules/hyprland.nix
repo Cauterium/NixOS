@@ -22,7 +22,7 @@ in {
   systemd.user.services."hyprsunset" = {
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.hyprsunset}/bin/hyprsunset -t 5500";
+      ExecStart = "${pkgs.hyprsunset}/bin/hyprsunset -t 4500";
     };
   };
 

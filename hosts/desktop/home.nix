@@ -26,9 +26,6 @@ in {
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  imageManipulation.enable = true;
-  music.enable = true;
-
   home.username = "cauterium";
   home.homeDirectory = "/home/cauterium";
 

@@ -328,7 +328,7 @@ in {
       dmenu_command = rofi -dmenu
 
       [editor]
-      terminal = alacritty
+      terminal = kitty
       gui_if_available = False
     '';
   };
