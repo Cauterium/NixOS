@@ -132,6 +132,11 @@
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"
           ];
         };
+        allowlists = {
+          main-lists = [
+            "/etc/blocky/customAllowlist.txt"
+          ];
+        };
 
         clientGroupsBlock = {
           default = ["main-lists" "custom"];
