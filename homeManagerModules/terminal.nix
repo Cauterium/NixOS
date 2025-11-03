@@ -153,6 +153,7 @@
         "ll" = "eza --icons -lah";
         "cat" = "bat";
         "c" = "clear && fastfetch";
+        "shell-cpp" = "nix-shell -p cmake gcc gdb valgrind glm --command fish";
       };
       shellInit = ''
         set -g fish_greeting
