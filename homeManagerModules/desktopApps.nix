@@ -3,8 +3,13 @@
   lib,
   inputs,
   config,
+  system,
   ...
 }: {
+  imports = [
+    inputs.zen-browser.homeModules.twilight
+  ];
+
   options = {
     desktopApps.enable = lib.mkEnableOption "enables desktop apps";
   };
@@ -18,8 +23,6 @@
       rnote
       thunderbird
       zotero
-
-      inputs.zen-browser.packages."${pkgs.system}".default
     ];
 
     accounts.email.accounts = {
@@ -106,22 +109,77 @@
       '';
     };
 
-    # programs.firefox = {
-    #   enable = true;
-    #   profiles.cauterium = {
-    #     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    #       bitwarden
-    #       darkreader
-    #       i-dont-care-about-cookies
-    #       languagetool
-    #       return-youtube-dislikes
-    #       tokyo-night-v2
-    #       ublock-origin
-    #       wikiwand-wikipedia-modernized
-    #       youtube-recommended-videos
-    #       zotero-connector
-    #     ];
-    #   };
-    # };
+    programs.zen-browser = {
+      enable = true;
+      policies = {
+        AutofillAddressEnabled = false;
+        AutofillCreditCardEnabled = false;
+        DisableAppUpdate = true;
+        DisableFeedbackCommands = true;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DontCheckDefaultBrowser = true;
+        NoDefaultBookmarks = true;
+        OfferToSaveLogins = false;
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+      };
+      profiles.cauterium = {
+        settings = {
+          "zen.glance.activation-method" = "ctrl";
+          "zen.urlbar.behavior" = "float";
+          "zen.view.compact.hide-toolbar" = true;
+          "zen.view.show-newtab-button-top" = false;
+          "zen.view.use-single-toolbar" = false;
+          "zen.welcome-screen.seen" = true;
+          "zen.workspaces.continue-where-left-off" = true;
+          "zen.workspaces.separate-essentials" = false;
+        };
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          bitwarden
+          darkreader
+          i-dont-care-about-cookies
+          languagetool
+          ublock-origin
+          wikiwand-wikipedia-modernized
+          zotero-connector
+        ];
+      };
+    };
+
+    xdg.mimeApps = let
+      value = let
+        zen-browser = inputs.zen-browser.packages.${system}.twilight;
+      in
+        zen-browser.meta.desktopFileName;
+
+      associations = builtins.listToAttrs (map (name: {
+          inherit name value;
+        }) [
+          "application/x-extension-shtml"
+          "application/x-extension-xhtml"
+          "application/x-extension-html"
+          "application/x-extension-xht"
+          "application/x-extension-htm"
+          "x-scheme-handler/unknown"
+          "x-scheme-handler/mailto"
+          "x-scheme-handler/chrome"
+          "x-scheme-handler/about"
+          "x-scheme-handler/https"
+          "x-scheme-handler/http"
+          "application/xhtml+xml"
+          "application/json"
+          "text/plain"
+          "text/html"
+        ]);
+    in {
+      associations.added = associations;
+      defaultApplications = associations;
+    };
   };
 }
