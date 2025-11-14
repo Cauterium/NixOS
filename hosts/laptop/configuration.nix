@@ -89,6 +89,11 @@
         "Obsidian" = {
           path = "/home/cauterium/Documents/Syncthing/Obsidian";
           devices = ["desktopWindows" "desktopLinux" "smartphone" "tablet" "server"];
+          ignorePatterns = [
+            "workspace*.json"
+            ".obsidian/plugins/**/data.json"
+            ".obsidian/plugins/**/cache.json"
+          ];
         };
 
         "Zotero" = {

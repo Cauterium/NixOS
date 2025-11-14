@@ -90,6 +90,11 @@
         "Obsidian" = {
           path = "/home/cauterium/Sync/Obsidian";
           devices = ["desktopWindows" "desktopLinux" "laptop" "tablet" "smartphone"];
+          ignorePatterns = [
+            "workspace*.json"
+            ".obsidian/plugins/**/data.json"
+            ".obsidian/plugins/**/cache.json"
+          ];
         };
         "Zotero" = {
           path = "/home/cauterium/Sync/Zotero";

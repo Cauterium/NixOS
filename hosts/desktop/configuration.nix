@@ -101,6 +101,11 @@
         "Obsidian" = {
           path = "/home/cauterium/Datenplatte/Syncding/Obsidian";
           devices = ["desktopWindows" "laptop" "smartphone" "tablet" "server"];
+          ignorePatterns = [
+            "workspace*.json"
+            ".obsidian/plugins/**/data.json"
+            ".obsidian/plugins/**/cache.json"
+          ];
         };
 
         "Zotero" = {
