@@ -174,7 +174,6 @@ in {
       systemd.enable = true;
       plugins = with pkgs.hyprlandPlugins; [
         hyprsplit
-        hyprspace
       ];
       settings = {
         "$screenshot" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.imagemagick}/bin/convert - -shave 1x1 PNG:- | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
@@ -281,8 +280,6 @@ in {
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
           "$mainMod, down, movefocus, d"
-
-          "$mainMod, O, overview:toggle"
 
           # Switch workspaces with mainMod + [0-9]
           "$mainMod, 1, split:workspace, 1"
