@@ -105,7 +105,7 @@
           history_length = 100;
 
           # ------- Misc -------
-          dmenu = "${pkgs.rofi-wayland}/bin/rofi -dmenu -p dunst:";
+          dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst:";
           browser = "${pkgs.firefox}/bin/firefox -new-tab";
 
           # Window manager options

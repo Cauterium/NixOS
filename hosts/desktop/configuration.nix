@@ -46,10 +46,18 @@
   networking.networkmanager.enable = true;
 
   services.displayManager = {
-    sddm.enable = true;
-    sddm.theme = "${import ../../nixosModules/sddm-theme.nix {inherit pkgs;}}";
-    sddm.wayland.enable = true;
-    sddm.settings.General.DefaultSession = "hyprland.desktop";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      settings = {
+        General.DefaultSession = "hyprland.desktop";
+        Autologin = {
+          Session = "hyprland.desktop";
+          User = "cauterium";
+          Relogin = true;
+        };
+      };
+    };
     sessionPackages = [pkgs.hyprland];
   };
 

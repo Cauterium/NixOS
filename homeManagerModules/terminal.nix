@@ -251,11 +251,6 @@
       };
     };
 
-    programs.thefuck = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-
     programs.btop = {
       enable = true;
       settings = {
@@ -297,9 +292,9 @@
 
     programs.git = {
       enable = true;
-      userName = "Fabian Brenneisen";
-      userEmail = "brenneisen.fabian@gmail.com";
-      extraConfig = {
+      settings = {
+        user.name = "Fabian Brenneisen";
+        user.email = "brenneisen.fabian@gmail.com";
         init.defaultBranch = "main";
         pull.rebase = true;
       };

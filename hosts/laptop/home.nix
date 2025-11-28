@@ -41,7 +41,6 @@
   home.sessionVariables = {
   };
 
-  programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
   wayland.windowManager.hyprland.settings.monitor = [",preferred,auto,1"];

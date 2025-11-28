@@ -16,7 +16,6 @@
 
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
       font = "FiraCode Nerd Font 15";
       terminal = "${pkgs.kitty}/bin/kitty";
       extraConfig = {

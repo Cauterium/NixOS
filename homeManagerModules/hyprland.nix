@@ -5,8 +5,8 @@
   ...
 }: let
   image = pkgs.fetchurl {
-    url = "https://img.goodfon.com/original/3840x2160/f/37/romain-trystram-by-romain-trystram-art-gorod-noch-arkhitek-1.jpg";
-    sha256 = "0029p72qswchgxdnjwygq05bs5hl6ccaxvwyqs79gmsliji5avcx";
+    url = "https://raw.githubusercontent.com/MrVivekRajan/Hyprlock-Styles/refs/heads/main/Style-8/hyprlock.png";
+    sha256 = "sha256-1ONGlurH/RZrSrXx/vAb53aCuPaSUumtaZHC77lSS58=";
   };
 in {
   imports = [
@@ -34,47 +34,67 @@ in {
     ];
 
     programs.hyprlock = {
+      enable = true;
       settings = with config.colorScheme.palette; {
         background = {
           path = "${image}";
           blur_passes = 2;
-          contrast = 0.9;
-          brightness = 0.8;
-          vibrancy = 0.2;
+          contrast = 0.8916;
+          brightness = 0.8172;
+          vibrancy = 0.1696;
           vibrancy_darkness = 0.0;
-        };
-
-        general = {
-          no_fade_in = false;
-          grace = 0;
-          disable_loading_bar = true;
         };
 
         input-field = {
           fade_on_empty = false;
-          outer_color = "rgb(${base07})";
-          inner_color = "rgb(${base00})";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
+          dots_center = true;
+          outer_color = "rgba(${base07}00)";
+          inner_color = "rgba(${base00}66)";
           font_color = "rgb(${base07})";
-          color = "rgb(${base07})";
-          placeholder_text = "<i>Input Password...</i>";
+          placeholder_text = "<i><span foreground=\"##ffffff99\">Enter Password</span></i>";
           hide_input = false;
-          size = "200, 50";
+          size = "250, 60";
 
-          position = "0, -120";
+          position = "0, -225";
           halign = "center";
           valign = "center";
         };
 
-        label = {
+        label = [
+        # Clock
+        {
+          text = "cmd[update:1000] echo \"<span>$(date +\"%H:%M\")</span>\"";
+          color = "rgba(${base07}DD)";
+          font_size = 130;
+          font_family = "JetBrains Mono Nerd";
+          position = "0, 240";
+          halign = "center";
+          valign = "center";
+        }
+        # Date
+        {
+          text = "cmd[update:1000] echo -e \"$(date +\"%A, %d. %B\")\"";
+          color = "rgba(${base07}DD)";
+          font_size = 30;
+          font_family = "JetBrains Mono Nerd";
+          position = "0, 80";
+          halign = "center";
+          valign = "center";
+        }
+        # User
+        {
           text = "Hello there, $USER";
-          color = "rgba(200, 200, 200, 1.0)";
+          color = "rgba(${base07}DD)";
           font_size = 25;
-          font_family = "FiraCode Nerd Font";
-
-          position = "0, -40";
+          font_family = "JetBrains Mono Nerd";
+          position = "0, -130";
           halign = "center";
           valign = "center";
-        };
+        }
+        ];
       };
     };
 
@@ -159,8 +179,8 @@ in {
       settings = {
         "$screenshot" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.imagemagick}/bin/convert - -shave 1x1 PNG:- | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "$terminal" = "${pkgs.kitty}/bin/kitty";
-        "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
-        "$power-menu" = "${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu";
+        "$menu" = "${pkgs.rofi}/bin/rofi -show drun";
+        "$power-menu" = "${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu";
 
         "$mainMod" = "SUPER";
         "$mainModShift" = "SUPER_SHIFT";
@@ -169,6 +189,7 @@ in {
           "dbus-update-activation-environment --systemd --all"
           "systemctl --user import-environment QT_QPA_PLATFORMTHEME DBUS_SESSION_ADDRESS"
           "fcitx5 -d"
+          "hyprlock"
         ];
 
         plugin.hyprsplit.num_workspaces = 10;
@@ -231,9 +252,9 @@ in {
           ];
         };
 
-        gestures = {
-          workspace_swipe = "on";
-        };
+        gesture = [
+          "3, horizontal, workspace"
+        ];
 
         windowrulev2 = [
           "opacity 0.9 0.85,class:^(kitty)$"
