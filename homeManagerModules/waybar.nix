@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   typing = pkgs.writeShellApplication {
@@ -159,18 +160,18 @@ in {
         }
         /*-----module groups----*/
         .modules-right {
-          background-color: #${base00};
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
           color: #${base03};
           padding: 2px;
           margin: 6px 6px 0 0;
         }
         .modules-center {
-          background-color: #${base00};
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
           padding: 2px;
           margin: 6px 6px 0 6px;
         }
         .modules-left {
-          background-color: #${base00};
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
           padding: 2px;
           margin: 6px 0 0 6px;
         }
@@ -183,22 +184,22 @@ in {
           border-bottom: 2px solid transparent;
         }
         #workspaces button.active {
-          background: #${base01};
+          background: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.2);
           border-bottom: 2px solid #ffffff;
         }
 
         #workspaces button.urgent {
-          background-color: #${base08};
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base08}, 0.8);
         }
 
         #workspaces button.empty {
           color: #${base04}
         }
 
-        #clock, #battery, #backlight, #bluetooth, #network, #pulseaudio, #custom-typing, #custom-weather {
+        #clock, #battery, #bluetooth, #network, #pulseaudio, #custom-typing, #custom-weather {
           padding: 2px 8px;
           margin: 0 5px;
-          background: #${base01};
+          background: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.2);
         }
 
         #clock {
@@ -220,16 +221,12 @@ in {
         }
 
         #battery.critical:not(.charging) {
-          background: #${base08};
+          background: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base08}, 0.8);
           animation-name: blink;
           animation-duration: 0.5s;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-direction: alternate;
-        }
-
-        #backlight {
-          background: #90b1b1;
         }
 
         #bluetooth.on {
