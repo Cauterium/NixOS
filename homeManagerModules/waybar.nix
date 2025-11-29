@@ -42,8 +42,13 @@ in {
             "DP-2"
             "HDMI-A-1"
           ];
-          modules-left = ["hyprland/workspaces"];
-          modules-center = ["hyprland/window"];
+          modules-left = ["custom/launcher" "hyprland/workspaces"];
+          modules-center = ["mpris"];
+
+          "custom/launcher" = {
+            format = "󱄅";
+            on-click = "${pkgs.rofi}/bin/rofi -show drun";
+          };
 
           "hyprland/workspaces" = {
             format = "{icon}";
@@ -92,6 +97,12 @@ in {
             };
           };
 
+          "mpris" = {
+            format = " {title} - {artist}";
+            interval = 3;
+            dynamic-len = 20;
+          };
+
           "hyprland/window" = {
             format = "{title}";
             icon = true;
@@ -107,7 +118,7 @@ in {
             tooltip = true;
             format = "{}";
             interval = 30;
-            exec = "wttrbar";
+            exec = "${pkgs.wttrbar}/bin/wttrbar --custom-indicator \"{ICON} {temp_C}°\"";
             return-type = "json";
           };
 
@@ -165,15 +176,27 @@ in {
           padding: 2px;
           margin: 6px 6px 0 0;
         }
-        .modules-center {
-          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
-          padding: 2px;
-          margin: 6px 6px 0 6px;
-        }
         .modules-left {
           background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
           padding: 2px;
           margin: 6px 0 0 6px;
+        }
+
+        #mpris {
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
+          padding: 2px 8px;
+          margin: 6px 6px 0 6px;
+          border-radius: 8px;
+        }
+
+        #custom-launcher {
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base0D}, 1);
+          color: #${base02};
+          font-size: 20px;
+          padding: 0 10px;
+          padding-right: 14px;
+          margin-right: 10px;
+          border-bottom: 2px solid transparent;
         }
 
         #workspaces button {
