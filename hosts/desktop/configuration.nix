@@ -113,6 +113,8 @@
             "workspace*.json"
             ".obsidian/plugins/**/data.json"
             ".obsidian/plugins/**/cache.json"
+            ".obsidian/plugins/obsidian-quiet-outline/markdown-states.json"
+            "/99 - Meta/Vault Config/Action Lists Queries/"
           ];
         };
 
