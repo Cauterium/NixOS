@@ -8,6 +8,7 @@
     ./network.nix
     ./nix-colors.nix
     ./nixos-helper.nix
+    ./noisetorch.nix
     ./nvidia.nix
     ./secrets.nix
   ];
@@ -18,6 +19,7 @@
   network.enable = lib.mkDefault true;
   nix-colors.enable = lib.mkDefault true;
   nixos-helper.enable = lib.mkDefault true;
+  noisetorch.enable = lib.mkDefault false;
   nvidia.enable = lib.mkDefault false;
   secrets.enable = lib.mkDefault true;
 }

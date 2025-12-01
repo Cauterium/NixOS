@@ -64,36 +64,36 @@ in {
         };
 
         label = [
-        # Clock
-        {
-          text = "cmd[update:1000] echo \"<span>$(date +\"%H:%M\")</span>\"";
-          color = "rgba(${base07}DD)";
-          font_size = 130;
-          font_family = "JetBrains Mono Nerd";
-          position = "0, 240";
-          halign = "center";
-          valign = "center";
-        }
-        # Date
-        {
-          text = "cmd[update:1000] echo -e \"$(date +\"%A, %d. %B\")\"";
-          color = "rgba(${base07}DD)";
-          font_size = 30;
-          font_family = "JetBrains Mono Nerd";
-          position = "0, 80";
-          halign = "center";
-          valign = "center";
-        }
-        # User
-        {
-          text = "Hello there, $USER";
-          color = "rgba(${base07}DD)";
-          font_size = 25;
-          font_family = "JetBrains Mono Nerd";
-          position = "0, -130";
-          halign = "center";
-          valign = "center";
-        }
+          # Clock
+          {
+            text = "cmd[update:1000] echo \"<span>$(date +\"%H:%M\")</span>\"";
+            color = "rgba(${base07}DD)";
+            font_size = 130;
+            font_family = "JetBrains Mono Nerd";
+            position = "0, 240";
+            halign = "center";
+            valign = "center";
+          }
+          # Date
+          {
+            text = "cmd[update:1000] echo -e \"$(date +\"%A, %d. %B\")\"";
+            color = "rgba(${base07}DD)";
+            font_size = 30;
+            font_family = "JetBrains Mono Nerd";
+            position = "0, 80";
+            halign = "center";
+            valign = "center";
+          }
+          # User
+          {
+            text = "Hello there, $USER";
+            color = "rgba(${base07}DD)";
+            font_size = 25;
+            font_family = "JetBrains Mono Nerd";
+            position = "0, -130";
+            halign = "center";
+            valign = "center";
+          }
         ];
       };
     };

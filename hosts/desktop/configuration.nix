@@ -18,6 +18,7 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
+  noisetorch.enable = true;
   nvidia.enable = true;
 
   # Bootloader extra config

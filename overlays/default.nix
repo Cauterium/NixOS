@@ -16,11 +16,11 @@
   # be accessible through 'pkgs.unstable' and the Nix User Repository will be
   # accessible through 'pkgs.nur'
   unstable-packages = final: prev: {
-  #   unstable = import inputs.nixpkgs-unstable {
-  #     system = final.system;
-  #     config.allowUnfree = true;
-  #   };
-  #
+    #   unstable = import inputs.nixpkgs-unstable {
+    #     system = final.system;
+    #     config.allowUnfree = true;
+    #   };
+    #
     nur = import inputs.nur {
       nurpkgs = prev;
       pkgs = prev;

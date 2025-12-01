@@ -17,7 +17,10 @@
   config = lib.mkIf config.desktopApps.enable {
     home.packages = with pkgs; [
       anki
-      legcord
+      (discord.override {
+        withOpenASAR = true;
+        withVencord = true;
+      })
       nurl
       obsidian
       rnote
