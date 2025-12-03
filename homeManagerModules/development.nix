@@ -24,6 +24,8 @@
       rustc
       rustfmt
       jetbrains.rust-rover
+
+      eclipses.eclipse-modeling
     ];
 
     programs.vscode = {
@@ -37,7 +39,7 @@
         llvm-vs-code-extensions.vscode-clangd
         rust-lang.rust-analyzer
         usernamehw.errorlens
-      ];
+      ] ++ [ pkgs.reactions ];
     };
   };
 }

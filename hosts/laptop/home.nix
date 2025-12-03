@@ -17,6 +17,7 @@
   nixpkgs = {
     overlays = [
       outputs.overlays.modifications
+      outputs.overlays.additions
       outputs.overlays.unstable-packages
     ];
     config = {
