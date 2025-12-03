@@ -7,6 +7,7 @@
     ./terminal.nix
     ./theming.nix
     ./waybar.nix
+    ./zathura.nix
 
     ../nixosModules/secrets.nix
     ../nixosModules/nix-colors.nix
@@ -21,4 +22,5 @@
   terminal.enable = lib.mkDefault true;
   theming.enable = lib.mkDefault true;
   waybar.enable = lib.mkDefault true;
+  zathura.enable = lib.mkDefault true;
 }

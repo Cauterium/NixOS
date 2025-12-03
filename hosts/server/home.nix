@@ -18,6 +18,7 @@
   spicetify.enable = false;
   theming.enable = false;
   waybar.enable = false;
+  zathura.enable = false;
 
   home.username = "cauterium";
   home.homeDirectory = "/home/cauterium";

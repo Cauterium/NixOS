@@ -257,9 +257,12 @@ in {
 
         windowrulev2 = [
           "opacity 0.9 0.85,class:^(kitty)$"
-          "opacity 0.9 0.85,class:^(vesktop)$"
+          "opacity 0.9 0.85,class:^(discord)$"
           "opacity 0.9 0.85,initialTitle:^(Spotify.*)$"
           "opacity 0.9 0.85,class:^(Rofi)$"
+          "opacity 0.9 0.85,class:^(anki)$"
+          "opacity 0.95 0.85,class:^(obsidian)$"
+          "opacity 0.95 0.85,initialTitle:^(org.pwmt.zathura)$"
         ];
 
         layerrule = [
