@@ -13,9 +13,10 @@
     systemd.user.services.noisetorch = {
       description = "autostart noisetorch on startup";
       serviceConfig = {
-        ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i 'alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.pro-input-0'";
-        Restart = "always";
+        Type = "simple";
+        Restart = "on-failure";
         RestartSec = "5";
+        ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i 'alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.pro-input-0'";
       };
       wantedBy = ["graphical-session.target"];
     };
