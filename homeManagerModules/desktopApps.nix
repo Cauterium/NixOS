@@ -3,7 +3,6 @@
   lib,
   inputs,
   config,
-  system,
   ...
 }: {
   imports = [
@@ -158,7 +157,7 @@
 
     xdg.mimeApps = let
       value = let
-        zen-browser = inputs.zen-browser.packages.${system}.twilight;
+        zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight;
       in
         zen-browser.meta.desktopFileName;
 

@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  spicetifyPkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  spicetifyPkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   comfySrc = pkgs.fetchFromGitHub {
     owner = "Comfy-Themes";
     repo = "Spicetify";
@@ -31,11 +31,13 @@ in {
             src = "${comfySrc}/Comfy";
           }
         ];
-        appendName = true;
-        injectCss = true;
-        replaceColors = true;
         overwriteAssets = true;
         sidebarConfig = false;
+        additionalCss = ''
+          :root .global-nav .Root__top-container {
+              grid-template-rows: calc(var(--comfy-topbar-height, 64px) / var(--zoom, 1) - 16px) 0px 1fr !important;
+          }
+        '';
       };
 
       colorScheme = "custom";
