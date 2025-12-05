@@ -12,6 +12,17 @@
       xwayland.enable = true;
     };
 
+    boot.initrd.kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
+
+    boot.kernelParams = [
+      "nvidia-drm.modeset=1"
+    ];
+
     environment.sessionVariables = {
       # If your cursor becomes invisible
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -22,11 +33,11 @@
 
     services.xserver.videoDrivers = ["nvidia"];
 
-    hardware = {
-      nvidia.open = false;
-      nvidia.modesetting.enable = true;
-      nvidia.powerManagement.enable = false;
-      nvidia.powerManagement.finegrained = false;
+    hardware.nvidia = {
+      open = false;
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
     };
   };
 }
