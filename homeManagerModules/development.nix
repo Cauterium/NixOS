@@ -31,15 +31,17 @@
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
-      profiles.default.extensions = with pkgs.vscode-extensions; [
-        arrterian.nix-env-selector
-        enkia.tokyo-night
-        github.copilot
-        jnoortheen.nix-ide
-        llvm-vs-code-extensions.vscode-clangd
-        rust-lang.rust-analyzer
-        usernamehw.errorlens
-      ] ++ [ pkgs.reactions ];
+      profiles.default.extensions = with pkgs.vscode-extensions;
+        [
+          arrterian.nix-env-selector
+          enkia.tokyo-night
+          github.copilot
+          jnoortheen.nix-ide
+          llvm-vs-code-extensions.vscode-clangd
+          rust-lang.rust-analyzer
+          usernamehw.errorlens
+        ]
+        ++ [pkgs.reactions];
     };
   };
 }
