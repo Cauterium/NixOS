@@ -5,6 +5,7 @@
   makeWrapper,
   jre,
   pkgs,
+  mvnHash ? null,
 }: let
   src = pkgs.fetchFromGitHub {
     owner = "vitruv-tools";
@@ -20,7 +21,7 @@
 
     mvnTargets = ["reactions/ide"];
 
-    mvnHash = "sha256-0/goZAE2xNsavW3Gi1J/w9P05murm0meB8CHZ4P+zeQ=";
+    inherit mvnHash;
 
     mvnJdk = pkgs.jdk17_headless;
 

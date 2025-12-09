@@ -7,6 +7,11 @@
 }: {
   options = {
     development.enable = lib.mkEnableOption "enables apps for development";
+    development.vscode.additional-extensions = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [];
+      description = "Additional VSCode extensions to install.";
+    };
   };
 
   config = lib.mkIf config.development.enable {
@@ -41,7 +46,7 @@
           rust-lang.rust-analyzer
           usernamehw.errorlens
         ]
-        ++ [pkgs.reactions];
+        ++ config.development.vscode.additional-extensions;
     };
   };
 }
