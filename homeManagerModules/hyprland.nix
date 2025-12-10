@@ -38,11 +38,9 @@ in {
       settings = with config.colorScheme.palette; {
         background = {
           path = "${image}";
-          blur_passes = 2;
-          contrast = 0.8916;
-          brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
+          blur_size = 7;
+          blur_passes = 3;
+          noise = 0;
         };
 
         input-field = {
@@ -179,7 +177,6 @@ in {
         "$screenshot" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.imagemagick}/bin/convert - -shave 1x1 PNG:- | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "$terminal" = "${pkgs.kitty}/bin/kitty";
         "$menu" = "${pkgs.rofi}/bin/rofi -show drun";
-        "$power-menu" = "${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu";
 
         "$mainMod" = "SUPER";
         "$mainModShift" = "SUPER_SHIFT";
@@ -220,8 +217,10 @@ in {
           rounding = "10";
           blur = {
             enabled = "true";
-            size = "10";
-            passes = "1";
+            size = "7";
+            passes = "3";
+
+            noise = "0";
           };
 
           shadow = {
@@ -267,6 +266,7 @@ in {
 
         layerrule = [
           "blur,rofi"
+          "blur,logout_dialog"
         ];
 
         bind = [
@@ -274,7 +274,7 @@ in {
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
           "$mainMod, V, togglefloating,"
-          "$mainMod, E, exec, $power-menu"
+          "$mainMod, E, exec, wlogout"
           "$mainMod, R, exec, $menu"
           "$mainMod, F, fullscreen"
 

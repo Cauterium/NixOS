@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   options = {
@@ -10,9 +11,103 @@
 
   config = lib.mkIf config.rofi.enable {
     home.packages = with pkgs; [
-      rofi-power-menu
       bemoji
     ];
+
+    programs.wlogout = {
+      enable = true;
+      layout = [
+        {
+          label = "lock";
+          action = "${pkgs.hyprlock}/bin/hyprlock";
+          text = "Lock";
+          keybind = "l";
+        }
+        {
+          label = "shutdown";
+          action = "systemctl poweroff";
+          text = "Shutdown";
+          keybind = "s";
+        }
+        {
+          label = "reboot";
+          action = "systemctl reboot";
+          text = "Reboot";
+          keybind = "r";
+        }
+      ];
+      style = let
+        mgn = "100";
+        hvr = "30";
+        active_rad = "30";
+        button_rad = "20";
+      in
+      with config.colorScheme.palette; ''
+        window {
+          background-color: transparent;
+        }
+
+        button {
+          color: #${base06};
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
+          outline-style: none;
+          border-width: 0px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 20%;
+          border-radius: 0px;
+          box-shadow: none;
+          text-shadow: none;
+          animation: gradient_f 20s ease-in infinite;
+        }
+
+        button:focus {
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base01}, 0.7);
+          background-size: 20%;
+        }
+
+        button:hover {
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base01}, 0.7);
+          background-size: 40%;
+          border-radius: ${active_rad}px;
+          animation: gradient_f 20s ease-in infinite;
+          transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+        }
+
+        button:hover#lock {
+          border-radius: ${active_rad}px;
+          margin: ${hvr}px 0px ${hvr}px ${mgn}px;
+        }
+
+        button:hover#shutdown {
+          border-radius: ${active_rad}px;
+          margin: ${hvr}px 0px ${hvr}px 0px;
+        }
+
+        button:hover#reboot {
+          border-radius: ${active_rad}px;
+          margin: ${hvr}px ${mgn}px ${hvr}px 0px;
+        }
+
+        #lock {
+          background-image: image(url("${../resources/wlogout/lock.png}"));
+          border-radius: ${button_rad}px 0px 0px ${button_rad}px;
+          margin : ${mgn}px 0px ${mgn}px ${mgn}px;
+        }
+
+        #shutdown {
+          background-image: image(url("${../resources/wlogout/shutdown.png}"));
+          border-radius: 0px;
+          margin: ${mgn}px 0px ${mgn}px 0px;
+        }
+
+        #reboot {
+          background-image: image(url("${../resources/wlogout/reboot.png}"));
+          border-radius: 0px ${button_rad}px ${button_rad}px 0px;
+          margin : ${mgn}px ${mgn}px ${mgn}px 0px;
+        }
+      '';
+    };
 
     programs.rofi = {
       enable = true;
