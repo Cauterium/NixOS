@@ -30,7 +30,7 @@
       rustfmt
       jetbrains.rust-rover
 
-      eclipses.eclipse-modeling
+      eclipses.eclipse-platform
     ];
 
     programs.vscode = {
