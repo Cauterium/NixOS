@@ -132,7 +132,6 @@
         denylists = {
           main-lists = [
             "https://big.oisd.nl/domainswild"
-            "https://nsfw.oisd.nl/domainswild"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"
           ];
