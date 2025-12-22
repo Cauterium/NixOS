@@ -6,12 +6,12 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
-  version = "2025.10.0";
+  version = "2025.12.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-kiHnMw+wZlezW9kT38Iy+L7ray0drRPceDRpbDlYL1g=";
+    hash = "sha256-b6hYgS/GwkYBSju0P4Pfn802HYWg/gi0XEWUXu7c+pY=";
   };
 
   postPatch = ''
