@@ -47,7 +47,6 @@ in {
   home.packages = with pkgs; [
     android-studio
     # davinci-resolve
-    jdk21
     jq
     ncpamixer
     pamixer

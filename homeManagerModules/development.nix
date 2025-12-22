@@ -31,6 +31,7 @@
       jetbrains.rust-rover
 
       eclipses.eclipse-platform
+      jdk21
     ];
 
     programs.vscode = {
