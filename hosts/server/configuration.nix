@@ -17,7 +17,6 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  mime.enable = false;
   network.enable = false;
   nix-colors.enable = false;
 
