@@ -41,15 +41,16 @@
     flake = "/home/cauterium/.config/NixOS-System#server";
     dates = "weekly";
     randomizedDelaySec = "45min";
+    allowReboot = true;
   };
 
-  systemd.timers.auto-reboot = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "*-*-* 03:00:00";
-      Unit = "reboot.target";
-    };
-  };
+  # systemd.timers.auto-reboot = {
+  #   wantedBy = ["timers.target"];
+  #   timerConfig = {
+  #     OnCalendar = "*-*-* 03:00:00";
+  #     Unit = "reboot.target";
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     home-manager
@@ -157,6 +158,41 @@
   virtualisation = {
     libvirtd = {
       enable = true;
+      onBoot = "ignore";
+    };
+  };
+
+  # TODO this is a VERY hacky solution
+  systemd.services.home-assistant-vm = {
+    description = "Home Assistant VM (wait for Zigbee USB)";
+    wantedBy = [ "multi-user.target" ];
+
+    after = [
+      "libvirtd.service"
+      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.0-ttyUSB0-tty-ttyUSB0.device"
+      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.1-ttyUSB1-tty-ttyUSB1.device"
+    ];
+
+    requires = [
+      "libvirtd.service"
+      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.0-ttyUSB0-tty-ttyUSB0.device"
+      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.1-ttyUSB1-tty-ttyUSB1.device"
+    ];
+
+    wants = [
+      "libvirtd.service"
+      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.0-ttyUSB0-tty-ttyUSB0.device"
+      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.1-ttyUSB1-tty-ttyUSB1.device"
+    ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      Restart = "on-failure";
+      RestartSec = "20";
+      ExecStart = ''
+      ${pkgs.bash}/bin/bash -c '${pkgs.libvirt}/bin/virsh --connect qemu:///system detach-device hass /home/cauterium/VMConfig/usb-device.xml || true && ${pkgs.libvirt}/bin/virsh --connect qemu:///system attach-device hass /home/cauterium/VMConfig/usb-device.xml'
+      '';
     };
   };
 
