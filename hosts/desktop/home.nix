@@ -3,23 +3,7 @@
   outputs,
   pkgs,
   ...
-}: let
-  tex = pkgs.texlive.combine {
-    inherit
-      (pkgs.texlive)
-      scheme-basic
-      pgf
-      everypage
-      koma-script
-      graphics
-      tools
-      geometry
-      background
-      eurosym
-      xkeyval
-      ;
-  };
-in {
+}: {
   imports = [
     ./../../homeManagerModules
     inputs.nix-colors.homeManagerModules.default
@@ -45,14 +29,13 @@ in {
   home.stateVersion = "23.11"; # Please check Home Manager release notes before changing.
 
   home.packages = with pkgs; [
-    android-studio
+    # android-studio
     # davinci-resolve
     jq
     ncpamixer
     pamixer
     socat
     sops
-    tex
   ];
 
   home.sessionVariables = {
@@ -60,7 +43,7 @@ in {
 
   development.vscode.additional-extensions = [
     (pkgs.reactions.override {
-      mvnHash = "sha256-0/goZAE2xNsavW3Gi1J/w9P05murm0meB8CHZ4P+zeQ=";
+      mvnHash = "sha256-9gsHEv03c/QD+KYcT7wISovNEAUrPNSNgaE0dMM3o+w=";
     })
   ];
 

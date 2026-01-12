@@ -23,6 +23,7 @@
       nurl
       obsidian
       rnote
+      texliveFull
       thunderbird
       zotero
     ];

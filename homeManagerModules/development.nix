@@ -16,7 +16,7 @@
 
   config = lib.mkIf config.development.enable {
     home.packages = with pkgs; [
-      jetbrains.pycharm-professional
+      # jetbrains.pycharm
       python3
       cmake
       libgcc
@@ -28,7 +28,7 @@
       clippy
       rustc
       rustfmt
-      jetbrains.rust-rover
+      # jetbrains.rust-rover
 
       eclipses.eclipse-platform
       jdk21
