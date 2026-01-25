@@ -41,11 +41,11 @@
   home.sessionVariables = {
   };
 
-  development.vscode.additional-extensions = [
-    (pkgs.reactions.override {
-      mvnHash = "sha256-9gsHEv03c/QD+KYcT7wISovNEAUrPNSNgaE0dMM3o+w=";
-    })
-  ];
+  # development.vscode.additional-extensions = [
+  #   (pkgs.reactions.override {
+  #     mvnHash = "sha256-0/goZAE2xNsavW3Gi1J/w9P05murm0meB8CHZ4P+zeQ=";
+  #   })
+  # ];
 
   wayland.windowManager.hyprland.settings.monitor = [
     "desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1"

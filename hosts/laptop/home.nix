@@ -42,11 +42,11 @@
   home.sessionVariables = {
   };
 
-  development.vscode.additional-extensions = [
-    (pkgs.reactions.override {
-      mvnHash = "sha256-4ZiSbb+Ceh/u0kl8BWp2nSlYyxWVaZuTR/zzTYSI/HY=";
-    })
-  ];
+  # development.vscode.additional-extensions = [
+  #   (pkgs.reactions.override {
+  #     mvnHash = "sha256-4ZiSbb+Ceh/u0kl8BWp2nSlYyxWVaZuTR/zzTYSI/HY=";
+  #   })
+  # ];
 
   services.hypridle.enable = true;
 
