@@ -47,6 +47,10 @@ in {
         name = "${config.colorScheme.slug}";
         package = gtkThemeFromScheme {scheme = config.colorScheme;};
       };
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
     };
   };
 }

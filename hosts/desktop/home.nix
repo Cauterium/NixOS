@@ -54,7 +54,7 @@
   ];
   wayland.windowManager.hyprland.settings.input.sensitivity = "-0.6";
 
-  programs.waybar.settings.main.modules-right = ["custom/typing" "pulseaudio" "network" "clock" "custom/weather"];
+  programs.waybar.settings.main.modules-right = ["custom/typing" "pulseaudio" "clock" "custom/weather"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

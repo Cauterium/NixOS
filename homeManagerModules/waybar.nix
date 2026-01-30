@@ -43,7 +43,6 @@ in {
             "HDMI-A-1"
           ];
           modules-left = ["custom/launcher" "hyprland/workspaces"];
-          modules-center = ["mpris"];
 
           "custom/launcher" = {
             format = "󱄅";
@@ -97,12 +96,6 @@ in {
             };
           };
 
-          "mpris" = {
-            format = " {title} - {artist}";
-            interval = 3;
-            dynamic-len = 20;
-          };
-
           "hyprland/window" = {
             format = "{title}";
             icon = true;
@@ -123,21 +116,9 @@ in {
           };
 
           "pulseaudio" = {
-            format = "{volume}% {icon} ";
-            format-muted = "0% ";
+            format = "{icon} ";
+            format-muted = "";
             format-icons = ["" "" ""];
-          };
-          "bluetooth" = {
-            format = " {status}";
-            format-connected = " {device_alias}";
-            format-connected-battery = " {device_alias} {device_battery_percentage}%";
-            on-click = "DMENU_BLUETOOTH_LAUNCHER=\"rofi\" ${pkgs.dmenu-bluetooth}/bin/dmenu-bluetooth&";
-          };
-          "network" = {
-            format-wifi = " ";
-            format-ethernet = " ";
-            format-disconnected = "󱚼 ";
-            on-click = "${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu&";
           };
           "battery" = {
             interval = 60;

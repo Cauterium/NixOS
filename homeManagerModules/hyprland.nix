@@ -10,7 +10,7 @@
   };
 in {
   imports = [
-    ./dunst.nix
+    ./notifications.nix
     ./rofi.nix
   ];
 
@@ -19,7 +19,7 @@ in {
   };
 
   config = lib.mkIf config.hyprland.enable {
-    dunst.enable = lib.mkDefault true;
+    notifications.enable = lib.mkDefault true;
     rofi.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
@@ -177,6 +177,7 @@ in {
         "$screenshot" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.imagemagick}/bin/convert - -shave 1x1 PNG:- | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "$terminal" = "${pkgs.kitty}/bin/kitty";
         "$menu" = "${pkgs.rofi}/bin/rofi -show drun";
+        "$notifications" = "${pkgs.swaynotificationcenter}/bin/swaync-client -t";
 
         "$mainMod" = "SUPER";
         "$mainModShift" = "SUPER_SHIFT";
@@ -267,6 +268,13 @@ in {
         layerrule = [
           "blur,rofi"
           "blur,logout_dialog"
+
+          "blur,swaync-control-center"
+          "blur,swaync-notification-window"
+          "ignorezero,swaync-control-center"
+          "ignorezero,swaync-notification-window"
+          "ignorealpha 0.5,swaync-control-center"
+          "ignorealpha 0.5,swaync-notification-window"
         ];
 
         bind = [
@@ -277,6 +285,7 @@ in {
           "$mainMod, E, exec, wlogout"
           "$mainMod, R, exec, $menu"
           "$mainMod, F, fullscreen"
+          "$mainMod, N, exec, $notifications"
 
           # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
