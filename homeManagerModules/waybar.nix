@@ -43,6 +43,7 @@ in {
             "HDMI-A-1"
           ];
           modules-left = ["custom/launcher" "hyprland/workspaces"];
+          modules-center = ["tray"];
 
           "custom/launcher" = {
             format = "󱄅";
@@ -94,6 +95,11 @@ in {
               "DP-3" = [21 22 23 24 25 26];
               "HDMI-A-1" = [1 2 3 4 5 6];
             };
+          };
+
+          "tray" = {
+            icon-size = 18;
+            spacing = 8;
           };
 
           "hyprland/window" = {
@@ -263,6 +269,22 @@ in {
 
         #custom-weather {
           color: #${base0E};
+        }
+
+        #tray {
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.8);
+          padding: 2px 8px;
+          margin: 6px 0 0 0;
+          border-radius: 8px;
+        }
+
+        #tray > .passive {
+          opacity: 0.6;
+        }
+
+        #tray > .needs-attention {
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base08}, 0.8);
+          border-radius: 6px;
         }
       '';
     };
