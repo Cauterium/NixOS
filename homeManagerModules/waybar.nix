@@ -23,10 +23,6 @@ in {
   };
 
   config = lib.mkIf config.waybar.enable {
-    home.packages = with pkgs; [
-      wttrbar
-    ];
-
     programs.waybar = {
       enable = true;
       systemd.enable = true;
@@ -113,19 +109,13 @@ in {
             interval = 3;
           };
 
-          "custom/weather" = {
-            tooltip = true;
-            format = "{}";
-            interval = 30;
-            exec = "${pkgs.wttrbar}/bin/wttrbar --custom-indicator \"{ICON} {temp_C}°\"";
-            return-type = "json";
-          };
-
           "pulseaudio" = {
             format = "{icon} ";
             format-muted = "";
             format-icons = ["" "" ""];
+            on-click = "${pkgs.kitty}/bin/kitty -e ncpamixer";
           };
+
           "battery" = {
             interval = 60;
             states = {
@@ -136,9 +126,31 @@ in {
             format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
             format-charging = "{capacity}% 󰂄";
           };
+
           "clock" = {
             interval = 20;
             format = "{:%a %d.%m. - %H:%M}";
+          };
+
+          "custom/notification" = {
+            tooltip = true;
+            format = "{0} {icon} ";
+            format-icons = {
+              "notification" = "󱅫";
+              "none" = "󰂜";
+              "dnd-notification" = "󰂠";
+              "dnd-none" = "󰪓";
+              "inhibited-notification" = "󰂛";
+              "inhibited-none" = "󰪑";
+              "dnd-inhibited-notification" = "󰂛";
+              "dnd-inhibited-none" = "󰪑";
+            };
+            return-type = "json";
+            exec-if = "which swaync-client";
+            exec = "swaync-client -swb";
+            on-click = "swaync-client -t -sw";
+            on-click-right = "swaync-client -d -sw";
+            escape = true;
           };
         };
       };
@@ -206,18 +218,18 @@ in {
           color: #${base04}
         }
 
-        #clock, #battery, #bluetooth, #network, #pulseaudio, #custom-typing, #custom-weather {
+        #clock, #battery, #bluetooth, #network, #pulseaudio, #custom-typing, #custom-notification {
           padding: 2px 8px;
           margin: 0 5px;
           background: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.2);
         }
 
         #clock {
-          color: #${base0E};
+          color: #${base0D};
         }
 
         #battery {
-          color: #${base0D};
+          color: #${base0C};
         }
 
         #battery.charging {
@@ -267,7 +279,7 @@ in {
           color: #${base09}
         }
 
-        #custom-weather {
+        #custom-notification {
           color: #${base0E};
         }
 
