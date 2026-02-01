@@ -115,7 +115,7 @@
          * Notifications
          * ========================= */
         .notification {
-          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.25);
+          background-color: rgba(${inputs.nix-colors.lib.conversions.hexToRGBString ", " base00}, 0.85);
           padding: 14px;
           margin: 8px 0;
         }
