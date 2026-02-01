@@ -186,6 +186,7 @@
     in {
       associations.added = associations;
       defaultApplications = associations;
+      enable = true;
     };
   };
 }
