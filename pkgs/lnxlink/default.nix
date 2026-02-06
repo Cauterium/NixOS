@@ -6,19 +6,19 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
-  version = "2025.12.0";
+  version = "2026.2.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-b6hYgS/GwkYBSju0P4Pfn802HYWg/gi0XEWUXu7c+pY=";
+    hash = "sha256-1sFU5jz8tVOTvWx13J31rUMElrcy01jIV7F1pcZuDVI=";
   };
 
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace-fail "setuptools~=68.0.0" "setuptools" \
       --replace-fail "wheel~=0.40.0" "wheel" \
-      --replace-fail '"asyncio>=3.4.3"' ""
+      --replace-fail '"asyncio>=3.4.3",' ""
   '';
 
   nativeBuildInputs = [
@@ -30,20 +30,20 @@ python3Packages.buildPythonApplication rec {
   propagatedBuildInputs = with python3Packages; [
     pyyaml
     aiohttp
+    beaupy
     distro
     inotify
     jc
+    jeepney
     paho-mqtt
     psutil
     requests
+
     pygobject3
     speechrecognition
-    jeepney
     docker
     ewmh
     flask
-    mss
-    numpy
     opencv4
     pulsectl
     pyalsaaudio
