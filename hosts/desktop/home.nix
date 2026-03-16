@@ -34,6 +34,7 @@
     jq
     ncpamixer
     pamixer
+    quickshell
     socat
     sops
   ];
