@@ -6,6 +6,7 @@
     ./spicetify.nix
     ./terminal.nix
     ./theming.nix
+    ./wallpaper-switcher.nix
     ./waybar.nix
     ./zathura.nix
 
@@ -21,6 +22,7 @@
   spicetify.enable = lib.mkDefault true;
   terminal.enable = lib.mkDefault true;
   theming.enable = lib.mkDefault true;
+  wallpaper-switcher.enable = lib.mkDefault true;
   waybar.enable = lib.mkDefault true;
   zathura.enable = lib.mkDefault true;
 }
