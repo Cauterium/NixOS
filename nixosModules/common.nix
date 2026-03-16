@@ -72,4 +72,8 @@
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
+
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }
