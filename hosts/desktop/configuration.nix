@@ -46,6 +46,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
+
   services.displayManager = {
     sddm = {
       enable = true;
@@ -79,6 +82,11 @@
   };
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+  systemd.services."syncthing-init" = {
+    wantedBy = lib.mkForce ["graphical.target"];
+    after = lib.mkForce ["syncthing.service" "graphical.target"];
+  };
 
   services.syncthing = {
     enable = true;
@@ -170,6 +178,8 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
+
+  services.tuned.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

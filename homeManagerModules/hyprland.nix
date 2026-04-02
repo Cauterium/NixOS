@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   lib,
   config,
   ...
@@ -10,8 +11,8 @@
   };
 in {
   imports = [
-    ./notifications.nix
     ./rofi.nix
+    inputs.noctalia.homeModules.default
   ];
 
   options = {
@@ -19,7 +20,6 @@ in {
   };
 
   config = lib.mkIf config.hyprland.enable {
-    notifications.enable = lib.mkDefault true;
     rofi.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
@@ -27,11 +27,40 @@ in {
       grim
       imagemagick
       networkmanager_dmenu
-      playerctl
+      pavucontrol
       slurp
       wirelesstools
       wl-clipboard
     ];
+
+    programs.noctalia-shell = {
+      enable = true;
+      settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
+      plugins = {
+        sources = [
+          {
+            enabled = true;
+            name = "Official Noctalia Plugins";
+            url = "https://github.com/noctalia-dev/noctalia-plugins";
+          }
+        ];
+        states = {
+          syncthing-status = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+        version = 2;
+      };
+
+      pluginSettings = {
+        syncthing-status = {
+          folderIds = [ "Obsidian" "Zotero" ];
+          pollIntervalMs = 10000;
+          verifyTls = false;
+        };
+      };
+    };
 
     programs.hyprlock = {
       enable = true;
@@ -120,17 +149,6 @@ in {
       };
     };
 
-    services.hyprpaper = {
-      enable = true;
-      settings = {
-        splash = false;
-        preload = "${image}";
-        wallpaper = [
-          ",${image}"
-        ];
-      };
-    };
-
     home.file.".config/fcitx5/conf/classicui.conf" = {
       force = true;
       text = ''
@@ -177,7 +195,7 @@ in {
         "$screenshot" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.imagemagick}/bin/convert - -shave 1x1 PNG:- | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "$terminal" = "${pkgs.kitty}/bin/kitty";
         "$menu" = "${pkgs.rofi}/bin/rofi -show drun";
-        "$notifications" = "${pkgs.swaynotificationcenter}/bin/swaync-client -t";
+        "$ipc" = "noctalia-shell ipc call";
 
         "$mainMod" = "SUPER";
         "$mainModShift" = "SUPER_SHIFT";
@@ -187,6 +205,7 @@ in {
           "systemctl --user import-environment QT_QPA_PLATFORMTHEME DBUS_SESSION_ADDRESS"
           "fcitx5 -d"
           "hyprlock"
+          "noctalia-shell"
         ];
 
         plugin.hyprsplit.num_workspaces = 10;
@@ -268,13 +287,6 @@ in {
         layerrule = [
           "blur,rofi"
           "blur,logout_dialog"
-
-          "blur,swaync-control-center"
-          "blur,swaync-notification-window"
-          "ignorezero,swaync-control-center"
-          "ignorezero,swaync-notification-window"
-          "ignorealpha 0.5,swaync-control-center"
-          "ignorealpha 0.5,swaync-notification-window"
         ];
 
         bind = [
@@ -285,7 +297,6 @@ in {
           "$mainMod, E, exec, wlogout"
           "$mainMod, R, exec, $menu"
           "$mainMod, F, fullscreen"
-          "$mainMod, N, exec, $notifications"
 
           # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
@@ -328,21 +339,21 @@ in {
           "$mainMod SHIFT, S, exec, $screenshot"
 
           # Audio control
-          ",XF86AudioRaiseVolume, exec, pamixer --increase 2"
-          ",XF86AudioLowerVolume, exec, pamixer --decrease 2"
-          ",XF86AudioMute, exec, pamixer --toggle-mute"
-          ",XF86AudioPlay, exec, playerctl play-pause"
-          ",XF86AudioPause, exec, playerctl play-pause"
+          ",XF86AudioRaiseVolume, exec, $ipc volume increase"
+          ",XF86AudioLowerVolume, exec, $ipc volume decrease"
+          ",XF86AudioMute, exec, $ipc volume muteOutput"
+          ",XF86AudioPlay, exec, $ipc media playPause"
+          ",XF86AudioPause, exec, $ipc media playPause"
 
           # Screen brightness control for laptop
-          ",XF86MonBrightnessUp, exec, brightnessctl s 5%+"
-          ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+          ",XF86MonBrightnessUp, exec, $ipc brightness increase"
+          ",XF86MonBrightnessDown, exec, $ipc brightness decrease"
         ];
 
         bindl = [
           # Audio control
-          ",XF86AudioNext, exec, playerctl --player playerctld next"
-          ",XF86AudioPrev, exec, playerctl --player playerctld previous"
+          ",XF86AudioNext, exec, $ipc media next"
+          ",XF86AudioPrev, exec, $ipc media previous"
         ];
 
         # Move/resize windows with mainMod + LMB/RMB and dragging

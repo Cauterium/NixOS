@@ -32,7 +32,6 @@
     # android-studio
     # davinci-resolve
     jq
-    ncpamixer
     pamixer
     quickshell
     socat
@@ -42,20 +41,12 @@
   home.sessionVariables = {
   };
 
-  # development.vscode.additional-extensions = [
-  #   (pkgs.reactions.override {
-  #     mvnHash = "sha256-0/goZAE2xNsavW3Gi1J/w9P05murm0meB8CHZ4P+zeQ=";
-  #   })
-  # ];
-
   wayland.windowManager.hyprland.settings.monitor = [
     "desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1"
     "desc:Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1"
     "desc:Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1"
   ];
   wayland.windowManager.hyprland.settings.input.sensitivity = "-0.6";
-
-  programs.waybar.settings.main.modules-right = ["custom/typing" "pulseaudio" "clock" "custom/notification"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

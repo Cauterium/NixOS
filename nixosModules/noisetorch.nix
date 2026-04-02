@@ -18,7 +18,7 @@
         RestartSec = "5";
         ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i 'alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.pro-input-0'";
       };
-      wantedBy = ["graphical-session.target"];
+      wantedBy = ["pulseaudio.service"];
     };
   };
 }

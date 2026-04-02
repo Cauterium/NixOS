@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  lib,
   config,
   pkgs,
   ...
@@ -27,7 +28,7 @@
   networking.hostName = "laptop";
 
   # Enable networking
-  networking.networkmanager.enable = true; # TODO complete nixosModules/network.nix
+  networking.networkmanager.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -66,6 +67,11 @@
   };
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+  systemd.services."syncthing-init" = {
+    wantedBy = lib.mkForce ["graphical.target"];
+    after = lib.mkForce ["syncthing.service" "graphical.target"];
+  };
 
   services.syncthing = {
     enable = true;
@@ -146,6 +152,8 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
+
+  services.tuned.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

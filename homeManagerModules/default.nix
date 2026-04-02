@@ -22,7 +22,7 @@
   spicetify.enable = lib.mkDefault true;
   terminal.enable = lib.mkDefault true;
   theming.enable = lib.mkDefault true;
-  wallpaper-switcher.enable = lib.mkDefault true;
-  waybar.enable = lib.mkDefault true;
+  wallpaper-switcher.enable = lib.mkDefault false;
+  waybar.enable = lib.mkDefault false;
   zathura.enable = lib.mkDefault true;
 }

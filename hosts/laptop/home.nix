@@ -30,7 +30,6 @@
 
   home.packages = with pkgs; [
     jq
-    ncpamixer
     pamixer
     socat
     sops
@@ -42,19 +41,11 @@
   home.sessionVariables = {
   };
 
-  # development.vscode.additional-extensions = [
-  #   (pkgs.reactions.override {
-  #     mvnHash = "sha256-4ZiSbb+Ceh/u0kl8BWp2nSlYyxWVaZuTR/zzTYSI/HY=";
-  #   })
-  # ];
-
   services.hypridle.enable = true;
 
   wayland.windowManager.hyprland.settings.monitor = [",preferred,auto,1"];
   wayland.windowManager.hyprland.settings.exec-once = ["hypridle"];
   wayland.windowManager.hyprland.settings.input.sensitivity = "0.3";
-
-  programs.waybar.settings.main.modules-right = ["custom/typing" "pulseaudio" "battery" "clock" "custom/notification"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
