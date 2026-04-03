@@ -2,13 +2,23 @@
   inputs,
   outputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
     ./../../homeManagerModules
+    ./work/home.nix
+    ./freetime/home.nix
     inputs.nix-colors.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
   ];
+
+  specialisation.freetime.configuration = {
+    freetimeDesktop.enable = true;
+    workDesktop.enable = lib.mkForce false;
+  };
+
+  workDesktop.enable = true;
 
   home.username = "cauterium";
   home.homeDirectory = "/home/cauterium";
@@ -40,13 +50,6 @@
 
   home.sessionVariables = {
   };
-
-  wayland.windowManager.hyprland.settings.monitor = [
-    "desc:Samsung Electric Company C24F390 H4ZKA00044,1920x1080,0x0,1"
-    "desc:Samsung Electric Company S24F350 H4LR401741,1920x1080,1920x0,1"
-    "desc:Technical Concepts Ltd LCD TV 0x00000001,1920x1080,3840x0,1"
-  ];
-  wayland.windowManager.hyprland.settings.input.sensitivity = "-0.6";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

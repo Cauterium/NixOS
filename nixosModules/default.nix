@@ -2,7 +2,6 @@
   imports = [
     ./bootloader.nix
     ./common.nix
-    ./hyprland.nix
     ./laptop.nix
     ./network.nix
     ./nix-colors.nix

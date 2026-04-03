@@ -110,7 +110,22 @@
             "usePadding": false
           },
           {
+            "defaultSettings": {
+              "apiKey": "",
+              "apiUrl": "",
+              "configPath": "",
+              "enabled": true,
+              "folderIds": [],
+              "pollIntervalMs": 10000,
+              "verifyTls": false
+            },
             "id": "plugin:syncthing-status"
+          },
+          {
+            "id": "plugin:network-manager-vpn"
+          },
+          {
+            "id": "plugin:usb-drive-manager"
           },
           {
             "hideWhenZero": false,
@@ -256,6 +271,7 @@
       "name": "Bretten",
       "weatherEnabled": true,
       "weatherShowEffects": false,
+      "weatherTaliaMascotAlways": false,
       "useFahrenheit": false,
       "use12hourFormat": false,
       "showWeekNumberInCalendar": false,
@@ -264,7 +280,8 @@
       "analogClockInCalendar": false,
       "firstDayOfWeek": -1,
       "hideWeatherTimezone": false,
-      "hideWeatherCityName": true
+      "hideWeatherCityName": true,
+      "autoLocate": false
     },
     "calendar": {
       "cards": [
@@ -284,7 +301,7 @@
     },
     "wallpaper": {
       "enabled": true,
-      "overviewEnabled": false,
+      "overviewEnabled": true,
       "directory": "/home/cauterium/pictures/wallpaper",
       "monitorDirectories": [],
       "enableMultiMonitorDirectories": false,
@@ -313,8 +330,8 @@
       "panelPosition": "follow_bar",
       "hideWallpaperFilenames": false,
       "useOriginalImages": false,
-      "overviewBlur": 0.4,
-      "overviewTint": 0.6,
+      "overviewBlur": 0.6,
+      "overviewTint": 0.4,
       "useWallhaven": false,
       "wallhavenQuery": "",
       "wallhavenSorting": "relevance",
@@ -638,7 +655,7 @@
       "enableUserTheming": false
     },
     "nightLight": {
-      "enabled": false,
+      "enabled": true,
       "forced": false,
       "autoSchedule": false,
       "nightTemp": "3400",
@@ -700,54 +717,63 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
+      "DP-3": "/home/cauterium/pictures/wallpaper/cherryblossom.png",
       "HDMI-A-1": "/home/cauterium/pictures/wallpaper/cherryblossom.png",
-      "DP-2": "/home/cauterium/pictures/wallpaper/cherryblossom.png",
-      "DP-3": "/home/cauterium/pictures/wallpaper/cherryblossom.png"
+      "DP-2": "/home/cauterium/pictures/wallpaper/cherryblossom.png"
     },
     "desktopWidgetsEditMode": false,
     "display": {
-      "HDMI-A-1": {
-        "name": "HDMI-A-1",
+      "DP-2": {
+        "name": "DP-2",
+        "connected": true,
         "scale": 1,
         "width": 1920,
         "height": 1080,
-        "refresh_rate": 60,
-        "x": 1920,
-        "y": 0,
-        "active_workspace": 2,
-        "vrr": false,
-        "focused": true
-      },
-      "DP-2": {
-        "name": "DP-2",
-        "scale": 2,
-        "width": 1024,
-        "height": 768,
-        "refresh_rate": 60.004,
         "x": 3840,
         "y": 0,
-        "active_workspace": 11,
-        "vrr": false,
-        "focused": false
+        "physical_width": 1150,
+        "physical_height": 650,
+        "refresh_rate": 60000,
+        "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
       },
       "DP-3": {
         "name": "DP-3",
+        "connected": true,
         "scale": 1,
         "width": 1920,
         "height": 1080,
-        "refresh_rate": 60,
         "x": 0,
         "y": 0,
-        "active_workspace": 21,
-        "vrr": false,
-        "focused": false
+        "physical_width": 520,
+        "physical_height": 290,
+        "refresh_rate": 60000,
+        "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
+      },
+      "HDMI-A-1": {
+        "name": "HDMI-A-1",
+        "connected": true,
+        "scale": 1,
+        "width": 1920,
+        "height": 1080,
+        "x": 1920,
+        "y": 0,
+        "physical_width": 520,
+        "physical_height": 290,
+        "refresh_rate": 60000,
+        "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
       }
     },
     "notificationsState": {
-      "lastSeenTs": 1774991782000
+      "lastSeenTs": 1775229924000
     },
     "changelogState": {
-      "lastSeenVersion": "v4.7.3-git"
+      "lastSeenVersion": "v4.7.6"
     },
     "colorSchemesList": {
       "schemes": [

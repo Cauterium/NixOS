@@ -13,13 +13,21 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./../../nixosModules
+    ./work/configuration.nix
+    ./freetime/configuration.nix
     inputs.nix-colors.homeManagerModules.default
     inputs.home-manager.nixosModules.default
     inputs.sops-nix.nixosModules.sops
   ];
 
+  specialisation.freetime.configuration = {
+    freetimeDesktop.enable = true;
+    workDesktop.enable = lib.mkForce false;
+  };
+
   noisetorch.enable = true;
   nvidia.enable = true;
+  workDesktop.enable = true;
 
   # Bootloader extra config
   boot.loader.grub = {
@@ -37,8 +45,6 @@
   };
   boot.supportedFilesystems = ["ntfs"];
 
-  networking.hostName = "desktop"; # Define your hostname.
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -48,22 +54,6 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
-
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-      settings = {
-        General.DefaultSession = "hyprland.desktop";
-        Autologin = {
-          Session = "hyprland.desktop";
-          User = "cauterium";
-          Relogin = true;
-        };
-      };
-    };
-    sessionPackages = [pkgs.hyprland];
-  };
 
   programs.xwayland.enable = true;
 
