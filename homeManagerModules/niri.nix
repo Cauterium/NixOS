@@ -230,6 +230,11 @@ in {
         position x=3840 y=0
       }
 
+      output "eDP-1" {
+        mode "1920x1200@60.001"
+        scale 1
+      }
+
       layout {
         gaps 5
         center-focused-column "never"

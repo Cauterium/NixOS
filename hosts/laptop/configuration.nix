@@ -41,16 +41,18 @@
       enable = true;
       wayland.enable = true;
       settings = {
-        General.DefaultSession = "hyprland.desktop";
+        General.DefaultSession = "niri.desktop";
         Autologin = {
-          Session = "hyprland.desktop";
+          Session = "niri.desktop";
           User = "cauterium";
           Relogin = true;
         };
       };
     };
-    sessionPackages = [pkgs.hyprland];
+    sessionPackages = [pkgs.niri];
   };
+
+  programs.niri.enable = true;
 
   system.autoUpgrade = {
     enable = true;
@@ -139,6 +141,7 @@
     libsecret
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+    xwayland-satellite
   ];
 
   security.rtkit.enable = true;
