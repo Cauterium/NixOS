@@ -32,6 +32,24 @@ in {
       enable = true;
       # Use 'noctalia-shell ipc call state all > ./noctalia.json' to store current state
       settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
+      colors = with config.colorScheme.palette; {
+        mError = "#${base08}";
+        mHover = "#${base0C}";
+        mOnError = "#${base00}";
+        mOnHover = "#${base00}";
+        mOnPrimary = "#${base00}";
+        mOnSecondary = "#${base00}";
+        mOnSurface = "#${base07}";
+        mOnSurfaceVariant = "#${base05}";
+        mOnTertiary = "#${base00}";
+        mOutline = "#${base03}";
+        mPrimary = "#${base0D}";
+        mSecondary = "#${base0E}";
+        mShadow = "#${base00}";
+        mSurface = "#${base01}";
+        mSurfaceVariant = "#${base02}";
+        mTertiary = "#${base0C}";
+      };
       plugins = {
         sources = [
           {
@@ -224,7 +242,7 @@ in {
       }
 
       output "Technical Concepts Ltd LCD TV 0x00000001" {
-        mode custom=true "1920x1080@60.000"
+        mode "1920x1080@60.000"
         scale 1
         transform "normal"
         position x=3840 y=0
@@ -253,7 +271,7 @@ in {
 
         border {
           width 2
-          active-gradient from="#${base0E}ff" to="#${base0C}ff" angle=45 relative-to="workspace-view" in="oklch longer hue"
+          active-gradient from="#${base0E}ff" to="#${base0C}ff" angle=45 relative-to="workspace-view"
           inactive-color "#${base00}ff"
           urgent-color "#${base08}ff"
         }
@@ -269,6 +287,7 @@ in {
       prefer-no-csd
 
       spawn-at-startup "noctalia-shell"
+      spawn-at-startup "hyprlock"
 
       debug {
         honor-xdg-activation-with-invalid-serial
