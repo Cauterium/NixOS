@@ -22,6 +22,8 @@ in {
   config = lib.mkIf config.niri.enable {
     rofi.enable = lib.mkDefault true;
 
+    qt.platformTheme.name = "gtk";
+
     home.packages = with pkgs; [
       pavucontrol
       wirelesstools
@@ -154,8 +156,8 @@ in {
           }
           {
             timeout = 660;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
+            on-timeout = "niri msg action power-off-monitors";
+            on-resume = "niri msg action power-on-monitors";
           }
           {
             timeout = 1800;
@@ -165,298 +167,265 @@ in {
       };
     };
 
-    home.file.".config/fcitx5/conf/classicui.conf" = {
+    home.file.".config/niri/config.kdl" = {
       force = true;
-      text = ''
-        Theme=Tokyonight-Storm
-        Font="FiraCode Nerd Font 14"
-      '';
-    };
+      text = with config.colorScheme.palette; ''
+        input {
+          keyboard {
+            xkb {
+              layout "de"
+              variant "neo_qwertz"
+            }
+          }
 
-    home.file.".config/fcitx5/profile" = {
-      force = true;
-      text = ''
-        [Groups/0]
-        # Group Name
-        Name=Default
-        # Layout
-        Default Layout=de-neo_qwertz
-        # Default Input Method
-        DefaultIM=mozc
+          touchpad {
+            tap
+            natural-scroll
+          }
 
-        [Groups/0/Items/0]
-        # Name
-        Name=keyboard-de-neo_qwertz
-        # Layout
-        Layout=
+          mouse {
+            // off
+            // natural-scroll
+            // accel-speed 0.2
+            // accel-profile "flat"
+            // scroll-method "no-scroll"
+          }
 
-        [Groups/0/Items/1]
-        # Name
-        Name=mozc
-        # Layout
-        Layout=
+          focus-follows-mouse
+        }
 
-        [GroupOrder]
-        0=Default
-      '';
-    };
+        output "Samsung Electric Company C24F390 H4ZKA00044" {
+          mode "1920x1080@60.000"
+          scale 1
+          transform "normal"
+          position x=0 y=0
+          focus-at-startup
+        }
 
-    home.file.".config/niri/config.kdl".text = with config.colorScheme.palette; ''
-      input {
-        keyboard {
-          xkb {
-            layout "de"
-            variant "neo_qwertz"
+        output "Samsung Electric Company S24F350 H4LR401741" {
+          mode "1920x1080@60.000"
+          scale 1
+          transform "normal"
+          position x=1920 y=0
+        }
+
+        output "Technical Concepts Ltd LCD TV 0x00000001" {
+          mode "1920x1080@60.000"
+          scale 1
+          transform "normal"
+          position x=3840 y=0
+        }
+
+        output "eDP-1" {
+          mode "1920x1200@60.001"
+          scale 1
+        }
+
+        layout {
+          gaps 5
+          center-focused-column "never"
+
+          preset-column-widths {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+          }
+
+          default-column-width { proportion 0.5; }
+
+          focus-ring {
+            off
+          }
+
+          border {
+            width 2
+            active-gradient from="#${base0E}ff" to="#${base0C}ff" angle=45 relative-to="workspace-view"
+            inactive-color "#${base00}ff"
+            urgent-color "#${base08}ff"
+          }
+
+          shadow {
+            on
+            softness 30
+            spread 4
+            color "#${base00}ff"
           }
         }
 
-        touchpad {
-          tap
-          natural-scroll
+        prefer-no-csd
+
+        spawn-at-startup "noctalia-shell"
+        spawn-at-startup "hyprlock"
+
+        debug {
+          honor-xdg-activation-with-invalid-serial
         }
 
-        mouse {
-          // off
-          // natural-scroll
-          // accel-speed 0.2
-          // accel-profile "flat"
-          // scroll-method "no-scroll"
+        hotkey-overlay {
+          skip-at-startup
         }
 
-        focus-follows-mouse
-      }
+        screenshot-path null
 
-      output "Samsung Electric Company C24F390 H4ZKA00044" {
-        mode "1920x1080@60.000"
-        scale 1
-        transform "normal"
-        position x=0 y=0
-        focus-at-startup
-      }
-
-      output "Samsung Electric Company S24F350 H4LR401741" {
-        mode "1920x1080@60.000"
-        scale 1
-        transform "normal"
-        position x=1920 y=0
-      }
-
-      output "Technical Concepts Ltd LCD TV 0x00000001" {
-        mode "1920x1080@60.000"
-        scale 1
-        transform "normal"
-        position x=3840 y=0
-      }
-
-      output "eDP-1" {
-        mode "1920x1200@60.001"
-        scale 1
-      }
-
-      layout {
-        gaps 5
-        center-focused-column "never"
-
-        preset-column-widths {
-          proportion 0.33333
-          proportion 0.5
-          proportion 0.66667
+        animations {
+        // TODO: Configure animations similar to my old Hyprland config
         }
 
-        default-column-width { proportion 0.5; }
-
-        focus-ring {
-          off
+        // Work around WezTerm's initial configure bug
+        // by setting an empty default-column-width.
+        window-rule {
+          match app-id=r#"^org\.wezfurlong\.wezterm$"#
+          default-column-width {}
         }
 
-        border {
-          width 2
-          active-gradient from="#${base0E}ff" to="#${base0C}ff" angle=45 relative-to="workspace-view"
-          inactive-color "#${base00}ff"
-          urgent-color "#${base08}ff"
+        // Open the Firefox picture-in-picture player as floating by default.
+        window-rule {
+          match app-id=r#"zen-twilight$"# title="^Picture-in-Picture$"
+          open-floating true
         }
 
-        shadow {
-          on
-          softness 30
-          spread 4
-          color "#${base00}ff"
+        window-rule {
+          geometry-corner-radius 15
+          clip-to-geometry true
         }
-      }
 
-      prefer-no-csd
+        // FIXME: Wait for blur to be added to Niri to add this
+        // Set opacity for windows
+        // window-rule {
+        //   match app-id=r#"kitty$"# is-focused=true
+        //   match app-id=r#"discord$"# is-focused=true
+        //   match app-id=r#"spotify$"# is-focused=true
+        //   match app-id=r#"Rofi$"# is-focused=true
+        //   match app-id=r#"anki$"# is-focused=true
+        //   match app-id=r#"obsidian$"# is-focused=true
+        //   match app-id=r#"org.pwmt.zathura$"# is-focused=true
+        //   opacity 0.9
+        //   background-effect {
+        //     blur true
+        //   }
+        // }
 
-      spawn-at-startup "noctalia-shell"
-      spawn-at-startup "hyprlock"
+        // Set the overview wallpaper on the backdrop.
+        layer-rule {
+          match namespace="^noctalia-overview*"
+          place-within-backdrop true
+        }
 
-      debug {
-        honor-xdg-activation-with-invalid-serial
-      }
+        binds {
+          Mod+Q repeat=false { spawn "kitty"; }
+          Mod+R repeat=false { spawn "rofi" "-show" "drun"; }
+          Mod+C repeat=false { close-window; }
+          Mod+V { toggle-window-floating; }
+          Mod+E { spawn "wlogout"; }
+          Mod+W { switch-preset-column-width; }
+          Mod+F { maximize-column; }
+          Mod+Ctrl+F { fullscreen-window; }
+          Mod+O repeat=false { toggle-overview; }
 
-      hotkey-overlay {
-        skip-at-startup
-      }
+          Mod+Shift+S { screenshot; }
+          Mod+Period { spawn-sh "bemoji"; }
 
-      screenshot-path null
+          // Audio control
+          XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
+          XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
+          XF86AudioMute         allow-when-locked=true { spawn-sh "noctalia-shell ipc call muteOutput"; }
+          XF86AudioMicMute      allow-when-locked=true { spawn-sh "noctalia-shell ipc call muteInput"; }
 
-      animations {
-      // TODO: Configure animations similar to my old Hyprland config
-      }
+          // Media control
+          XF86AudioPlay         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
+          XF86AudioStop         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
+          XF86AudioPrev         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media previous"; }
+          XF86AudioNext         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media next"; }
 
-      // Work around WezTerm's initial configure bug
-      // by setting an empty default-column-width.
-      window-rule {
-        match app-id=r#"^org\.wezfurlong\.wezterm$"#
-        default-column-width {}
-      }
+          // Screen brightness control for laptop
+          XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brigthness decrease"; }
 
-      // Open the Firefox picture-in-picture player as floating by default.
-      window-rule {
-        match app-id=r#"zen-twilight$"# title="^Picture-in-Picture$"
-        open-floating true
-      }
+          Mod+Left  { focus-column-left; }
+          Mod+Down  { focus-window-or-workspace-down; }
+          Mod+Up    { focus-window-or-workspace-up; }
+          Mod+Right { focus-column-right; }
+          Mod+H     { focus-column-left; }
+          Mod+J     { focus-window-or-workspace-down; }
+          Mod+K     { focus-window-or-workspace-up; }
+          Mod+L     { focus-column-right; }
 
-      window-rule {
-        geometry-corner-radius 15
-        clip-to-geometry true
-      }
+          Mod+Ctrl+Left  { move-column-left; }
+          Mod+Ctrl+Down  { move-window-down-or-to-workspace-down; }
+          Mod+Ctrl+Up    { move-window-up-or-to-workspace-up; }
+          Mod+Ctrl+Right { move-column-right; }
+          Mod+Ctrl+H     { move-column-left; }
+          Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
+          Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+          Mod+Ctrl+L     { move-column-right; }
 
-      // FIXME: Wait for blur to be added to Niri to add this
-      // Set opacity for windows
-      // window-rule {
-      //   match app-id=r#"kitty$"# is-focused=true
-      //   match app-id=r#"discord$"# is-focused=true
-      //   match app-id=r#"spotify$"# is-focused=true
-      //   match app-id=r#"Rofi$"# is-focused=true
-      //   match app-id=r#"anki$"# is-focused=true
-      //   match app-id=r#"obsidian$"# is-focused=true
-      //   match app-id=r#"org.pwmt.zathura$"# is-focused=true
-      //   opacity 0.9
-      //   background-effect {
-      //     blur true
-      //   }
-      // }
+          Mod+Shift+Left  { focus-monitor-left; }
+          Mod+Shift+Down  { focus-monitor-down; }
+          Mod+Shift+Up    { focus-monitor-up; }
+          Mod+Shift+Right { focus-monitor-right; }
+          Mod+Shift+H     { focus-monitor-left; }
+          Mod+Shift+J     { focus-monitor-down; }
+          Mod+Shift+K     { focus-monitor-up; }
+          Mod+Shift+L     { focus-monitor-right; }
 
-      // Set the overview wallpaper on the backdrop.
-      layer-rule {
-        match namespace="^noctalia-overview*"
-        place-within-backdrop true
-      }
+          Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+          Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+          Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+          Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+          Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+          Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+          Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+          Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-      binds {
-        Mod+Q repeat=false { spawn "kitty"; }
-        Mod+R repeat=false { spawn "rofi" "-show" "drun"; }
-        Mod+C repeat=false { close-window; }
-        Mod+V { toggle-window-floating; }
-        Mod+E { spawn "wlogout"; }
-        Mod+W { switch-preset-column-width; }
-        Mod+F { maximize-column; }
-        Mod+Ctrl+F { fullscreen-window; }
-        Mod+O repeat=false { toggle-overview; }
+          Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+          Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+          Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+          Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-        Mod+Shift+S { screenshot; }
-        Mod+Period { spawn-sh "bemoji"; }
+          Mod+WheelScrollRight      { focus-column-right; }
+          Mod+WheelScrollLeft       { focus-column-left; }
+          Mod+Ctrl+WheelScrollRight { move-column-right; }
+          Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-        // Audio control
-        XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
-        XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
-        XF86AudioMute         allow-when-locked=true { spawn-sh "noctalia-shell ipc call muteOutput"; }
-        XF86AudioMicMute      allow-when-locked=true { spawn-sh "noctalia-shell ipc call muteInput"; }
+          Mod+Shift+WheelScrollDown      { focus-column-right; }
+          Mod+Shift+WheelScrollUp        { focus-column-left; }
+          Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+          Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-        // Media control
-        XF86AudioPlay         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
-        XF86AudioStop         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
-        XF86AudioPrev         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media previous"; }
-        XF86AudioNext         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media next"; }
+          Mod+1 { focus-workspace 1; }
+          Mod+2 { focus-workspace 2; }
+          Mod+3 { focus-workspace 3; }
+          Mod+4 { focus-workspace 4; }
+          Mod+5 { focus-workspace 5; }
+          Mod+6 { focus-workspace 6; }
+          Mod+7 { focus-workspace 7; }
+          Mod+8 { focus-workspace 8; }
+          Mod+9 { focus-workspace 9; }
+          Mod+Shift+1 { move-column-to-workspace 1; }
+          Mod+Shift+2 { move-column-to-workspace 2; }
+          Mod+Shift+3 { move-column-to-workspace 3; }
+          Mod+Shift+4 { move-column-to-workspace 4; }
+          Mod+Shift+5 { move-column-to-workspace 5; }
+          Mod+Shift+6 { move-column-to-workspace 6; }
+          Mod+Shift+7 { move-column-to-workspace 7; }
+          Mod+Shift+8 { move-column-to-workspace 8; }
+          Mod+Shift+9 { move-column-to-workspace 9; }
 
-        // Screen brightness control for laptop
-        XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
-        XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brigthness decrease"; }
+          // Applications such as remote-desktop clients and software KVM switches may
+          // request that niri stops processing the keyboard shortcuts defined here
+          // so they may, for example, forward the key presses as-is to a remote machine.
+          // It's a good idea to bind an escape hatch to toggle the inhibitor,
+          // so a buggy application can't hold your session hostage.
+          //
+          // The allow-inhibiting=false property can be applied to other binds as well,
+          // which ensures niri always processes them, even when an inhibitor is active.
+          Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-        Mod+Left  { focus-column-left; }
-        Mod+Down  { focus-window-or-workspace-down; }
-        Mod+Up    { focus-window-or-workspace-up; }
-        Mod+Right { focus-column-right; }
-        Mod+H     { focus-column-left; }
-        Mod+J     { focus-window-or-workspace-down; }
-        Mod+K     { focus-window-or-workspace-up; }
-        Mod+L     { focus-column-right; }
-
-        Mod+Ctrl+Left  { move-column-left; }
-        Mod+Ctrl+Down  { move-window-down-or-to-workspace-down; }
-        Mod+Ctrl+Up    { move-window-up-or-to-workspace-up; }
-        Mod+Ctrl+Right { move-column-right; }
-        Mod+Ctrl+H     { move-column-left; }
-        Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-        Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-        Mod+Ctrl+L     { move-column-right; }
-
-        Mod+Shift+Left  { focus-monitor-left; }
-        Mod+Shift+Down  { focus-monitor-down; }
-        Mod+Shift+Up    { focus-monitor-up; }
-        Mod+Shift+Right { focus-monitor-right; }
-        Mod+Shift+H     { focus-monitor-left; }
-        Mod+Shift+J     { focus-monitor-down; }
-        Mod+Shift+K     { focus-monitor-up; }
-        Mod+Shift+L     { focus-monitor-right; }
-
-        Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-        Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-        Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-        Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-        Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-        Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-        Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-        Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-        Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-        Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-        Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-        Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
-
-        Mod+WheelScrollRight      { focus-column-right; }
-        Mod+WheelScrollLeft       { focus-column-left; }
-        Mod+Ctrl+WheelScrollRight { move-column-right; }
-        Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-
-        Mod+Shift+WheelScrollDown      { focus-column-right; }
-        Mod+Shift+WheelScrollUp        { focus-column-left; }
-        Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-        Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-        Mod+1 { focus-workspace 1; }
-        Mod+2 { focus-workspace 2; }
-        Mod+3 { focus-workspace 3; }
-        Mod+4 { focus-workspace 4; }
-        Mod+5 { focus-workspace 5; }
-        Mod+6 { focus-workspace 6; }
-        Mod+7 { focus-workspace 7; }
-        Mod+8 { focus-workspace 8; }
-        Mod+9 { focus-workspace 9; }
-        Mod+Shift+1 { move-column-to-workspace 1; }
-        Mod+Shift+2 { move-column-to-workspace 2; }
-        Mod+Shift+3 { move-column-to-workspace 3; }
-        Mod+Shift+4 { move-column-to-workspace 4; }
-        Mod+Shift+5 { move-column-to-workspace 5; }
-        Mod+Shift+6 { move-column-to-workspace 6; }
-        Mod+Shift+7 { move-column-to-workspace 7; }
-        Mod+Shift+8 { move-column-to-workspace 8; }
-        Mod+Shift+9 { move-column-to-workspace 9; }
-
-        // Applications such as remote-desktop clients and software KVM switches may
-        // request that niri stops processing the keyboard shortcuts defined here
-        // so they may, for example, forward the key presses as-is to a remote machine.
-        // It's a good idea to bind an escape hatch to toggle the inhibitor,
-        // so a buggy application can't hold your session hostage.
-        //
-        // The allow-inhibiting=false property can be applied to other binds as well,
-        // which ensures niri always processes them, even when an inhibitor is active.
-        Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-        // The quit action will show a confirmation dialog to avoid accidental exits.
-        Mod+Shift+E { quit; }
-        Ctrl+Alt+Delete { quit; }
-      }
-    '';
+          // The quit action will show a confirmation dialog to avoid accidental exits.
+          Mod+Shift+E { quit; }
+          Ctrl+Alt+Delete { quit; }
+        }
+      '';
+    };
   };
 }
