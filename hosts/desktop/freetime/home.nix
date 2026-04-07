@@ -8,17 +8,50 @@
 }: {
   imports = [
     ./../../../homeManagerModules
+    inputs.nix-colors.homeManagerModules.default
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
-  options = {
-    freetimeDesktop.enable = lib.mkEnableOption "enables work desktop specific configuration";
-  };
+  audio.enable = true;
+  niri.enable = false;
+  rofi.enable = true;
 
-  config = lib.mkIf config.freetimeDesktop.enable {
-    home.packages = with pkgs; [
+  desktopApps.zen-browser.defaultProfile = "freetime";
+
+  home.username = "cauterium";
+  home.homeDirectory = "/home/cauterium";
+
+  # Configure nix package manager
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.modifications
+      outputs.overlays.additions
+      outputs.overlays.unstable-packages
     ];
-
-    home.sessionVariables = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
     };
   };
+
+  qt.platformTheme.name = "kde";
+
+  home.stateVersion = "23.11"; # Please check Home Manager release notes before changing.
+
+  home.packages = with pkgs; [
+    # android-studio
+    # davinci-resolve
+    jq
+    socat
+    sops
+  ];
+
+  home.sessionVariables = {
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
 }

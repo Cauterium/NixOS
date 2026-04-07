@@ -12,6 +12,7 @@
 
   desktopApps.enable = false;
   development.enable = false;
+  fcitx.enable = false;
   hyprland.enable = false;
   nix-colors.enable = false;
   secrets.enable = false;

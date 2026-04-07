@@ -6,17 +6,11 @@
   ...
 }: {
   imports = [
-    ./../../homeManagerModules
+    # ./../../homeManagerModules
     ./work/home.nix
-    ./freetime/home.nix
     inputs.nix-colors.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
   ];
-
-  specialisation.freetime.configuration = {
-    freetimeDesktop.enable = true;
-    workDesktop.enable = lib.mkForce false;
-  };
 
   workDesktop.enable = true;
 
@@ -42,8 +36,6 @@
     # android-studio
     # davinci-resolve
     jq
-    pamixer
-    quickshell
     socat
     sops
   ];

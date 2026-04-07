@@ -11,6 +11,11 @@
 
   options = {
     desktopApps.enable = lib.mkEnableOption "enables desktop apps";
+    desktopApps.zen-browser.defaultProfile = lib.mkOption {
+      type = lib.types.str;
+      default = "cauterium";
+      description = "The default profile for zen-browser.";
+    };
   };
 
   config = lib.mkIf config.desktopApps.enable {
@@ -111,7 +116,18 @@
       '';
     };
 
-    programs.zen-browser = {
+    programs.zen-browser = let
+      settings = {
+        "zen.glance.activation-method" = "ctrl";
+        "zen.urlbar.behavior" = "float";
+        "zen.view.compact.hide-toolbar" = true;
+        "zen.view.show-newtab-button-top" = false;
+        "zen.view.use-single-toolbar" = false;
+        "zen.welcome-screen.seen" = true;
+        "zen.workspaces.continue-where-left-off" = true;
+        "zen.workspaces.separate-essentials" = false;
+      };
+    in {
       enable = true;
       policies = {
         AutofillAddressEnabled = false;
@@ -133,16 +149,9 @@
         };
       };
       profiles.cauterium = {
-        settings = {
-          "zen.glance.activation-method" = "ctrl";
-          "zen.urlbar.behavior" = "float";
-          "zen.view.compact.hide-toolbar" = true;
-          "zen.view.show-newtab-button-top" = false;
-          "zen.view.use-single-toolbar" = false;
-          "zen.welcome-screen.seen" = true;
-          "zen.workspaces.continue-where-left-off" = true;
-          "zen.workspaces.separate-essentials" = false;
-        };
+        id = 0;
+        isDefault = config.desktopApps.zen-browser.defaultProfile == "cauterium";
+        settings = settings;
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           bitwarden
           darkreader
@@ -150,6 +159,22 @@
           languagetool
           ublock-origin
           wikiwand-wikipedia-modernized
+          zotero-connector
+        ];
+      };
+      profiles.freetime = {
+        id = 1;
+        isDefault = config.desktopApps.zen-browser.defaultProfile == "freetime";
+        settings = settings;
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          bitwarden
+          darkreader
+          i-dont-care-about-cookies
+          languagetool
+          return-youtube-dislikes
+          ublock-origin
+          wikiwand-wikipedia-modernized
+          youtube-recommended-videos
           zotero-connector
         ];
       };

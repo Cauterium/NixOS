@@ -15,6 +15,9 @@
   };
 
   config = lib.mkIf config.workDesktop.enable {
+    audio.enable = true;
+    desktopApps.zen-browser.defaultProfile = "cauterium";
+
     home.packages = with pkgs; [
     ];
 

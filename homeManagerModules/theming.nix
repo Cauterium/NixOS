@@ -32,7 +32,6 @@ in {
 
     qt = {
       enable = true;
-      platformTheme.name = "gtk";
       style.name = "adwaita-dark";
       style.package = pkgs.adwaita-qt;
     };
@@ -40,6 +39,7 @@ in {
     # GTK Theming
     gtk = {
       enable = true;
+      gtk2.force = true;
       gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
       gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
 

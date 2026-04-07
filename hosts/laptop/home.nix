@@ -30,7 +30,6 @@
 
   home.packages = with pkgs; [
     jq
-    pamixer
     socat
     sops
   ];

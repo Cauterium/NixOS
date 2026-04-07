@@ -8,9 +8,9 @@
   };
 
   config = lib.mkIf config.nvidia.enable {
-    programs.hyprland = {
-      xwayland.enable = true;
-    };
+    # programs.hyprland = {
+    #   xwayland.enable = true;
+    # };
 
     boot.initrd.kernelModules = [
       "nvidia"
@@ -21,6 +21,7 @@
 
     boot.kernelParams = [
       "nvidia-drm.modeset=1"
+      "nvidia-drm.fbdev=1"
     ];
 
     environment.sessionVariables = {
