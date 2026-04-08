@@ -86,5 +86,20 @@
     };
 
     programs.gamescope.enable = true;
+
+    sops.secrets."FreetimeLNXLinkConfig.yml" = {
+      restartUnits = ["lnxlink.service"];
+    };
+
+    systemd.services.lnxlink = {
+      description = "autostart lnxlink on startup";
+      serviceConfig = {
+        ExecStart = "${pkgs.lnxlink}/bin/lnxlink -c ${config.sops.secrets."FreetimeLNXLinkConfig.yml".path} -i";
+        Restart = "always";
+        RestartSec = "5";
+      };
+      requires = ["network.target"];
+      wantedBy = ["default.target"];
+    };
   };
 }

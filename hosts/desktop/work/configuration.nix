@@ -37,5 +37,20 @@
     environment.systemPackages = with pkgs; [
       xwayland-satellite
     ];
+
+    sops.secrets."WorkLNXLinkConfig.yml" = {
+      restartUnits = ["lnxlink.service"];
+    };
+
+    systemd.services.lnxlink = {
+      description = "autostart lnxlink on startup";
+      serviceConfig = {
+        ExecStart = "${pkgs.lnxlink}/bin/lnxlink -c ${config.sops.secrets."WorkLNXLinkConfig.yml".path} -i";
+        Restart = "always";
+        RestartSec = "5";
+      };
+      requires = ["network.target"];
+      wantedBy = ["default.target"];
+    };
   };
 }

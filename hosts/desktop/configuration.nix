@@ -70,15 +70,4 @@
       cauterium = import ./home.nix;
     };
   };
-
-  systemd.services.lnxlink = {
-    description = "autostart lnxlink on startup";
-    serviceConfig = {
-      ExecStart = "${pkgs.lnxlink}/bin/lnxlink -c /home/cauterium/.config/lnxlinkconf.yml -i";
-      Restart = "always";
-      RestartSec = "5";
-    };
-    requires = ["network.target"];
-    wantedBy = ["default.target"];
-  };
 }
