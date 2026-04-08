@@ -63,9 +63,11 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cauterium = {
+    hashedPassword = "$y$j9T$vmE7pFMtiDrfw3ybCNoM71$b94x3Q6kY8z8njYZvvpocGFInUl1YZs.BP04lo/EaHB";
+    uid = 1000;
     isNormalUser = true;
     description = "cauterium";
-    extraGroups = ["networkmanager" "wheel" "libvirtd"];
+    extraGroups = ["network" "networkmanager" "wheel" "libvirtd" "audio" "video" "render" "gamemode"];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
