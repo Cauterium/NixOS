@@ -36,7 +36,7 @@
 
   qt.platformTheme.name = "kde";
 
-  home.stateVersion = "23.11"; # Please check Home Manager release notes before changing.
+  home.stateVersion = "25.11"; # Please check Home Manager release notes before changing.
 
   home.packages = with pkgs; [
     # android-studio

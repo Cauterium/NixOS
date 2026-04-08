@@ -165,7 +165,7 @@
   # TODO this is a VERY hacky solution
   systemd.services.home-assistant-vm = {
     description = "Home Assistant VM (wait for Zigbee USB)";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
 
     after = [
       "libvirtd.service"
@@ -191,7 +191,7 @@
       Restart = "on-failure";
       RestartSec = "20";
       ExecStart = ''
-      ${pkgs.bash}/bin/bash -c '${pkgs.libvirt}/bin/virsh --connect qemu:///system detach-device hass /home/cauterium/VMConfig/usb-device.xml || true && ${pkgs.libvirt}/bin/virsh --connect qemu:///system attach-device hass /home/cauterium/VMConfig/usb-device.xml'
+        ${pkgs.bash}/bin/bash -c '${pkgs.libvirt}/bin/virsh --connect qemu:///system detach-device hass /home/cauterium/VMConfig/usb-device.xml || true && ${pkgs.libvirt}/bin/virsh --connect qemu:///system attach-device hass /home/cauterium/VMConfig/usb-device.xml'
       '';
     };
   };

@@ -73,7 +73,7 @@ in {
 
       pluginSettings = {
         syncthing-status = {
-          folderIds = [ "Obsidian" "Zotero" ];
+          folderIds = ["Obsidian" "Zotero"];
           pollIntervalMs = 10000;
           verifyTls = false;
         };

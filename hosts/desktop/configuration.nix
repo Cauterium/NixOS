@@ -43,19 +43,7 @@
   workDesktop.enable = true;
 
   # Bootloader extra config
-  boot.loader.grub = {
-    extraEntries = ''
-      menuentry "Windows 11" {
-        insmod part_gpt
-        insmod fat
-        insmod search_fs_uuid
-        insmod chain
-        search --fs-uuid --set=root 46FA-E160
-        chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-      }
-    '';
-    gfxmodeEfi = "1920x1080,auto";
-  };
+  boot.loader.grub.gfxmodeEfi = "1920x1080,auto";
 
   system.autoUpgrade = {
     enable = true;
