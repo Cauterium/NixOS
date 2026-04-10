@@ -14,8 +14,6 @@
   };
 
   config = lib.mkIf config.workDesktop.enable {
-    networking.hostName = "desktop";
-
     services.displayManager = {
       sddm = {
         enable = true;
