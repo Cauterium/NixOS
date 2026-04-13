@@ -17,12 +17,15 @@
   config = lib.mkIf config.freetimeDesktop.enable {
     environment.systemPackages = with pkgs; [
       gimp
+      heroic
       lutris
       mangohud
       musescore
       olympus
       prismlauncher
       rawtherapee
+
+      wineWow64Packages.waylandFull
 
       kdePackages.isoimagewriter
     ];
