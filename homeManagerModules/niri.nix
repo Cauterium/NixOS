@@ -22,8 +22,6 @@ in {
   config = lib.mkIf config.niri.enable {
     rofi.enable = lib.mkDefault true;
 
-    qt.platformTheme.name = "gtk";
-
     home.packages = with pkgs; [
       pavucontrol
       wirelesstools

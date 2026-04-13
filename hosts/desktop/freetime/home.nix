@@ -34,16 +34,17 @@
     };
   };
 
-  qt.platformTheme.name = "kde";
-
   home.stateVersion = "25.11"; # Please check Home Manager release notes before changing.
 
   home.packages = with pkgs; [
     # android-studio
     # davinci-resolve
     jq
+    pavucontrol
     socat
     sops
+    wirelesstools
+    wl-clipboard
   ];
 
   home.sessionVariables = {
