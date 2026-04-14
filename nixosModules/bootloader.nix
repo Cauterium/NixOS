@@ -9,6 +9,8 @@
   };
 
   config = lib.mkIf config.bootloader.enable {
+    stylix.targets.grub.enable = false;
+
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.efi.efiSysMountPoint = "/boot";
     boot.consoleLogLevel = 0;
@@ -39,12 +41,6 @@
 
     boot.plymouth = {
       enable = true;
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override {
-          selected_themes = ["circle_hud"];
-        })
-      ];
-      theme = "circle_hud";
     };
   };
 }

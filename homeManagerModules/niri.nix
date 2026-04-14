@@ -32,24 +32,6 @@ in {
       enable = true;
       # Use 'noctalia-shell ipc call state all > ./noctalia.json' to store current state
       settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
-      colors = with config.colorScheme.palette; {
-        mError = "#${base08}";
-        mHover = "#${base0C}";
-        mOnError = "#${base00}";
-        mOnHover = "#${base00}";
-        mOnPrimary = "#${base00}";
-        mOnSecondary = "#${base00}";
-        mOnSurface = "#${base07}";
-        mOnSurfaceVariant = "#${base05}";
-        mOnTertiary = "#${base00}";
-        mOutline = "#${base03}";
-        mPrimary = "#${base0D}";
-        mSecondary = "#${base0E}";
-        mShadow = "#${base00}";
-        mSurface = "#${base01}";
-        mSurfaceVariant = "#${base02}";
-        mTertiary = "#${base0C}";
-      };
       plugins = {
         sources = [
           {
@@ -80,7 +62,7 @@ in {
 
     programs.hyprlock = {
       enable = true;
-      settings = with config.colorScheme.palette; {
+      settings = {
         background = {
           path = "${image}";
           blur_size = 7;
@@ -94,9 +76,6 @@ in {
           dots_size = 0.2;
           dots_spacing = 0.2;
           dots_center = true;
-          outer_color = "rgba(${base07}00)";
-          inner_color = "rgba(${base00}66)";
-          font_color = "rgb(${base07})";
           placeholder_text = "<i><span foreground=\"##ffffff99\">Enter Password</span></i>";
           hide_input = false;
           size = "250, 60";
@@ -110,7 +89,6 @@ in {
           # Clock
           {
             text = "cmd[update:1000] echo \"<span>$(date +\"%H:%M\")</span>\"";
-            color = "rgba(${base07}DD)";
             font_size = 130;
             font_family = "JetBrains Mono Nerd";
             position = "0, 240";
@@ -120,7 +98,6 @@ in {
           # Date
           {
             text = "cmd[update:1000] echo -e \"$(date +\"%A, %d. %B\")\"";
-            color = "rgba(${base07}DD)";
             font_size = 30;
             font_family = "JetBrains Mono Nerd";
             position = "0, 80";
@@ -130,7 +107,6 @@ in {
           # User
           {
             text = "Hello there, $USER";
-            color = "rgba(${base07}DD)";
             font_size = 25;
             font_family = "JetBrains Mono Nerd";
             position = "0, -130";
@@ -167,7 +143,7 @@ in {
 
     home.file.".config/niri/config.kdl" = {
       force = true;
-      text = with config.colorScheme.palette; ''
+      text = with config.lib.stylix.colors; ''
         input {
           keyboard {
             xkb {

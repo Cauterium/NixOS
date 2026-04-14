@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./../../homeManagerModules
-    inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.nixosModules.stylix
     inputs.sops-nix.homeManagerModules.sops
   ];
 

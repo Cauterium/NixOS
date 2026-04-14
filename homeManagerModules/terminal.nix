@@ -17,9 +17,6 @@
 
     programs.bat = {
       enable = true;
-      config = {
-        theme = "base16";
-      };
     };
 
     programs.fastfetch = {
@@ -254,7 +251,6 @@
     programs.btop = {
       enable = true;
       settings = {
-        color_theme = "tokyo-night";
         theme_background = false;
         vim_keys = true;
         rounded_corners = true;
@@ -316,6 +312,8 @@
         ];
       };
     };
+
+    stylix.targets.nixvim.enable = false;
 
     programs.neovim = {
       defaultEditor = true;

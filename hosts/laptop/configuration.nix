@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
     ./../../nixosModules
-    inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.default
     inputs.sops-nix.nixosModules.sops
   ];

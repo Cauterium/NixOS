@@ -8,7 +8,6 @@
   imports = [
     # ./../../homeManagerModules
     ./work/home.nix
-    inputs.nix-colors.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
   ];
 

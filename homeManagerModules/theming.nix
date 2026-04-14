@@ -16,38 +16,21 @@ in {
 
   config = lib.mkIf config.theming.enable {
     home.packages = with pkgs; [
-      adwaita-qt
       papirus-icon-theme
       libsForQt5.qt5ct
       qt6Packages.qt6ct
     ];
 
-    home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
-    };
-
     qt = {
       enable = true;
-      platformTheme.name = "qtct";
       style.package = with pkgs; [darkly darkly-qt5];
     };
 
     # GTK Theming
     gtk = {
       enable = true;
-      colorScheme = "dark";
       gtk2.force = true;
-      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
 
-      theme = {
-        name = "${config.colorScheme.slug}";
-        package = gtkThemeFromScheme {scheme = config.colorScheme;};
-      };
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;

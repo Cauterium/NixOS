@@ -20,6 +20,8 @@ in {
   };
 
   config = lib.mkIf config.spicetify.enable {
+    stylix.targets.spicetify.enable = false;
+
     programs.spicetify = {
       enable = true;
       theme = {
@@ -41,7 +43,7 @@ in {
       };
 
       colorScheme = "custom";
-      customColorScheme = with config.colorScheme.palette; {
+      customColorScheme = with config.lib.stylix.colors; {
         text = "${base07}";
         subtext = "${base05}";
         nav-active-text = "${base0C}";

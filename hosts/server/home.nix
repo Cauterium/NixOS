@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./../../homeManagerModules
-    inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.nixosModules.stylix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -14,9 +14,9 @@
   development.enable = false;
   fcitx.enable = false;
   hyprland.enable = false;
-  nix-colors.enable = false;
   secrets.enable = false;
   spicetify.enable = false;
+  stylix-theming.enable = false;
   theming.enable = false;
   waybar.enable = false;
   zathura.enable = false;

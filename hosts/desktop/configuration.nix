@@ -11,7 +11,7 @@
     ./common-config.nix
     ./../../nixosModules
     ./work/configuration.nix
-    inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.default
     inputs.sops-nix.nixosModules.sops
   ];
@@ -24,7 +24,7 @@
         ./common-config.nix
         ./../../nixosModules
         ./freetime/configuration.nix
-        inputs.nix-colors.homeManagerModules.default
+        inputs.stylix.nixosModules.stylix
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
       ];

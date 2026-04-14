@@ -11,7 +11,7 @@
     ./zathura.nix
 
     ../nixosModules/secrets.nix
-    ../nixosModules/nix-colors.nix
+    ../nixosModules/stylix.nix
   ];
 
   audio.enable = lib.mkDefault false;
@@ -19,9 +19,9 @@
   development.enable = lib.mkDefault true;
   fcitx.enable = lib.mkDefault true;
   niri.enable = lib.mkDefault true;
-  nix-colors.enable = true;
   secrets.enable = lib.mkDefault true;
   spicetify.enable = lib.mkDefault true;
+  stylix-theming.enable = true;
   terminal.enable = lib.mkDefault true;
   theming.enable = lib.mkDefault true;
   zathura.enable = lib.mkDefault true;

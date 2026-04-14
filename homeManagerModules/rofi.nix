@@ -14,6 +14,8 @@
       bemoji
     ];
 
+    stylix.targets.rofi.enable = false;
+
     programs.wlogout = {
       enable = true;
       layout = [
@@ -42,7 +44,7 @@
         active_rad = "30";
         button_rad = "20";
       in
-        with config.colorScheme.palette; ''
+        with config.lib.stylix.colors; ''
           window {
             background-color: transparent;
           }
@@ -126,12 +128,12 @@
 
       theme = let
         inherit (config.lib.formats.rasi) mkLiteral;
-        background = mkLiteral "#${config.colorScheme.palette.base00}B3";
-        background-alt = mkLiteral "#${config.colorScheme.palette.base03}B3";
-        foreground = mkLiteral "#${config.colorScheme.palette.base06}B3";
-        selected = mkLiteral "#${config.colorScheme.palette.base02}B3";
-        active = mkLiteral "#${config.colorScheme.palette.base03}FF";
-        urgent = mkLiteral "#${config.colorScheme.palette.base0F}FF";
+        background = mkLiteral "#${config.lib.stylix.colors.base00}B3";
+        background-alt = mkLiteral "#${config.lib.stylix.colors.base03}B3";
+        foreground = mkLiteral "#${config.lib.stylix.colors.base06}B3";
+        selected = mkLiteral "#${config.lib.stylix.colors.base02}B3";
+        active = mkLiteral "#${config.lib.stylix.colors.base03}FF";
+        urgent = mkLiteral "#${config.lib.stylix.colors.base0F}FF";
       in {
         "*" = {
           border-color = selected;

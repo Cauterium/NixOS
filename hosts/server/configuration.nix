@@ -12,13 +12,13 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./../../nixosModules
-    inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.default
     inputs.sops-nix.nixosModules.sops
   ];
 
   network.enable = false;
-  nix-colors.enable = false;
+  stylix-theming.enable = false;
 
   networking.hostName = "server"; # Define your hostname.
 
