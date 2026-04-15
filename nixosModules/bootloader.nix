@@ -21,22 +21,8 @@
       enable = true;
       efiSupport = true;
       devices = ["nodev"];
-      theme = "${
-        (pkgs.fetchFromGitHub {
-          owner = "mino29";
-          repo = "tokyo-night-grub";
-          rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
-          hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
-        })
-      }/tokyo-night/";
-      splashImage = "${
-        (pkgs.fetchFromGitHub {
-          owner = "mino29";
-          repo = "tokyo-night-grub";
-          rev = "e2b2cfd77f0195fffa93b36959f9b970ca7a1307";
-          hash = "sha256-l+H3cpxFn3MWvarTJvxXzTA+CwX0SwvP+/EnU8tDUEk=";
-        })
-      }/tokyo-night/background.png";
+      theme = "${pkgs.catppuccin-grub}";
+      splashImage = "${pkgs.catppuccin-grub}/background.png";
     };
 
     boot.plymouth = {
