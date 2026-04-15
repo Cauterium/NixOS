@@ -4,7 +4,11 @@
   lib,
   config,
   ...
-}: {
+}: let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  nixvim-package = inputs.nixvim.packages.${system}.default;
+  stylix-nixvim = nixvim-package.extend config.stylix.targets.nixvim.exportedModule;
+in {
   options = {
     terminal.enable = lib.mkEnableOption "Enables terminal programs";
   };
@@ -283,7 +287,7 @@
 
     home.packages = with pkgs; [
       cz-cli
-      inputs.nixvim.packages."x86_64-linux".default
+      stylix-nixvim
     ];
 
     programs.git = {
@@ -312,8 +316,6 @@
         ];
       };
     };
-
-    stylix.targets.nixvim.enable = false;
 
     programs.neovim = {
       defaultEditor = true;
