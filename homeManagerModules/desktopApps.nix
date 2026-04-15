@@ -147,7 +147,7 @@
       };
     };
 
-    stylix.targets.zen-browser.profileNames = [ "cauterium" "freetime" ];
+    stylix.targets.zen-browser.profileNames = ["cauterium" "freetime"];
 
     xdg.mimeApps = let
       value = "zen-twilight.desktop";
