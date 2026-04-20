@@ -9,5 +9,9 @@
 
   config = lib.mkIf config.audio.enable {
     services.easyeffects.enable = true;
+
+    systemd.user.services.easyeffects.environment = {
+      LSP_WS_LIB_GLXSURFACE = "off";
+    };
   };
 }
