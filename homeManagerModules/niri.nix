@@ -313,7 +313,7 @@ in {
 
           // Screen brightness control for laptop
           XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
-          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brigthness decrease"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 
           Mod+Left  { focus-column-left; }
           Mod+Down  { focus-window-or-workspace-down; }
