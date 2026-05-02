@@ -263,21 +263,26 @@ in {
           clip-to-geometry true
         }
 
-        // FIXME: Wait for blur to be added to Niri to add this
-        // Set opacity for windows
-        // window-rule {
-        //   match app-id=r#"kitty$"# is-focused=true
-        //   match app-id=r#"discord$"# is-focused=true
-        //   match app-id=r#"spotify$"# is-focused=true
-        //   match app-id=r#"Rofi$"# is-focused=true
-        //   match app-id=r#"anki$"# is-focused=true
-        //   match app-id=r#"obsidian$"# is-focused=true
-        //   match app-id=r#"org.pwmt.zathura$"# is-focused=true
-        //   opacity 0.9
-        //   background-effect {
-        //     blur true
-        //   }
-        // }
+        window-rule {
+          match app-id=r#"kitty$"#
+          match app-id=r#"discord$"#
+          match app-id=r#"spotify$"#
+          match app-id=r#"anki$"#
+          match title="Obsidian"
+          match app-id=r#"org.pwmt.zathura$"#
+          opacity 0.9
+          background-effect {
+            blur true
+          }
+        }
+
+        layer-rule {
+          match namespace="rofi"
+          background-effect {
+            blur true
+            xray false
+          }
+        }
 
         // Set the overview wallpaper on the backdrop.
         layer-rule {
