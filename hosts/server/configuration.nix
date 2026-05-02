@@ -18,7 +18,6 @@
   ];
 
   network.enable = false;
-  stylix-theming.enable = false;
 
   networking.hostName = "server"; # Define your hostname.
 
@@ -131,6 +130,7 @@
       blocking = {
         denylists = {
           main-lists = [
+            "/etc/blocky/customBlocklist.txt"
             "https://big.oisd.nl/domainswild"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"

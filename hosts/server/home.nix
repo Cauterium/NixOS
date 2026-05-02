@@ -12,12 +12,12 @@
   desktopApps.enable = false;
   development.enable = false;
   fcitx.enable = false;
-  hyprland.enable = false;
+  niri.enable = false;
+  rofi.enable = false;
   secrets.enable = false;
   spicetify.enable = false;
-  stylix-theming.enable = false;
+  # stylix-theming.enable = false;
   theming.enable = false;
-  waybar.enable = false;
   zathura.enable = false;
 
   home.username = "cauterium";
@@ -38,8 +38,6 @@
   home.stateVersion = "24.05"; # Please check Home Manager release notes before changing.
 
   home.packages = with pkgs; [
-    jdk21
-    jq
   ];
 
   home.sessionVariables = {
