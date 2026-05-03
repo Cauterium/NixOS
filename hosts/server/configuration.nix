@@ -121,10 +121,10 @@
     enable = true;
     settings = {
       ports.dns = 53;
-      upstreams.groups.default = ["https://one.one.one.one/dns-query"];
+      upstreams.groups.default = ["https://noads.joindns4.eu/dns-query"];
       bootstrapDns = {
-        upstream = "https://one.one.one.one/dns-query";
-        ips = ["1.1.1.1" "1.0.0.1"];
+        upstream = "https://noads.joindns4.eu/dns-query";
+        ips = ["86.54.11.13" "86.54.11.213"];
       };
 
       blocking = {
@@ -167,29 +167,14 @@
     description = "Home Assistant VM (wait for Zigbee USB)";
     wantedBy = ["multi-user.target"];
 
-    after = [
-      "libvirtd.service"
-      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.0-ttyUSB0-tty-ttyUSB0.device"
-      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.1-ttyUSB1-tty-ttyUSB1.device"
-    ];
-
-    requires = [
-      "libvirtd.service"
-      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.0-ttyUSB0-tty-ttyUSB0.device"
-      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.1-ttyUSB1-tty-ttyUSB1.device"
-    ];
-
-    wants = [
-      "libvirtd.service"
-      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.0-ttyUSB0-tty-ttyUSB0.device"
-      "sys-devices-pci0000:00-0000:00:14.0-usb3-3\\x2d2-3\\x2d2:1.1-ttyUSB1-tty-ttyUSB1.device"
-    ];
+    after = ["libvirtd.service"];
+    wants = ["libvirtd.service"];
 
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
       Restart = "on-failure";
-      RestartSec = "20";
+      RestartSec = "5";
       ExecStart = ''
         ${pkgs.bash}/bin/bash -c '${pkgs.libvirt}/bin/virsh --connect qemu:///system detach-device hass /home/cauterium/VMConfig/usb-device.xml || true && ${pkgs.libvirt}/bin/virsh --connect qemu:///system attach-device hass /home/cauterium/VMConfig/usb-device.xml'
       '';
