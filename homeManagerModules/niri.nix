@@ -278,6 +278,7 @@ in {
 
         layer-rule {
           match namespace="rofi"
+          match namespace="logout_dialog"
           background-effect {
             blur true
             xray false
