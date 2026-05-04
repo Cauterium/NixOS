@@ -21,9 +21,6 @@
   config = lib.mkIf config.desktopApps.enable {
     home.packages = with pkgs; [
       anki
-      (discord.override {
-        withVencord = true;
-      })
       nurl
       obsidian
       rnote
@@ -66,6 +63,83 @@
         cursor_shape beam
         disable_ligatures never
       '';
+    };
+
+    programs.vesktop = {
+      enable = true;
+      settings = {
+        discordBranch = "stable";
+        minimizeToTray = true;
+        tray = true;
+        hardwareAcceleration = true;
+        arRPC = true;
+      };
+      vencord.settings = {
+        plugins = {
+          ChatInputButtonAPI.enabled = true;
+          CommandsAPI.enabled = true;
+          MessageAccessoriesAPI.enabled = true;
+          MessageEventsAPI.enabled = true;
+          UserSettingsAPI.enabled = true;
+          BetterFolders = {
+            enabled = true;
+            sidebar = false;
+            showFolderIcon = 1;
+            keepIcons = false;
+            closeAllHomeButton = false;
+            closeAllFolders = false;
+            forceOpen = false;
+            closeOthers = true;
+            sidebarAnim = true;
+          };
+          BetterSettings = {
+            enabled = true;
+            disableFade = true;
+            eagerLoad = true;
+            organizeMenu = true;
+          };
+          ClearURLs.enabled = true;
+          CopyFileContents.enabled = true;
+          CrashHandler.enabled = true;
+          FakeNitro = {
+            enabled = true;
+            enableStickerBypass = true;
+            enableStreamQualityBypass = true;
+            enableEmojiBypass = true;
+            transformEmojis = true;
+            transformStickers = true;
+          };
+          FullSearchContext.enabled = true;
+          iLoveSpam.enabled = true;
+          PermissionsViewer.enabled = true;
+          RoleColorEverywhere = {
+            enabled = true;
+            chatMentions = true;
+            memberList = true;
+            voiceUsers = true;
+            reactorsList = true;
+            pollResults = true;
+            colorChatMessages = false;
+          };
+          SilentTyping.enabled = true;
+          SpotifyCrack = {
+            enabled = true;
+            noSpotifyAutoPause = true;
+            keepSpotifyActivityOnIdle = false;
+          };
+          VolumeBooster.enabled = true;
+          BadgeAPI.enabled = true;
+          NoTrack = {
+            enabled = true;
+            disableAnalytics = true;
+          };
+          Settings = {
+            enabled = true;
+            settingsLocation = "aboveNitro";
+          };
+          SupportHelper.enabled = true;
+        };
+      };
     };
 
     programs.zen-browser = let

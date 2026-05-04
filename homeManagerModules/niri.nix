@@ -266,6 +266,7 @@ in {
         window-rule {
           match app-id=r#"kitty$"#
           match app-id=r#"discord$"#
+          match app-id=r#"vesktop$"#
           match app-id=r#"spotify$"#
           match app-id=r#"anki$"#
           match title="Obsidian"
