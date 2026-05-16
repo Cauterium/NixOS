@@ -121,10 +121,10 @@
     enable = true;
     settings = {
       ports.dns = 53;
-      upstreams.groups.default = ["https://noads.joindns4.eu/dns-query"];
+      upstreams.groups.default = ["https://unfiltered.joindns4.eu/dns-query"];
       bootstrapDns = {
-        upstream = "https://noads.joindns4.eu/dns-query";
-        ips = ["86.54.11.13" "86.54.11.213"];
+        upstream = "https://unfiltered.joindns4.eu/dns-query";
+        ips = ["86.54.11.100" "86.54.11.200"];
       };
 
       blocking = {
