@@ -48,6 +48,12 @@
         Restart = "always";
         RestartSec = "5";
       };
+      path = with pkgs; [
+        ethtool
+        gawk
+        wl-clipboard
+        sudo
+      ];
       requires = ["network.target"];
       wantedBy = ["default.target"];
     };
