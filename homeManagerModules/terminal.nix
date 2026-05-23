@@ -288,6 +288,7 @@ in {
     home.packages = with pkgs; [
       cz-cli
       stylix-nixvim
+      unzip
     ];
 
     programs.git = {
