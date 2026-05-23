@@ -145,6 +145,8 @@
     xwayland-satellite
   ];
 
+  services.udisks2.enable = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
