@@ -265,6 +265,7 @@ in {
       enable = true;
       package = pkgs.yazi;
       enableFishIntegration = config.programs.fish.enable;
+      shellWrapperName = "yy";
 
       settings = {
         mgr = {

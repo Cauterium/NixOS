@@ -8,10 +8,6 @@
   };
 
   config = lib.mkIf config.nvidia.enable {
-    # programs.hyprland = {
-    #   xwayland.enable = true;
-    # };
-
     boot.initrd.kernelModules = [
       "nvidia"
       "nvidia_modeset"

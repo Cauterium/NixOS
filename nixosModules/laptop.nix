@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    laptop.enable = lib.mkEnableOption "Enables options for Nvidia GPUs";
+    laptop.enable = lib.mkEnableOption "Enables options for Laptops";
   };
 
   config = lib.mkIf config.laptop.enable {

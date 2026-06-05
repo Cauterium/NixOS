@@ -4,12 +4,7 @@
   inputs,
   pkgs,
   ...
-}: let
-  inherit
-    (inputs.nix-colors.lib-contrib {inherit pkgs;})
-    gtkThemeFromScheme
-    ;
-in {
+}: {
   options = {
     theming.enable = lib.mkEnableOption "Enable theming settings";
   };
@@ -23,7 +18,7 @@ in {
 
     qt = {
       enable = true;
-      style.package = with pkgs; [darkly darkly-qt5];
+      style.package = with pkgs; [darkly];
     };
 
     # GTK Theming
