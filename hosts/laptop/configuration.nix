@@ -53,7 +53,7 @@
   };
 
   programs.niri.enable = true;
-  programs.niri.package = pkgs.unstable.niri;
+  programs.niri.package = pkgs.niri;
 
   system.autoUpgrade = {
     enable = true;

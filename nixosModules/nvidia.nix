@@ -31,6 +31,7 @@
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {
+      branch = "legacy_580";
       open = false;
       modesetting.enable = true;
       powerManagement.enable = false;
