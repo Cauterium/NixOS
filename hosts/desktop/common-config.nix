@@ -89,6 +89,7 @@
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     lnxlink
+    piper-tts
   ];
 
   security.rtkit.enable = true;
@@ -106,6 +107,8 @@
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   services.tuned.enable = true;
+
+  services.speechd.enable = true;
 
   system.stateVersion = "25.11"; # Did you read the comment?
 }
