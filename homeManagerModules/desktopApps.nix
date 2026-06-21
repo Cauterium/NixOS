@@ -223,6 +223,7 @@
 
     stylix.targets.zen-browser.profileNames = ["cauterium" "freetime"];
 
+    xdg.configFile."mimeapps.list".force = true;
     xdg.mimeApps = let
       value = "zen-twilight.desktop";
 
