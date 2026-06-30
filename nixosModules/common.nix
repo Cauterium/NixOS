@@ -26,6 +26,16 @@
     !include ${config.sops.secrets."github-token".path}
   '';
 
+    # Flake caching
+    nix.settings = {
+      substituters = [
+        "https://binarycache.fschwickerath.de"
+      ];
+      trusted-public-keys = [
+        "binarycache.fschwickerath.de:485gFIlZC//bI79ITfHsCQqlCDaRlQI7HPaxDKhI7TM="
+      ];
+    };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
