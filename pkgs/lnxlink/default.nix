@@ -6,20 +6,13 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
-  version = "2026.6.0";
+  version = "2026.7.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-2xrkqKh9yz3DwXqVnVnJuZ5QAYCvOAYGukJo60oieVo=";
+    hash = "sha256-ZNCxydBa2RqMuVyycgsG7EnWnFLyXJVvt7h7tRw5LtU=";
   };
-
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace-fail "setuptools~=68.0.0" "setuptools" \
-      --replace-fail "wheel~=0.40.0" "wheel" \
-      --replace-fail '"asyncio>=3.4.3",' ""
-  '';
 
   nativeBuildInputs = [
     python3Packages.setuptools
