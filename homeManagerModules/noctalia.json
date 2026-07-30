@@ -8,11 +8,13 @@
       "density": "default",
       "showOutline": false,
       "showCapsule": true,
+      "capsuleOpacity": 0.9,
       "capsuleColorKey": "none",
       "widgetSpacing": 6,
       "contentPadding": 2,
       "fontScale": 1,
       "enableExclusionZoneInset": true,
+      "backgroundOpacity": 0.9,
       "useSeparateOpacity": false,
       "marginVertical": 4,
       "marginHorizontal": 4,
@@ -28,6 +30,7 @@
         "left": [
           {
             "colorizeSystemIcon": "primary",
+            "colorizeSystemText": "none",
             "customIconPath": "",
             "enableColorization": false,
             "icon": "rocket",
@@ -182,6 +185,7 @@
           {
             "colorizeDistroLogo": false,
             "colorizeSystemIcon": "primary",
+            "colorizeSystemText": "none",
             "customIconPath": "",
             "enableColorization": false,
             "icon": "power",
@@ -266,11 +270,14 @@
       "smoothScrollEnabled": true
     },
     "ui": {
+      "fontDefault": "DejaVu Sans",
+      "fontFixed": "FiraCode Nerd Font",
       "fontDefaultScale": 1,
       "fontFixedScale": 1,
       "tooltipsEnabled": true,
       "scrollbarAlwaysVisible": false,
       "boxBorderEnabled": false,
+      "panelBackgroundOpacity": 0.9,
       "translucentWidgets": false,
       "panelsAttachedToBar": true,
       "settingsPanelMode": "attached",
@@ -475,10 +482,11 @@
       "disableDesktopWidgets": true
     },
     "dock": {
-      "enabled": true,
+      "enabled": false,
       "position": "bottom",
       "displayMode": "auto_hide",
       "dockType": "attached",
+      "backgroundOpacity": 0.9,
       "floatingRatio": 1,
       "size": 1,
       "onlySameOutput": false,
@@ -588,6 +596,7 @@
       "monitors": [],
       "location": "top_right",
       "overlayLayer": true,
+      "backgroundOpacity": 0.9,
       "respectExpireTimeout": false,
       "lowUrgencyDuration": 2,
       "normalUrgencyDuration": 6,
@@ -616,6 +625,7 @@
       "location": "top_right",
       "autoHideMs": 2000,
       "overlayLayer": true,
+      "backgroundOpacity": 0.9,
       "enabledTypes": [
         2,
         0,
@@ -723,48 +733,63 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "DP-3": "/home/cauterium/Pictures/Wallpapers/cherryblossom.png",
-      "HDMI-A-1": "/home/cauterium/Pictures/Wallpapers/cherryblossom.png",
-      "DP-2": "/home/cauterium/Pictures/Wallpapers/cherryblossom.png"
+      "DP-3": "/home/cauterium/Pictures/Wallpapers/torii fog.jpg",
+      "HDMI-A-1": "/home/cauterium/Pictures/Wallpapers/torii fog.jpg",
+      "DP-2": "/home/cauterium/Pictures/Wallpapers/torii fog.jpg"
     },
     "desktopWidgetsEditMode": false,
     "display": {
-      "DP-1": {
+      "DP-2": {
+        "name": "DP-2",
         "connected": true,
-        "height": 1080,
-        "name": "DP-1",
-        "physical_height": 290,
-        "physical_width": 520,
-        "refresh_rate": 60000,
         "scale": 1,
-        "transform": "Normal",
-        "vrr_enabled": false,
+        "width": 1024,
+        "height": 768,
+        "x": 3840,
+        "y": 0,
+        "physical_width": 0,
+        "physical_height": 0,
+        "refresh_rate": 60004,
         "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
+      },
+      "DP-3": {
+        "name": "DP-3",
+        "connected": true,
+        "scale": 1,
         "width": 1920,
+        "height": 1080,
         "x": 0,
-        "y": 0
+        "y": 0,
+        "physical_width": 520,
+        "physical_height": 290,
+        "refresh_rate": 60000,
+        "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
       },
       "HDMI-A-1": {
-        "connected": true,
-        "height": 1080,
         "name": "HDMI-A-1",
-        "physical_height": 290,
-        "physical_width": 520,
-        "refresh_rate": 60000,
+        "connected": true,
         "scale": 1,
-        "transform": "Normal",
-        "vrr_enabled": false,
-        "vrr_supported": false,
         "width": 1920,
+        "height": 1080,
         "x": 1920,
-        "y": 0
+        "y": 0,
+        "physical_width": 520,
+        "physical_height": 290,
+        "refresh_rate": 60000,
+        "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
       }
     },
     "notificationsState": {
-      "lastSeenTs": 0
+      "lastSeenTs": 1784370628000
     },
     "changelogState": {
-      "lastSeenVersion": "v4.7.6"
+      "lastSeenVersion": "v4.7.8"
     },
     "colorSchemesList": {
       "schemes": [],
