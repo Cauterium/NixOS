@@ -43,6 +43,8 @@
           github.copilot
           jnoortheen.nix-ide
           llvm-vs-code-extensions.vscode-clangd
+          ms-vscode-remote.remote-ssh-edit
+          ms-vscode.remote-explorer
           rust-lang.rust-analyzer
           usernamehw.errorlens
         ]
