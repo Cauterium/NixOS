@@ -21,6 +21,7 @@
   config = lib.mkIf config.desktopApps.enable {
     home.packages = with pkgs; [
       anki
+      mecab
       nurl
       obsidian
       rnote
@@ -193,12 +194,14 @@
         settings = settings;
         mods = mods;
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          asbplayer
           bitwarden
           darkreader
           i-dont-care-about-cookies
           languagetool
           ublock-origin
           wikiwand-wikipedia-modernized
+          yomitan
           zotero-connector
         ];
       };
@@ -208,6 +211,7 @@
         settings = settings;
         mods = mods;
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          asbplayer
           bitwarden
           darkreader
           i-dont-care-about-cookies
@@ -215,6 +219,7 @@
           return-youtube-dislikes
           ublock-origin
           wikiwand-wikipedia-modernized
+          yomitan
           youtube-recommended-videos
           zotero-connector
         ];
