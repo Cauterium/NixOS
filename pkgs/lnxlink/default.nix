@@ -6,12 +6,12 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "lnxlink";
-  version = "2026.7.0";
+  version = "2026.8.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-ZNCxydBa2RqMuVyycgsG7EnWnFLyXJVvt7h7tRw5LtU=";
+    hash = "sha256-M4gzIDjFrclEVwS2vmc6O7mduHOuIMIfw80O/IzKC2Q=";
   };
 
   nativeBuildInputs = [
