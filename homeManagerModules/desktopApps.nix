@@ -169,6 +169,7 @@
       ];
     in {
       enable = true;
+      setAsDefaultBrowser = true;
       policies = {
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;

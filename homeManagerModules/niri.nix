@@ -28,36 +28,10 @@ in {
       wl-clipboard
     ];
 
-    programs.noctalia-shell = {
+    programs.noctalia = {
       enable = true;
-      # Use 'noctalia-shell ipc call state all > ./noctalia.json' to store current state
-      settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
-      plugins = {
-        sources = [
-          {
-            enabled = true;
-            name = "Official Noctalia Plugins";
-            url = "https://github.com/noctalia-dev/noctalia-plugins";
-          }
-        ];
-        states = {
-          syncthing-status = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          network-manager-vpn.enabled = true;
-          usb-drive-manager.enabled = true;
-        };
-        version = 2;
-      };
-
-      pluginSettings = {
-        syncthing-status = {
-          folderIds = ["Obsidian" "Zotero"];
-          pollIntervalMs = 10000;
-          verifyTls = false;
-        };
-      };
+      # Use 'noctalia config export full > ./noctalia.toml' to store current state
+      settings = (builtins.fromTOML (builtins.readFile ./noctalia.toml));
     };
 
     programs.hyprlock = {
@@ -228,7 +202,7 @@ in {
 
         prefer-no-csd
 
-        spawn-at-startup "noctalia-shell"
+        spawn-at-startup "noctalia"
         spawn-at-startup "hyprlock"
 
         debug {
@@ -288,7 +262,7 @@ in {
 
         // Set the overview wallpaper on the backdrop.
         layer-rule {
-          match namespace="^noctalia-overview*"
+          match namespace="^noctalia-backdrop"
           place-within-backdrop true
         }
 
@@ -307,20 +281,20 @@ in {
           Mod+Period { spawn-sh "bemoji"; }
 
           // Audio control
-          XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
-          XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
-          XF86AudioMute         allow-when-locked=true { spawn-sh "noctalia-shell ipc call muteOutput"; }
-          XF86AudioMicMute      allow-when-locked=true { spawn-sh "noctalia-shell ipc call muteInput"; }
+          XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+          XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+          XF86AudioMute         allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+          XF86AudioMicMute      allow-when-locked=true { spawn-sh "noctalia msg mic-mute"; }
 
           // Media control
-          XF86AudioPlay         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
-          XF86AudioStop         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
-          XF86AudioPrev         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media previous"; }
-          XF86AudioNext         allow-when-locked=true { spawn-sh "noctalia-shell ipc call media next"; }
+          XF86AudioPlay         allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+          XF86AudioStop         allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+          XF86AudioPrev         allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+          XF86AudioNext         allow-when-locked=true { spawn-sh "noctalia msg media next"; }
 
           // Screen brightness control for laptop
-          XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
-          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
+          XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
 
           Mod+Left  { focus-column-left; }
           Mod+Down  { focus-window-or-workspace-down; }
