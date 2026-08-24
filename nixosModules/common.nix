@@ -28,11 +28,17 @@
 
     # Flake caching
     nix.settings = {
+      http-connections = 128;
+      max-substitution-jobs = 128;
+      max-jobs = "auto";
+
       substituters = [
         "https://binarycache.fschwickerath.de"
+        "https://noctalia.cachix.org"
       ];
       trusted-public-keys = [
         "binarycache.fschwickerath.de:485gFIlZC//bI79ITfHsCQqlCDaRlQI7HPaxDKhI7TM="
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];
     };
 

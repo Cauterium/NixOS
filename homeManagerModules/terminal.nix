@@ -5,9 +5,9 @@
   config,
   ...
 }: let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  nixvim-package = inputs.nixvim.packages.${system}.default;
-  stylix-nixvim = nixvim-package.extend config.stylix.targets.nixvim.exportedModule;
+  # inherit (pkgs.stdenv.hostPlatform) system;
+  # nixvim-package = inputs.nixvim.packages.${system}.default;
+  # stylix-nixvim = nixvim-package.extend config.stylix.targets.nixvim.exportedModule;
 in {
   options = {
     terminal.enable = lib.mkEnableOption "Enables terminal programs";
@@ -288,7 +288,8 @@ in {
 
     home.packages = with pkgs; [
       cz-cli
-      stylix-nixvim
+      # stylix-nixvim
+      inputs.nixvim.packages.${system}.default
       unzip
     ];
 
