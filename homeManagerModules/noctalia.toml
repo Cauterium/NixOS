@@ -436,6 +436,7 @@ scale = 1.0
 
 [plugin_settings."rylos/syncthing"]
 folders = [ "Obsidian", "Zotero" ]
+notify_events = false
 
 [plugins]
 auto_update = true
