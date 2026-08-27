@@ -17,10 +17,7 @@
       url = "github:Cauterium/NixVim";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia/cachix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     sops-nix = {
       url = "github:mic92/sops-nix";
@@ -37,46 +34,23 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.home-manager.follows = "home-manager";
     };
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    systems = [
-      "x86_64-linux"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Formatter for nix files, available through 'nix fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-    overlays = import ./overlays {inherit inputs;};
-
-    nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/laptop/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
-      desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/desktop/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
-      server = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/server/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
+  outputs = inputs: let
+    inherit (inputs.nixpkgs) lib;
+    inherit (lib.fileset) toList fileFilter;
+    isNixModule = file: file.hasExt "nix" && !lib.hasPrefix "_" file.name;
+    importTree = path: toList (fileFilter isNixModule path);
+    mkFlake = inputs.flake-parts.lib.mkFlake {inherit inputs;};
+  in
+    mkFlake {
+      imports = [inputs.flake-parts.flakeModules.flakeModules] ++ importTree ./modules;
+      systems = [
+        "x86_64-linux"
+      ];
     };
-  };
 }

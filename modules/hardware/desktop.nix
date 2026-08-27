@@ -1,0 +1,37 @@
+{...}: {
+  flake.nixosModules.desktop-hardware = {
+    lib,
+    pkgs,
+    config,
+    ...
+  }: {
+    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
+    boot.initrd.kernelModules = [];
+    boot.kernelModules = ["kvm-amd"];
+    boot.extraModulePackages = [];
+    boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_zen;
+
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/bf032dc5-bd91-4617-8a97-6037bb7a751e";
+      fsType = "ext4";
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/8AB4-873E";
+      fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
+    };
+
+    fileSystems."/home/cauterium/Datenplatte" = {
+      device = "/dev/disk/by-uuid/A48A126A8A1238EE";
+      fsType = "ntfs";
+    };
+
+    swapDevices = [
+      {device = "/dev/disk/by-uuid/03e9820c-6f36-445d-8eb7-8614e12e5b2c";}
+    ];
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+}
