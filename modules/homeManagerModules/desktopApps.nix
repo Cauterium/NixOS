@@ -169,6 +169,10 @@
       in {
         enable = true;
         setAsDefaultBrowser = true;
+        nativeMessagingHosts = with pkgs; [
+          yomitan-api
+          yomitan-mecab
+        ];
         policies = {
           AutofillAddressEnabled = false;
           AutofillCreditCardEnabled = false;
@@ -199,6 +203,8 @@
             darkreader
             i-dont-care-about-cookies
             languagetool
+            refined-github
+            sponsorblock
             ublock-origin
             wikiwand-wikipedia-modernized
             yomitan
@@ -216,7 +222,9 @@
             darkreader
             i-dont-care-about-cookies
             languagetool
+            refined-github
             return-youtube-dislikes
+            sponsorblock
             ublock-origin
             wikiwand-wikipedia-modernized
             yomitan
