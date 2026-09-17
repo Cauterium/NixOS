@@ -15,7 +15,6 @@
 
       users.cauterium.imports = [
         self.homeManagerModules.laptop-home
-        self.homeManagerModules.audio
         self.homeManagerModules.desktopApps
         self.homeManagerModules.development
         self.homeManagerModules.fcitx
@@ -33,19 +32,6 @@
   flake.homeManagerModules.laptop-home = {pkgs, ...}: {
     home.username = "cauterium";
     home.homeDirectory = "/home/cauterium";
-
-    # Configure nix package manager
-    nixpkgs = {
-      overlays = [
-        self.overlays.modifications
-        self.overlays.additions
-        self.overlays.unstable-packages
-      ];
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
 
     home.stateVersion = "23.11"; # Please check Home Manager release notes before changing.
 

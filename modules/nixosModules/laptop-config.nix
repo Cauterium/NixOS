@@ -1,5 +1,5 @@
 {...}: {
-  flake.nixosModules.laptop = {pkgs, ...}: {
+  flake.nixosModules.laptop-config = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       nbfc-linux
     ];

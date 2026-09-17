@@ -10,7 +10,7 @@
     ];
   };
 
-  flake.nixosModules.desktop = {
+  flake.nixosModules.laptop = {
     lib,
     config,
     pkgs,
@@ -25,9 +25,9 @@
 
       self.nixosModules.bootloader
       self.nixosModules.common
+      self.nixosModules.laptop-config
       self.nixosModules.network
       self.nixosModules.nixos-helper
-      self.nixosModules.nvidia
       self.nixosModules.secrets
       self.nixosModules.stylix
     ];
@@ -52,6 +52,10 @@
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = false;
 
+    hardware.graphics.enable = true;
+    hardware.graphics.enable32Bit = true;
+    hardware.enableRedistributableFirmware = true;
+
     programs.xwayland.enable = true;
 
     services.displayManager = {
@@ -75,7 +79,7 @@
 
     system.autoUpgrade = {
       enable = true;
-      flake = "${config.users.users.cauterium.home}/.config/NixOS-System#default";
+      flake = "${config.users.users.cauterium.home}/.config/NixOS-System#laptop";
       dates = "weekly";
       randomizedDelaySec = "45min";
     };
@@ -141,8 +145,6 @@
       nerd-fonts.fira-code
       ipafont
     ];
-
-    laptop.enable = true;
 
     environment.sessionVariables = {
     };

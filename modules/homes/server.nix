@@ -24,18 +24,6 @@
     home.username = "cauterium";
     home.homeDirectory = "/home/cauterium";
 
-    # Configure nix package manager
-    nixpkgs = {
-      overlays = [
-        self.overlays.modifications
-        self.overlays.unstable-packages
-      ];
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
-
     home.stateVersion = "24.05"; # Please check Home Manager release notes before changing.
 
     home.sessionVariables = {

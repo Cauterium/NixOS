@@ -10,7 +10,7 @@
     ];
   };
 
-  flake.nixosModules.desktop = {pkgs, ...}: {
+  flake.nixosModules.server = {pkgs, ...}: {
     imports = [
       inputs.stylix.nixosModules.stylix
       inputs.home-manager.nixosModules.default

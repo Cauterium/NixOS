@@ -157,7 +157,7 @@
           position x=3840 y=0
         }
 
-        output "eDP-1" {
+        output "BOE 0x0A2A Unknown" {
           mode "1920x1200@60.001"
           scale 1
         }
