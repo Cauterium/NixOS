@@ -7,6 +7,7 @@
   }: {
     imports = [
       inputs.zen-browser.homeModules.twilight
+      inputs.helium-browser.homeModules.default
     ];
 
     options = {
@@ -265,6 +266,15 @@
         associations.added = associations;
         defaultApplications = associations;
         enable = true;
+      };
+
+      programs.helium = {
+        enable = true;
+        policies = {
+          "BrowserSignin" = 0;
+          "PasswordManagerEnabled" = false;
+          "SyncDisabled" = true;
+        };
       };
     };
   };

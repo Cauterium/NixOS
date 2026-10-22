@@ -79,7 +79,7 @@
       uid = 1000;
       isNormalUser = true;
       description = "cauterium";
-      extraGroups = ["network" "networkmanager" "wheel" "libvirtd" "audio" "video" "render" "gamemode"];
+      extraGroups = ["dialout" "network" "networkmanager" "wheel" "libvirtd" "audio" "video" "render" "gamemode"];
       shell = pkgs.fish;
     };
 
