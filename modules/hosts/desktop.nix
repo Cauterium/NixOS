@@ -38,6 +38,7 @@
 
       self.nixosModules.bootloader
       self.nixosModules.common
+      self.nixosModules.llama
       self.nixosModules.network
       self.nixosModules.nixos-helper
       self.nixosModules.nvidia

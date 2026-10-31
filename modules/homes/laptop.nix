@@ -49,6 +49,8 @@
 
     services.hypridle.enable = true;
 
+    programs.btop.package = pkgs.btop-rocm;
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 

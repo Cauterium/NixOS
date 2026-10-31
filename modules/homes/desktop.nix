@@ -21,6 +21,7 @@
         self.homeManagerModules.development
         self.homeManagerModules.fcitx
         self.homeManagerModules.niri
+        self.homeManagerModules.opencode
         self.homeManagerModules.rofi
         self.homeManagerModules.spicetify
         self.homeManagerModules.stylix
@@ -48,6 +49,7 @@
         self.homeManagerModules.desktopApps
         self.homeManagerModules.development
         self.homeManagerModules.fcitx
+        self.homeManagerModules.opencode
         self.homeManagerModules.spicetify
         self.homeManagerModules.stylix
         self.homeManagerModules.terminal
@@ -71,6 +73,8 @@
 
     home.sessionVariables = {
     };
+
+    programs.btop.package = pkgs.btop-cuda;
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
@@ -103,6 +107,8 @@
 
     home.sessionVariables = {
     };
+
+    programs.btop.package = pkgs.btop-cuda;
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
