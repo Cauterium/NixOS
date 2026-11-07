@@ -65,7 +65,6 @@
         addons = with pkgs; [
           fcitx5-gtk
           fcitx5-mozc
-          fcitx5-tokyonight
         ];
       };
     };
