@@ -96,8 +96,8 @@
       user = "cauterium";
       dataDir = "/home/cauterium/Documents/Syncthing";
       configDir = "/home/cauterium/.config/syncthing";
-      key = "/home/cauterium/.keys/workstation/key.pem";
-      cert = "/home/cauterium/.keys/workstation/cert.pem";
+      key = config.sops.secrets."syncthing-laptop-key".path;
+      cert = config.sops.secrets."syncthing-laptop-cert".path;
       overrideDevices = true;
       overrideFolders = true;
       settings = {
